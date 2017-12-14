@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Scalex.Views.IntroPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label Text="Welcome the Soundshed.com Guitar Toolkit" />
+            <Button x:Name="Scales" Text="Scales &amp; Arpeggios" Clicked="Scales_Clicked"></Button>
+            <Button x:Name="Chords" Text="Chords" Clicked="Chords_Clicked"></Button>
+            <Button x:Name="Tablature" Text="Tablature" Clicked="Tablature_Clicked"></Button>
+            <Button x:Name="Soundshed" Text="Join a Band" Clicked="Soundshed_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
