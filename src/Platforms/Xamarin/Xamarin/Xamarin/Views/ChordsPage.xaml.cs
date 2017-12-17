@@ -1,6 +1,6 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
-
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +16,17 @@ namespace Scalex.Views
             InitializeComponent();
 
             chordDiagramRenderer = new Webprofusion.Scalex.Rendering.ChordDiagramRenderer();
+
+            var guitarModel = chordDiagramRenderer.GuitarModel;
+
+            this.tuningPicker.ItemsSource = guitarModel.AllTunings;
+            this.tuningPicker.SelectedIndex = 0;
+
+            this.typePicker.ItemsSource = new Webprofusion.Scalex.Music.ChordManager().ChordDefinitions;
+            this.typePicker.SelectedIndex = 0;
+
+            this.keyPicker.ItemsSource = guitarModel.AllKeys;
+            this.keyPicker.SelectedIndex = 0;
         }
 
         private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
@@ -27,7 +38,7 @@ namespace Scalex.Views
             var skiaDrawingSurface = new SkiaDrawingSurface(surface.Canvas);
 
             int requiredHeight = chordDiagramRenderer.GetRequiredHeight(skiaDrawingSurface);
-            if (this.CanvasView.Height < requiredHeight)
+            if (this.SkiaCanvas.Height < requiredHeight)
             {
                 // this.CanvasView.HeightRequest = requiredHeight;
             }
@@ -37,21 +48,42 @@ namespace Scalex.Views
             skiaDrawingSurface.SetScale((float)renderScale);
             canvas.Clear();
 
-            /* SKPaint paint = new SKPaint
-             {
-                 Style = SKPaintStyle.Stroke,
-                 Color = Color.Red.ToSKColor(),
-                 StrokeWidth = 50
-             };
-             canvas.DrawCircle(info.Width / 2, info.Height / 2, 100, paint);
-             */
-            /* if (showFill)
-             {
-                 paint.Style = SKPaintStyle.Fill;
-                 paint.Color = SKColors.Blue;
-                 canvas.DrawCircle(info.Width / 2, info.Height / 2, 100, paint);
-             }*/
+            //scale chords per row depending on available width
+            var chordsPerRow = (this.SkiaCanvas.Width / renderScale) / (chordDiagramRenderer.GetRequiredWidthPerChord() * renderScale);
+            chordDiagramRenderer.ChordsPerRow = (int)chordsPerRow;
+
             chordDiagramRenderer.Render(skiaDrawingSurface);
+        }
+
+        private void tuningPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tuningPicker.SelectedIndex > -1)
+            {
+                var tuning = (Webprofusion.Scalex.Guitar.GuitarTuning)tuningPicker.SelectedItem;
+                this.chordDiagramRenderer.GuitarModel.SetTuning(tuning.ID);
+                this.SkiaCanvas.InvalidateSurface();
+                // SetPageTitle();
+            }
+        }
+
+        private void typePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (typePicker.SelectedIndex > -1)
+            {
+                var chordType = (Webprofusion.Scalex.Music.ScaleItem)typePicker.SelectedItem;
+                this.chordDiagramRenderer.CurrentChordDiagrams = this.chordDiagramRenderer.GuitarModel.GetChordDiagramsByGroup("major");
+                SkiaCanvas.InvalidateSurface();
+                // SetPageTitle();
+            }
+        }
+
+        private void keyPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (keyPicker.SelectedIndex > -1)
+            {
+                this.chordDiagramRenderer.GuitarModel.SetKey(keyPicker.SelectedItem.ToString());
+                SkiaCanvas.InvalidateSurface();
+            }
         }
     }
 }

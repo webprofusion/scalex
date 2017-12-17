@@ -13,7 +13,7 @@ namespace Webprofusion.Scalex.Rendering
         private const int FRET_MARKERSIZE = 8;
         private const int NUMBER_OF_FRETS = 5;
         private const int FONT_SIZE = 12;
-        private const int CHORDS_PER_ROW = 4;
+        public int ChordsPerRow { get; set; } = 4;
 
         public List<ChordDiagram> CurrentChordDiagrams = null;
         public GuitarModel GuitarModel = null;
@@ -33,6 +33,12 @@ namespace Webprofusion.Scalex.Rendering
             return 1024 * 3;
         }
 
+        public int GetRequiredWidthPerChord()
+        {
+            int fretBoardWidth = (STRING_SPACING * (GuitarModel.NumberOfStrings - 1));
+            return fretBoardWidth + GENERAL_PADDING;
+        }
+
         public override void Render(IGenericDrawingSurface canvas)
         {
             if (EnableRendering == false) return;
@@ -50,7 +56,7 @@ namespace Webprofusion.Scalex.Rendering
             int fontSize = FONT_SIZE;
             int fretBoardWidth = (stringSpacing * (GuitarModel.NumberOfStrings - 1));
             int minFretboardBoxSize = (stringSpacing * 5); //allow min fretboard spacing of 6 strings width
-            int chordsPerRow = CHORDS_PER_ROW;
+            int chordsPerRow = ChordsPerRow;
             int rowY = startY;
             int titleSpacing = fontSize * 2;
 
