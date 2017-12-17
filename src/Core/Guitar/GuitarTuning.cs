@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Webprofusion.Scalex.Music;
 
 namespace Webprofusion.Scalex.Guitar
@@ -15,7 +14,6 @@ namespace Webprofusion.Scalex.Guitar
 
         public GuitarTuning()
         {
-
             //create a default tuning for use in Designer etc
             this.ID = 1;
             this.Name = "6 String Guitar - Standard";
@@ -216,6 +214,7 @@ namespace Webprofusion.Scalex.Guitar
                     new NoteInstance(Note.E, 4),
                 }
             };
+            AllTunings.Add(t);
             id++;
 
             //Ukulele G4 C4 E4 A4
@@ -232,12 +231,10 @@ namespace Webprofusion.Scalex.Guitar
                     new NoteInstance(Note.A, 4),
                 }
             };
+            AllTunings.Add(t);
             id++;
 
             //other example tunings: http://www.howtotuneaguitar.org/tuning/alternate-guitar-tuning-chart/
-
-            AllTunings.Add(t);
-
         }
 
         public GuitarTuning GetTuning(String strTuning)
