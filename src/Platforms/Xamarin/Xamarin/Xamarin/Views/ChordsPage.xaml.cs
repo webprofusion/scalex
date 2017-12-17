@@ -44,12 +44,17 @@ namespace Scalex.Views
             }
 
             var renderScale = (this.Width / 680) / 2;
-            if (renderScale < 1.5) renderScale = 1.5;
+            if (Device.RuntimePlatform != Device.UWP)
+            {
+                if (renderScale < 1.5) renderScale = 1.5;
+            }
+
             skiaDrawingSurface.SetScale((float)renderScale);
             canvas.Clear();
 
             //scale chords per row depending on available width
-            var chordsPerRow = (this.SkiaCanvas.Width / renderScale) / (chordDiagramRenderer.GetRequiredWidthPerChord() * renderScale);
+            var widthPerChord = chordDiagramRenderer.GetRequiredWidthPerChord();
+            var chordsPerRow = (this.Width / 3) / (chordDiagramRenderer.GetRequiredWidthPerChord() * renderScale);
             chordDiagramRenderer.ChordsPerRow = (int)chordsPerRow;
 
             chordDiagramRenderer.Render(skiaDrawingSurface);
