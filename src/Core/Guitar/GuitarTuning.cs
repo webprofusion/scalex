@@ -120,6 +120,26 @@ namespace Webprofusion.Scalex.Guitar
             AllTunings.Add(t);
             id++;
 
+            t = new GuitarTuning()
+            {
+                ID = id,
+                NumberStrings = 8,
+                Name = "8 String Guitar - Standard",
+                Description = "F#,B,E,A,D,G,B,E",
+                TuningNotes = new NoteInstance[] {
+                    new NoteInstance(Note.Gb, 1),
+                    new NoteInstance(Note.B, 1),
+                    new NoteInstance(Note.E, 2),
+                    new NoteInstance(Note.A, 2),
+                    new NoteInstance(Note.D, 3),
+                    new NoteInstance(Note.G, 3),
+                    new NoteInstance(Note.B, 3),
+                    new NoteInstance(Note.E, 4),
+                }
+            };
+            AllTunings.Add(t);
+            id++;
+
             t = new GuitarTuning();
             t.ID = id;
             t.Name = "4 String Bass - Standard";
@@ -197,32 +217,12 @@ namespace Webprofusion.Scalex.Guitar
             AllTunings.Add(t);
             id++;
 
-            t = new GuitarTuning()
-            {
-                ID = id,
-                NumberStrings = 8,
-                Name = "8 String - Standard",
-                Description = "F#,B,E,A,D,G,B,E",
-                TuningNotes = new NoteInstance[] {
-                    new NoteInstance(Note.Gb, 1),
-                    new NoteInstance(Note.B, 1),
-                    new NoteInstance(Note.E, 2),
-                    new NoteInstance(Note.A, 2),
-                    new NoteInstance(Note.D, 3),
-                    new NoteInstance(Note.G, 3),
-                    new NoteInstance(Note.B, 3),
-                    new NoteInstance(Note.E, 4),
-                }
-            };
-            AllTunings.Add(t);
-            id++;
-
             //Ukulele G4 C4 E4 A4
             t = new GuitarTuning()
             {
                 ID = id,
                 NumberStrings = 4,
-                Name = "4 String - Ukulele - G,C,E,A",
+                Name = "4 String Ukulele - G,C,E,A",
                 Description = "G4,C4,E4,A4",
                 TuningNotes = new NoteInstance[] {
                     new NoteInstance(Note.G, 4),
