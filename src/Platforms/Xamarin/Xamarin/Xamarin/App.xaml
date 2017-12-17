@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dark="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Dark"
+             xmlns:light="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Light"
              x:Class="Scalex.App">
     <Application.Resources>
 
-        <ResourceDictionary  MergedWith="dark:DarkThemeResources">
+        <ResourceDictionary MergedWith="light:LightThemeResources">
+            <!--MergedWith="dark:DarkThemeResources"-->
+
             <!-- <Color x:Key="Primary">#780000</Color>
             <Color x:Key="PrimaryDark">#C50000</Color>
             <Color x:Key="Accent">#FF3434</Color>

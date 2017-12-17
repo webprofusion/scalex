@@ -189,6 +189,9 @@
     <PackageReference Include="Xamarin.Forms.Theme.Dark">
       <Version>1.0.0.43-pre1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms.Theme.Light">
+      <Version>1.0.0.43-pre1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="..\Xamarin\Xamarin.projitems" Label="Shared" Condition="Exists('..\Xamarin\Xamarin.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

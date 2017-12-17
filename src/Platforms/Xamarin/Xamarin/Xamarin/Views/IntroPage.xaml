@@ -15,10 +15,10 @@
                 <ColumnDefinition Width="200*"></ColumnDefinition>
                 <ColumnDefinition Width="200*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" x:Name="LogoImage" Grid.RowSpan="4" Grid.ColumnSpan="3" ></Image>
+            <Image  Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" x:Name="LogoImage" ></Image>
             <Label StyleClass="Header"  Grid.Row="0" Grid.Column="0" Text="Learn" />
 
-            <Button Grid.Row="1" Grid.Column="0" StyleClass="Primary" x:Name="Scales" Text="Scales &amp; Arpeggios" Clicked="Scales_Clicked" WidthRequest="200"></Button>
+            <Button Grid.Row="1" Grid.Column="0"  x:Name="Scales" Text="Scales &amp; Arpeggios" Clicked="Scales_Clicked" WidthRequest="200"></Button>
             <Button Grid.Row="2" Grid.Column="0" x:Name="Chords" Text="Chords" Clicked="Chords_Clicked"></Button>
 
             <Label  StyleClass="Header" Grid.Row="0" Grid.Column="1" Text="Play" />

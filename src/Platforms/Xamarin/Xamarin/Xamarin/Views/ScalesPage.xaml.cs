@@ -1,7 +1,6 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
-using Webprofusion.Scalex.Rendering;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,9 +18,14 @@ namespace Scalex.Views
             scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableDiagramTitle = false;
 
             //theme
-            var resource = Application.Current.Resources;
+            /* var resource = Application.Current.Resources;
 
-            scaleDiagramRenderer.ColorPalette[ThemeColorPreset.ForegroundText] = new Webprofusion.Scalex.Util.ColorValue(255, 255, 255);
+             scaleDiagramRenderer.ColorPalette[ThemeColorPreset.ForegroundText] = new Webprofusion.Scalex.Util.ColorValue(255, 255, 255);
+
+             scaleDiagramRenderer.ColorPalette[ThemeColorPreset.Foreground] = new Webprofusion.Scalex.Util.ColorValue(255, 255, 255);
+
+             scaleDiagramRenderer.ColorPalette[ThemeColorPreset.Background] = new Webprofusion.Scalex.Util.ColorValue(0, 0, 0);*/
+
             /* ColorPalette.Add(ThemeColorPreset.ForegroundText, new ColorValue(0, 0, 0));
              ColorPalette.Add(ThemeColorPreset.MutedForeground, new ColorValue(128, 128, 128));
              ColorPalette.Add(ThemeColorPreset.Background, new ColorValue(255, 255, 255));

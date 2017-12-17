@@ -97,6 +97,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\guitar.jpg" />
+    <None Include="$(MSBuildThisFileDirectory)Content\Images\guitar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\guitar.png" />
   </ItemGroup>
 </Project>
