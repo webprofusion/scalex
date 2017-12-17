@@ -1,5 +1,4 @@
-﻿using System;
-using SkiaSharp;
+﻿using SkiaSharp;
 using Webprofusion.Scalex.Rendering;
 using Webprofusion.Scalex.Util;
 
@@ -30,7 +29,8 @@ namespace Scalex
             canvas = g;
 
             canvas.Scale(new SKPoint(_scale, _scale));
-            typeface = SKFontManager.Default.MatchCharacter('♭');
+            typeface = SKFontManager.Default.MatchCharacter('A');
+            System.Diagnostics.Debug.WriteLine("Auto slected font:" + typeface.FamilyName);
         }
 
         public void SetScale(float scale)

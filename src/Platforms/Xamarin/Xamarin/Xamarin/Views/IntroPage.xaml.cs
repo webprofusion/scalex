@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,9 +8,20 @@ namespace Scalex.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IntroPage : ContentPage
     {
+        private ImageSource backgroundImg;
+
         public IntroPage()
         {
             InitializeComponent();
+
+            //DEBUG
+            var assembly = typeof(IntroPage).GetTypeInfo().Assembly;
+            /*foreach (var res in assembly.GetManifestResourceNames())
+            {
+                System.Diagnostics.Debug.WriteLine("found resource: " + res);
+            }*/
+
+            this.LogoImage.Source = ImageSource.FromResource("Scalex.UWP.Content.Images.guitar.jpg", assembly);
         }
 
         private async void Scales_Clicked(object sender, EventArgs e)

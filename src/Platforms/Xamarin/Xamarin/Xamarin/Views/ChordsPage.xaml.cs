@@ -1,10 +1,5 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,11 +29,11 @@ namespace Scalex.Views
             int requiredHeight = chordDiagramRenderer.GetRequiredHeight(skiaDrawingSurface);
             if (this.CanvasView.Height < requiredHeight)
             {
-                this.CanvasView.HeightRequest = requiredHeight;
+                // this.CanvasView.HeightRequest = requiredHeight;
             }
 
             var renderScale = (this.Width / 680) / 2;
-            if (renderScale < 0.25) renderScale = 0.25;
+            if (renderScale < 1.5) renderScale = 1.5;
             skiaDrawingSurface.SetScale((float)renderScale);
             canvas.Clear();
 

@@ -1,11 +1,7 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Webprofusion.Scalex.Rendering;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,6 +17,18 @@ namespace Scalex.Views
             InitializeComponent();
             scaleDiagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer();
             scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableDiagramTitle = false;
+
+            //theme
+            var resource = Application.Current.Resources;
+
+            scaleDiagramRenderer.ColorPalette[ThemeColorPreset.ForegroundText] = new Webprofusion.Scalex.Util.ColorValue(255, 255, 255);
+            /* ColorPalette.Add(ThemeColorPreset.ForegroundText, new ColorValue(0, 0, 0));
+             ColorPalette.Add(ThemeColorPreset.MutedForeground, new ColorValue(128, 128, 128));
+             ColorPalette.Add(ThemeColorPreset.Background, new ColorValue(255, 255, 255));
+             ColorPalette.Add(ThemeColorPreset.MutedBackground, new ColorValue(0, 0, 0));
+             ColorPalette.Add(ThemeColorPreset.Subtle, new ColorValue(164, 164, 164));
+             ColorPalette.Add(ThemeColorPreset.Accent, new ColorValue(0xb4, 0x55, 0xb6));*/
+
             //setup list of tunings
             var guitarModel = scaleDiagramRenderer.GuitarModel;
 
@@ -49,7 +57,7 @@ namespace Scalex.Views
             SKCanvas canvas = surface.Canvas;
             var skiaDrawingSurface = new SkiaDrawingSurface(surface.Canvas);
             var renderScale = (this.Width / 680) / 2;
-            if (renderScale < 0.25) renderScale = 0.25;
+            if (renderScale < 1.5) renderScale = 1.5;
             skiaDrawingSurface.SetScale((float)renderScale);
 
             canvas.Clear();

@@ -4,8 +4,8 @@
              x:Class="Scalex.App">
     <Application.Resources>
 
-        <ResourceDictionary>
-            <Color x:Key="Primary">#780000</Color>
+        <ResourceDictionary  MergedWith="dark:DarkThemeResources">
+            <!-- <Color x:Key="Primary">#780000</Color>
             <Color x:Key="PrimaryDark">#C50000</Color>
             <Color x:Key="Accent">#FF3434</Color>
             <Color x:Key="LightBackgroundColor">#780000</Color>
@@ -17,6 +17,7 @@
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+            -->
         </ResourceDictionary>
     </Application.Resources>
 </Application>
