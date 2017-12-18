@@ -97,9 +97,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Content\Images\guitar.jpg" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\Chords.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\pick_icon1024x1024.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\Scales.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\guitar.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\Tablature.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\Perform.png" />
   </ItemGroup>
 </Project>

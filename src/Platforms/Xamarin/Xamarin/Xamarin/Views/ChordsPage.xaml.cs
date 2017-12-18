@@ -1,6 +1,8 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
+using System.Collections.Generic;
+using Webprofusion.Scalex.Music;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,14 +21,25 @@ namespace Scalex.Views
 
             var guitarModel = chordDiagramRenderer.GuitarModel;
 
+            // tuning list
             this.tuningPicker.ItemsSource = guitarModel.AllTunings;
             this.tuningPicker.SelectedIndex = 0;
 
-            this.typePicker.ItemsSource = new Webprofusion.Scalex.Music.ChordManager().ChordDefinitions;
+            // chord types
+            List<ChordDefinition> chordGroups = new List<ChordDefinition>();
+            chordGroups.Add(new ChordDefinition(ChordGroup.Common, "Common Guitar Chords", "popular", "popular", null));
+            chordGroups.AddRange(chordDiagramRenderer.GuitarModel.GetAllChordDefinitions());
+            typePicker.ItemsSource = chordGroups;
             this.typePicker.SelectedIndex = 0;
 
-            this.keyPicker.ItemsSource = guitarModel.AllKeys;
-            this.keyPicker.SelectedIndex = 0;
+            SetPageTitle();
+        }
+
+        private void SetPageTitle()
+        {
+            var guitarModel = this.chordDiagramRenderer.GuitarModel;
+            var chordType = (Webprofusion.Scalex.Music.ChordDefinition)typePicker.SelectedItem;
+            this.Title = $"Chords -  {chordType?.Name} {guitarModel.SelectedTuning.Name }";
         }
 
         private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
@@ -54,7 +67,7 @@ namespace Scalex.Views
 
             //scale chords per row depending on available width
             var widthPerChord = chordDiagramRenderer.GetRequiredWidthPerChord();
-            var chordsPerRow = (this.Width / 3) / (chordDiagramRenderer.GetRequiredWidthPerChord() * renderScale);
+            var chordsPerRow = ((this.Width / 3) / (chordDiagramRenderer.GetRequiredWidthPerChord() * renderScale)) - 1;
             chordDiagramRenderer.ChordsPerRow = (int)chordsPerRow;
 
             chordDiagramRenderer.Render(skiaDrawingSurface);
@@ -67,7 +80,7 @@ namespace Scalex.Views
                 var tuning = (Webprofusion.Scalex.Guitar.GuitarTuning)tuningPicker.SelectedItem;
                 this.chordDiagramRenderer.GuitarModel.SetTuning(tuning.ID);
                 this.SkiaCanvas.InvalidateSurface();
-                // SetPageTitle();
+                SetPageTitle();
             }
         }
 
@@ -75,19 +88,11 @@ namespace Scalex.Views
         {
             if (typePicker.SelectedIndex > -1)
             {
-                var chordType = (Webprofusion.Scalex.Music.ScaleItem)typePicker.SelectedItem;
-                this.chordDiagramRenderer.CurrentChordDiagrams = this.chordDiagramRenderer.GuitarModel.GetChordDiagramsByGroup("major");
-                SkiaCanvas.InvalidateSurface();
-                // SetPageTitle();
-            }
-        }
+                var chordType = (Webprofusion.Scalex.Music.ChordDefinition)typePicker.SelectedItem;
 
-        private void keyPicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (keyPicker.SelectedIndex > -1)
-            {
-                this.chordDiagramRenderer.GuitarModel.SetKey(keyPicker.SelectedItem.ToString());
+                chordDiagramRenderer.CurrentChordDiagrams = chordDiagramRenderer.GuitarModel.GetChordDiagramsByGroup(chordType.ShortName);
                 SkiaCanvas.InvalidateSurface();
+                SetPageTitle();
             }
         }
     }

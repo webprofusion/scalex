@@ -19,11 +19,55 @@ namespace Scalex.Views
             foreach (var res in assembly.GetManifestResourceNames())
             {
                 System.Diagnostics.Debug.WriteLine("found resource: " + res);
-                if (res.EndsWith("Images.guitar.png"))
+                if (res.EndsWith("Chords.png"))
                 {
-                    this.LogoImage.Source = ImageSource.FromResource(res, assembly);
+                    this.ChordsImage.Source = ImageSource.FromResource(res, assembly);
+                }
+
+                if (res.EndsWith("Scales.png"))
+                {
+                    this.ScalesImage.Source = ImageSource.FromResource(res, assembly);
+                }
+
+                if (res.EndsWith("Tablature.png"))
+                {
+                    this.TablatureImage.Source = ImageSource.FromResource(res, assembly);
+                }
+
+                if (res.EndsWith("Perform.png"))
+                {
+                    this.PerformImage.Source = ImageSource.FromResource(res, assembly);
                 }
             }
+
+            // scales image tap
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) =>
+            {
+                Scales_Clicked(s, e);
+            };
+            ScalesImage.GestureRecognizers.Add(tapGestureRecognizer);
+
+            // chords image tap
+            var tapChordGestureRecognizer = new TapGestureRecognizer();
+            tapChordGestureRecognizer.Tapped += (s, e) =>
+            {
+                Chords_Clicked(s, e);
+            };
+
+            // tab image tap
+            var tapTabGestureRecognizer = new TapGestureRecognizer();
+            tapTabGestureRecognizer.Tapped += (s, e) =>
+            {
+                Tablature_Clicked(s, e);
+            };
+
+            // perform image tap
+            var tapPerformGestureRecognizer = new TapGestureRecognizer();
+            tapPerformGestureRecognizer.Tapped += (s, e) =>
+            {
+                Soundshed_Clicked(s, e);
+            };
         }
 
         private async void Scales_Clicked(object sender, EventArgs e)

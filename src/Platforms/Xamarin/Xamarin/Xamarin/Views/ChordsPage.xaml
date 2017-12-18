@@ -6,7 +6,7 @@
     <StackLayout Padding="6">
         <StackLayout Orientation="Horizontal">
             <Picker x:Name="tuningPicker" ItemDisplayBinding="{Binding Name}"  SelectedIndexChanged="tuningPicker_SelectedIndexChanged" ></Picker>
-            <Picker x:Name="keyPicker" SelectedIndexChanged="keyPicker_SelectedIndexChanged"  ></Picker>
+
             <Picker x:Name="typePicker" ItemDisplayBinding="{Binding Name}"  SelectedIndexChanged="typePicker_SelectedIndexChanged" ></Picker>
         </StackLayout>
         <ScrollView Padding="16">
