@@ -13,10 +13,10 @@ namespace Scalex.Models
     {
         public async void StoreCachedFileText(string filename, string value)
         {
-#if __ANDROID___ || __IOS__
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                var filePath = System.IO.Path.Combine(documentsPath, filename);
-                System.IO.File.WriteAllText(filePath, value.ToString());
+#if __ANDROID__ || __IOS__
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var filePath = System.IO.Path.Combine(documentsPath, filename);
+            System.IO.File.WriteAllText(filePath, value.ToString());
 #endif
 #if WINDOWS_UWP
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
@@ -29,7 +29,7 @@ namespace Scalex.Models
         {
 #if __ANDROID__ || __IOS__
 
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var filePath = System.IO.Path.Combine(documentsPath, filename);
             if (System.IO.File.Exists(filePath))
             {
@@ -58,10 +58,10 @@ namespace Scalex.Models
 
         public async void StoreCachedFileBytes(string filename, byte[] value)
         {
-#if __ANDROID___ || __IOS__
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                var filePath = System.IO.Path.Combine(documentsPath, filename);
-                System.IO.File.WriteAllBytes(filePath, value);
+#if __ANDROID__ || __IOS__
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var filePath = System.IO.Path.Combine(documentsPath, filename);
+            System.IO.File.WriteAllBytes(filePath, value);
 #endif
 #if WINDOWS_UWP
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;

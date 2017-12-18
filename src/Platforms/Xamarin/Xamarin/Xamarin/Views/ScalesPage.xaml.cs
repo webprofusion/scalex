@@ -60,13 +60,17 @@ namespace Scalex.Views
             SKSurface surface = args.Surface;
             SKCanvas canvas = surface.Canvas;
             var skiaDrawingSurface = new SkiaDrawingSurface(surface.Canvas);
-            var renderScale = (this.Width / 680) / 2;
-            if (Device.RuntimePlatform != Device.UWP)
-            {
-                if (renderScale < 1.5) renderScale = 1.5;
-            }
 
-            skiaDrawingSurface.SetScale((float)renderScale);
+            var app = ((App)App.Current);
+
+            app.PopulateScreenDimensions();
+            string ScreenDetails = Device.OS.ToString() + " Device Screen Size:\n" +
+                $"Width: {app.DisplayScreenWidth}\n" +
+                $"Height: {app.DisplayScreenHeight}\n" +
+                $"Scale Factor: {app.DisplayScaleFactor}";
+
+            var drawScaleFactor = app.DisplayScaleFactor * (app.DisplayScreenWidth / 600);
+            skiaDrawingSurface.SetScale((float)drawScaleFactor);
 
             canvas.Clear();
 

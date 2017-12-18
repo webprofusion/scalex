@@ -8,8 +8,6 @@ namespace Scalex.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IntroPage : ContentPage
     {
-        private ImageSource backgroundImg;
-
         public IntroPage()
         {
             InitializeComponent();

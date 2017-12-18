@@ -9,7 +9,13 @@ namespace Scalex.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+
+            var appInstance = new App();
+            appInstance.DisplayScreenWidth = (double)UIScreen.MainScreen.Bounds.Width;
+            appInstance.DisplayScreenHeight = (double)UIScreen.MainScreen.Bounds.Height;
+            appInstance.DisplayScaleFactor = (double)UIScreen.MainScreen.Scale;
+
+            LoadApplication(appInstance);
 
             var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
             x = typeof(Xamarin.Forms.Themes.LightThemeResources);

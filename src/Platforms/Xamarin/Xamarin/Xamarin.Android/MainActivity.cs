@@ -18,7 +18,12 @@ namespace Scalex.Droid
             // global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+            var app = new App();
+            app.DisplayScreenWidth = (double)Resources.DisplayMetrics.WidthPixels / (double)Resources.DisplayMetrics.Density;
+            app.DisplayScreenHeight = (double)Resources.DisplayMetrics.HeightPixels / (double)Resources.DisplayMetrics.Density;
+            app.DisplayScaleFactor = (double)Resources.DisplayMetrics.Density;
+
+            LoadApplication(app);
 
             var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
             x = typeof(Xamarin.Forms.Themes.LightThemeResources);
