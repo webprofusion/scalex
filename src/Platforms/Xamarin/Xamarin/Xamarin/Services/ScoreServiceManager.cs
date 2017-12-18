@@ -17,12 +17,12 @@ namespace Scalex
     {
         public bool EnableFileCaching { get; set; }
 
-        private static string SongSearchURL = "http://www.songsterr.com/a/ra/songs.xml?pattern={keywords}";
+        private static string SongSearchURL = "https://www.songsterr.com/a/ra/songs.xml?pattern={keywords}";
 
         //private static string ArtistSearchURL = "http://www.songsterr.com/a/ra/songs/byartists.xml?artists={keywords}";
-        private static string SongDetailsURL = "http://www.songsterr.com/a/ra/player/song/{songid}.xml";
+        private static string SongDetailsURL = "https://www.songsterr.com/a/ra/player/song/{songid}.xml";
 
-        private static string SongsMostViewedURL = "http://www.songsterr.com/a/ra/songs/popular.xml";
+        private static string SongsMostViewedURL = "https://www.songsterr.com/a/ra/songs/popular.xml";
 
         private string RootFolder = "";
         private Dictionary<string, byte[]> dataCache { get; set; }
