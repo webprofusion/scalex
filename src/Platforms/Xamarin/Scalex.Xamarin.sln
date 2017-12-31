@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Scalex", "Xamarin\Xamarin\Scalex.shproj", "{C2DC3C3E-67E8-4773-A56C-DF5377DE2D68}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Scalex", "Scalex\Scalex\Scalex.shproj", "{C2DC3C3E-67E8-4773-A56C-DF5377DE2D68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.Android", "Xamarin\Xamarin.Android\Scalex.Android.csproj", "{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.Android", "Scalex\Scalex.Android\Scalex.Android.csproj", "{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.iOS", "Xamarin\Xamarin.iOS\Scalex.iOS.csproj", "{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.iOS", "Scalex\Scalex.iOS\Scalex.iOS.csproj", "{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.UWP", "Xamarin\Xamarin.UWP\Scalex.UWP.csproj", "{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.UWP", "Scalex\Scalex.UWP\Scalex.UWP.csproj", "{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Core", "..\..\Core\Scalex.Core.csproj", "{409141D6-2ABA-4477-8FBB-013A80521DA5}"
 EndProject
@@ -17,10 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Rendering", "..\..\R
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Xamarin\Xamarin\Xamarin.projitems*{13bd1874-159e-49a4-ab93-94be2a4f6cc8}*SharedItemsImports = 4
-		Xamarin\Xamarin\Xamarin.projitems*{6a723c52-5562-4d8a-b694-5f4e04bbd9f2}*SharedItemsImports = 4
-		Xamarin\Xamarin\Xamarin.projitems*{c2dc3c3e-67e8-4773-a56c-df5377de2d68}*SharedItemsImports = 13
-		Xamarin\Xamarin\Xamarin.projitems*{ca2157e4-ec0e-4cc9-92b3-483e8afcf52c}*SharedItemsImports = 4
+		Scalex\Scalex\Xamarin.projitems*{13bd1874-159e-49a4-ab93-94be2a4f6cc8}*SharedItemsImports = 4
+		Scalex\Scalex\Xamarin.projitems*{6a723c52-5562-4d8a-b694-5f4e04bbd9f2}*SharedItemsImports = 4
+		Scalex\Scalex\Xamarin.projitems*{c2dc3c3e-67e8-4773-a56c-df5377de2d68}*SharedItemsImports = 13
+		Scalex\Scalex\Xamarin.projitems*{ca2157e4-ec0e-4cc9-92b3-483e8afcf52c}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,7 +44,6 @@ Global
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|ARM.Build.0 = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|ARM.Deploy.0 = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhone.Deploy.0 = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
@@ -76,11 +75,11 @@ Global
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|Any CPU.ActiveCfg = Debug|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|ARM.ActiveCfg = Debug|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|iPhone.Build.0 = Debug|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|x64.ActiveCfg = Debug|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|x86.ActiveCfg = Debug|iPhone
+		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|x86.Build.0 = Debug|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Release|Any CPU.ActiveCfg = Release|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Release|ARM.ActiveCfg = Release|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Release|iPhone.ActiveCfg = Release|iPhone
@@ -94,6 +93,7 @@ Global
 		{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}.Debug|ARM.Build.0 = Debug|ARM
 		{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}.Debug|ARM.Deploy.0 = Debug|ARM
 		{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}.Debug|iPhone.ActiveCfg = Debug|x86
+		{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}.Debug|iPhone.Build.0 = Debug|x86
 		{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
 		{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}.Debug|x64.ActiveCfg = Debug|x64
 		{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}.Debug|x64.Build.0 = Debug|x64

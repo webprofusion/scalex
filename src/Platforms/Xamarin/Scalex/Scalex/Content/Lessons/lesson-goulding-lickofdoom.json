@@ -1,0 +1,144 @@
+﻿{
+    "title": "Martin Goulding - Lick Of Doom",
+    "description": "Complete lesson.",
+    "mediaItems": [
+        {
+            "id": "1",
+            "category": "Score",
+            "sourceType": "GuitarPro",
+            "sourceValue": "Lick of Doom Full.gp5"
+        },
+        {
+            "id": "2",
+            "category": "Video",
+            "sourceType": "YouTube",
+            "sourceValue": "uUUov6C0PcM"
+        }
+    ],
+    "sections": [
+        {
+            "id": "1",
+            "title": "Intro",
+             "description": "When I recorded this lick, I wrote a backing track based around A Dorian (ii in G) with the progression Am7 // Bm7 // Cmaj7 / / Bm7 // and improvised around with some moves connecting some major and minor 7 shapes.",
+            "mediaItemIds": [
+                "2"
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Full Speed Run Through",
+            "description": "Starting with a position 4 sweep Am7 arpeggio extended with 4 notes on the fretting hand and two right hand taps played with the second and third fingers, which was something I was working on at the time after watching Rusty Cooley! \n\n From here, after the succession of descending arps, I moved onto the high E and headed home to 1st position to finish with some kind of rock-fusion phrase and I had to stop and spend some time working out how i would end the lick, but it was pretty much a few passes of improv and I had a line or row of notes which would work as a lick and I played them over the track in a freeform kind of way. I point this out as there are solos which are fairly subdivisional and fairly easy to read rhythmically speaking, often written and composed, and then there is the freeform approach where patterns you may learn as say sixteenth notes or sextuplets are simply raced across the beat to heighten the intensity and give a more ambiguous rhythmic effect. \n\n If the notes are well spaced but ahead of tempo, it can give a nice freeform effect to fast playing, but equally important is resolving back onto the beat especially when moving from very fast ideas back into regular subdivisional phrasing. It could be compared to ‘going outside the beat!’ and is a favorite amongst modern rock and fusion players.",
+            "mediaItemIds": [
+                "1",
+                "2"
+            ],
+            "syncPoints": [
+                {
+                    "syncItems": [
+                        {
+                            "itemId": "1",
+                            "itemPosition": -1
+                        },
+                        {
+                            "itemId": "2",
+                            "itemPosition": 0
+                        }
+                    ]
+                },
+                {
+                    "syncItems": [
+                        {
+                            "itemId": "1",
+                            "itemPosition": 120
+                        },
+                        {
+                            "itemId": "2",
+                            "itemPosition": 49620.050458715596
+                        }
+                    ]
+                },
+                {
+                    "syncItems": [
+                        {
+                            "itemId": "1",
+                            "itemPosition": 1234
+                        },
+                        {
+                            "itemId": "2",
+                            "itemPosition": 50971.4128440367
+                        }
+                    ]
+                },
+                {
+                    "syncItems": [
+                        {
+                            "itemId": "1",
+                            "itemPosition": 2879
+                        },
+                        {
+                            "itemId": "2",
+                            "itemPosition": 54046.92201834862
+                        }
+                    ]
+                },
+                {
+                    "syncItems": [
+                        {
+                            "itemId": "1",
+                            "itemPosition": 3840
+                        },
+                        {
+                            "itemId": "2",
+                            "itemPosition": 55724.474770642206
+                        }
+                    ]
+                },
+                {
+                    "syncItems": [
+                        {
+                            "itemId": "1",
+                            "itemPosition": 5865
+                        },
+                        {
+                            "itemId": "2",
+                            "itemPosition": 58098.72018348624
+                        }
+                    ]
+                },
+                {
+                    "syncItems": [
+                        {
+                            "itemId": "1",
+                            "itemPosition": 7680
+                        },
+                        {
+                            "itemId": "2",
+                            "itemPosition": 60943.52752293577
+                        }
+                    ]
+                },
+                {
+                    "syncItems": [
+                        {
+                            "itemId": "1",
+                            "itemPosition": 13440
+                        },
+                        {
+                            "itemId": "2",
+                            "itemPosition": 71614.6123853211
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Break down",
+            "description": "As I recorded the lick, I basically played it just under my ‘fast as possible’ mode, anchoring in at bar 3 and settling into the sixteenth notes for my final ‘exit’ phrase. The transcription below is of the actual solo, and as you can see it looks pretty mad and unreadable, and i’ve found that when a student see’s the rhythmic notation, there is the belief that it would be too complicated to learn! I remember looking at the transcription books of Yngwie Malmsteen’s Rising Force and Joe Satriani’s Surfing with The Alien back in the day, and giving up when i saw bars full of 13 notes in the space of 2 beats, or groups of 7 and then 8 followed by 9 without realising that they were just accelerating the pattern. I saw by looking at the actual patterns and working out the fingerings, that these were mostly sixteenth note, triplet and sextuplet patterns, which would have originally come from melodic sequences, and then once mastered, integrated and mixed all together as a note row, or line. The ideas, generally played by feel across the beat, often accelerating or decelerating in places and anchoring to the beat by experience and feel. I would not recommend learning this lick by reading this version as it gives the impression that i am deliberately intending to play 8 notes in the first beat followed by 7 notes in the second, when in fact i’m simply slowing down slightly going in to the taps! Ultimately i’m trying to play with all notes equally spaced and dock in on the beat in bar 3!",
+            "mediaItemIds": [
+                "1",
+                "2"
+            ]
+        }
+    ]
+}

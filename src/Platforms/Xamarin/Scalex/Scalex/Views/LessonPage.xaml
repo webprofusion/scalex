@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Scalex.Views.LessonPage"
+             xmlns:roxv="clr-namespace:Rox;assembly=Rox.Xamarin.Video.Portable"
+             xmlns:custom="clr-namespace:Scalex.Helpers"
+             xmlns:forms="clr-namespace:AlphaTab.Platform.CSharp.Xamarin.Forms;assembly=AlphaTab"
+>
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Clicked="Button_Clicked_1" Text="Load"></Button>
+
+            <Label x:Name="LessonTitle"  Text="Lessons" />
+            <Label x:Name="LessonSection"  Text="Section 1" />
+            <Label x:Name="SectionDescription"  Text="Description" />
+            <custom:CustomWebView x:Name="MediaPlayerWebView" EvaluateJavascript="{Binding EvaluateJavascript}, Mode=OneWayToSource}" Source="" WidthRequest="500" HeightRequest="300"></custom:CustomWebView>
+            <!-- tab view-->
+            <forms:AlphaTab x:Name="TablatureControl"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill"
+                    BackgroundColor="Red" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
