@@ -118,16 +118,23 @@ namespace Scalex.Views
             }
         }
 
+        public void SetPageTitle()
+        {
+            if (this._lesson != null)
+            {
+                this.Title = _lesson.Title;
+            }
+        }
+
         public async Task LoadLesson()
         {
             var lessonData = await FetchData("http://192.168.1.5:82/lesson-goulding-lickofdoom.json");
 
             _lesson = Newtonsoft.Json.JsonConvert.DeserializeObject<Lesson>(lessonData);
 
+            SetPageTitle();
             Device.BeginInvokeOnMainThread(async () =>
             {
-                this.LessonTitle.Text = _lesson.Title;
-
                 await this.BeginLessonSection(1);
             });
 
@@ -190,7 +197,6 @@ namespace Scalex.Views
             }
 
             //populate intro text
-            LessonSection.Text = section.Title;
             SectionDescription.Text = section.Content;
         }
 

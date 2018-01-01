@@ -13,7 +13,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="64" />
+                <ColumnDefinition Width="120" />
             </Grid.ColumnDefinitions>
 
             <!-- picker and album art-->

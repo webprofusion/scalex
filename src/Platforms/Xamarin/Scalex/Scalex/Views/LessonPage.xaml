@@ -7,18 +7,30 @@
              xmlns:forms="clr-namespace:AlphaTab.Platform.CSharp.Xamarin.Forms;assembly=AlphaTab"
 >
     <ContentPage.Content>
-        <StackLayout>
-            <Button Clicked="Button_Clicked_1" Text="Load"></Button>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"></RowDefinition>
+                <RowDefinition Height="240"></RowDefinition>
 
-            <Label x:Name="LessonTitle"  Text="Lessons" />
-            <Label x:Name="LessonSection"  Text="Section 1" />
-            <Label x:Name="SectionDescription"  Text="Description" />
-            <custom:CustomWebView x:Name="MediaPlayerWebView" EvaluateJavascript="{Binding EvaluateJavascript}, Mode=OneWayToSource}" Source="" WidthRequest="500" HeightRequest="300"></custom:CustomWebView>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"></ColumnDefinition>
+                <ColumnDefinition Width="200*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked_1" Text="Load Lesson"></Button>
+            <ScrollView Grid.Row="1" Grid.Column="0">
+                <StackLayout>
+                <Label  x:Name="SectionDescription"  Text="Description" FontSize="Small" Margin="6,6,6,6" />
+                </StackLayout>
+            </ScrollView>
+            <custom:CustomWebView   Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"  x:Name="MediaPlayerWebView" EvaluateJavascript="{Binding EvaluateJavascript}, Mode=OneWayToSource}" Source="" WidthRequest="500" HeightRequest="300"></custom:CustomWebView>
             <!-- tab view-->
             <forms:AlphaTab x:Name="TablatureControl"
+                            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill"
-                    BackgroundColor="Red" />
-        </StackLayout>
+                    BackgroundColor="WhiteSmoke" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -2,11 +2,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Linq;
+using AlphaTab.Audio.Model;
+using AlphaTab.Audio.Generator;
 
 #if !WINDOWS_UWP
 
@@ -103,6 +104,7 @@ namespace Scalex.Views
 
             this.Title = $"{_score.Artist} : {_score.Title} - { t.Name} ";
             this._selectedTrack = t;
+            trackPicker.SelectedItem = t;
         }
 
         private void trackPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,6 +113,7 @@ namespace Scalex.Views
             {
                 SetCurrentTrack(_score.Tracks[trackPicker.SelectedIndex]);
 
+                //PlayMidi();
                 //this.Perform();
             }
         }
@@ -142,25 +145,23 @@ namespace Scalex.Views
         {
             if (trackPicker.SelectedIndex > -1)
             {
-                var track = _score.Tracks[trackPicker.SelectedIndex];
-                var midiFile = new AlphaTab.Audio.Model.MidiFile();
-                var midiFileHandler = new AlphaTab.Audio.Generator.MidiFileHandler(midiFile);
-                var midiGenerator = new AlphaTab.Audio.Generator.MidiFileGenerator(_score, midiFileHandler);
-#if !WINDOWS_UWP
-                var vt = new VirtualMidiTimeManager();
-                var music = new MidiMusic();
-                var buffer = AlphaTab.IO.ByteBuffer.Empty();
+                // generate midi
+                MidiFile file = MidiFileGenerator.GenerateMidiFile(_score);
 
-                midiFile.WriteTo(buffer);
-                var bytes = buffer.ReadAll();
-                Stream stream = new MemoryStream(bytes);
-                var player = new MidiPlayer(MidiMusic.Read(stream), MidiAccessManager.Empty, vt);
-                player.PlayAsync();
+                // write midi file
+                /*
 
-                vt.AdvanceBy(10000);
-                player.PauseAsync();
-                player.Dispose();
-#endif
+                  var access = MidiAccessManager.Default;
+                  var output = access.OpenOutputAsync(access.Outputs.Last().Id).Result;
+                  var music = new MidiMusic();
+                  var player = new MidiPlayer(music, output);
+                  player.EventReceived += (Commons.Music.Midi.MidiEvent e) => {
+                      if (e.EventType == Commons.Music.Midi.MidiEvent.Program)
+                          Console.WriteLine($"Program changed: Channel:{e.Channel} Instrument:{e.Msb}");
+                  };
+                  player.PlayAsync();
+
+                  player.Dispose();*/
             }
         }
 

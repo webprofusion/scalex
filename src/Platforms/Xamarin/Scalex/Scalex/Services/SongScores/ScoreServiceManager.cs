@@ -91,7 +91,7 @@ namespace Scalex
             try
             {
                 string url = SongSearchURL.Replace("{keywords}", keywords);
-                string xmlresult = await ResourceRequestManager.GetStringWithCaching(url, true, "searchresults");
+                string xmlresult = await ResourceRequestManager.GetStringWithCaching(url, false, "searchresults");
 
                 if (xmlresult != null)
                 {

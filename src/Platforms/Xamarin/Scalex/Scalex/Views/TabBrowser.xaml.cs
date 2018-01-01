@@ -19,14 +19,14 @@ namespace Scalex.Views
 
             Items = new ObservableCollection<Models.SongListItem>();
 
-            MyListView.ItemsSource = Items;
+            ResultList.ItemsSource = Items;
 
             //load popular tracks
             Device.BeginInvokeOnMainThread(async () =>
             {
                 var list = await _scoreService.FetchSongsMostViewed();
                 Items = new ObservableCollection<Models.SongListItem>(list);
-                MyListView.ItemsSource = Items;
+                ResultList.ItemsSource = Items;
             });
         }
 
@@ -40,6 +40,17 @@ namespace Scalex.Views
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+
+        private void Button_Clicked(object sender, System.EventArgs e)
+        {
+            //search based on keyword
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var list = await _scoreService.FetchSearchResults(SearchKeyword.Text, 100);
+                Items = new ObservableCollection<Models.SongListItem>(list);
+                ResultList.ItemsSource = Items;
+            });
         }
     }
 }
