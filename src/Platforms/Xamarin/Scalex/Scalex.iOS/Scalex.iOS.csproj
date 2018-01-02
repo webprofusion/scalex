@@ -107,9 +107,6 @@
     <Reference Include="AlphaTab">
       <HintPath>..\..\..\..\..\..\third-party\alphaTab\Build\CSharp.Xamarin.Forms\AlphaTab.dll</HintPath>
     </Reference>
-    <Reference Include="Commons.Music.Midi, Version=1.0.6418.32896, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\managed-midi.1.0.0.4\lib\XamariniOS\Commons.Music.Midi.dll</HintPath>
-    </Reference>
     <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.FFImageLoading.2.3.2\lib\Xamarin.iOS10\FFImageLoading.dll</HintPath>
     </Reference>
@@ -135,6 +132,18 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.MediaManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.MediaManager.0.4.5\lib\Xamarin.iOS10\Plugin.MediaManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.MediaManager.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.MediaManager.0.4.5\lib\Xamarin.iOS10\Plugin.MediaManager.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.MediaManager.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.MediaManager.Forms.0.4.5\lib\xamarinios\Plugin.MediaManager.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.MediaManager.Forms.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.MediaManager.Forms.0.4.5\lib\xamarinios\Plugin.MediaManager.Forms.iOS.dll</HintPath>
+    </Reference>
     <Reference Include="Rox.Xamarin.Video.Ios, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Rox.Xamarin.Video.2.1.0\lib\Xamarin.iOS10\Rox.Xamarin.Video.Ios.dll</HintPath>
     </Reference>
@@ -142,14 +151,13 @@
       <HintPath>..\..\packages\Rox.Xamarin.Video.2.1.0\lib\Xamarin.iOS10\Rox.Xamarin.Video.Portable.dll</HintPath>
     </Reference>
     <Reference Include="SkiaSharp, Version=1.59.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SkiaSharp.1.59.2\lib\XamariniOS\SkiaSharp.dll</HintPath>
+      <HintPath>..\..\packages\SkiaSharp.1.59.3\lib\XamariniOS\SkiaSharp.dll</HintPath>
     </Reference>
-    <Reference Include="SkiaSharp.Views.Forms">
-      <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.59.2\lib\XamariniOS\SkiaSharp.Views.Forms.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SkiaSharp.Views.Forms, Version=1.59.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.59.3\lib\XamariniOS\SkiaSharp.Views.Forms.dll</HintPath>
     </Reference>
     <Reference Include="SkiaSharp.Views.iOS, Version=1.59.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SkiaSharp.Views.1.59.2\lib\XamariniOS\SkiaSharp.Views.iOS.dll</HintPath>
+      <HintPath>..\..\packages\SkiaSharp.Views.1.59.3\lib\XamariniOS\SkiaSharp.Views.iOS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Compression" />

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Scalex.Views.PlaybackControl">
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="◼ Stop" />
+            <Button Text="▶ Play" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Scalex.Views.IntroPage" Title="Soundshed.com Guitar Toolkit" Padding="16">
+             x:Class="Scalex.Views.IntroPage" Title="Soundshed.com Guitar Toolkit" Padding="16"
+             BackgroundColor="Black">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

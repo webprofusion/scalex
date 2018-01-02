@@ -1,18 +1,13 @@
 ﻿using AlphaTab.Model;
-
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Linq;
-using AlphaTab.Audio.Model;
-using AlphaTab.Audio.Generator;
 
-#if !WINDOWS_UWP
-
-using Commons.Music.Midi;
-
+#if WINDOWS_UWP
+using Windows.Storage;
 #endif
 
 namespace Scalex.Views
@@ -20,9 +15,12 @@ namespace Scalex.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TablaturePage : ContentPage
     {
+        private Models.Song _song;
         private Score _score;
         private ScoreServiceManager _scoreService;
         private Track _selectedTrack;
+        private int _selectedTrackIndex = 0;
+        private int _playbackSpeed = 100;
 
         public Models.SongListItem SelectedSong { get; set; }
 
@@ -51,34 +49,40 @@ namespace Scalex.Views
             //`this.LoadingProgress.IsVisible = true;
             //get first song from favourites
 
-            var song = await _scoreService.FetchSongDetailsAsync(SelectedSong.ID);
+            _song = await _scoreService.FetchSongDetailsAsync(SelectedSong.ID);
 
             //load gp score
-            _score = await _scoreService.FetchSongScore(song, true);
+            _score = await _scoreService.FetchSongScore(_song, true);
 
-            var mostPopularTrack = song.LatestAvailableRevision?.MostPopularTrack?.ID != null ? song.LatestAvailableRevision.Tracks.FirstOrDefault(t => t.ID == song.LatestAvailableRevision?.MostPopularTrack?.ID) : null;
+            var mostPopularTrack = _song.LatestAvailableRevision?.MostPopularTrack?.ID != null ? _song.LatestAvailableRevision.Tracks.FirstOrDefault(t => t.ID == _song.LatestAvailableRevision?.MostPopularTrack?.ID) : null;
             // this.trackPicker.Items.Clear();
             Track selectedTrack = null;
 
             List<string> tracks = new List<string>();
+            int trackIndex = 0;
+
             foreach (var t in _score.Tracks)
             {
                 tracks.Add(t.Name);
                 // this.trackPicker.Items.Add(t.Name);
                 trackPicker.Items.Add(t.Name);
 
-                if (song.LatestAvailableRevision?.MostPopularTrack?.ID != null)
+                if (_song.LatestAvailableRevision?.MostPopularTrack?.ID != null)
                 {
                     if (mostPopularTrack != null && t.Name == mostPopularTrack.Title)
                     {
                         selectedTrack = t;
+                        _selectedTrackIndex = trackIndex;
                     }
                 }
+                trackIndex++;
             }
 
             if (selectedTrack == null) selectedTrack = _score.Tracks[0];
 
-            SetCurrentTrack(selectedTrack);
+            trackPicker.SelectedIndex = _selectedTrackIndex;
+
+            //SetCurrentTrack(selectedTrack);
         }
 
         private async Task LoadTrackMetadata()
@@ -104,7 +108,6 @@ namespace Scalex.Views
 
             this.Title = $"{_score.Artist} : {_score.Title} - { t.Name} ";
             this._selectedTrack = t;
-            trackPicker.SelectedItem = t;
         }
 
         private void trackPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,7 +116,7 @@ namespace Scalex.Views
             {
                 SetCurrentTrack(_score.Tracks[trackPicker.SelectedIndex]);
 
-                //PlayMidi();
+                // PlayMidi();
                 //this.Perform();
             }
         }
@@ -141,28 +144,48 @@ namespace Scalex.Views
             }
         }
 
-        private void PlayMidi()
+        private async Task PlayMidi()
         {
-            if (trackPicker.SelectedIndex > -1)
+            var audioFileUrl = _song
+                .LatestAvailableRevision
+                .Tracks[_selectedTrackIndex]
+                .TrackAudio.FirstOrDefault(f => f.Speed == _playbackSpeed).MP3File.AttachmentUrl;
+            var audio = Plugin.MediaManager.CrossMediaManager.Current.Play(audioFileUrl);
+
+            /*
+#if WINDOWS_UWP
+                   // generate midi
+            MidiFile file = MidiFileGenerator.GenerateMidiFile(_score);
+            byte[] bytes;
+            using (var ms = new System.IO.MemoryStream())
             {
-                // generate midi
-                MidiFile file = MidiFileGenerator.GenerateMidiFile(_score);
+                var sw = new StreamWrapper(ms);
+                file.WriteTo(sw);
 
-                // write midi file
-                /*
-
-                  var access = MidiAccessManager.Default;
-                  var output = access.OpenOutputAsync(access.Outputs.Last().Id).Result;
-                  var music = new MidiMusic();
-                  var player = new MidiPlayer(music, output);
-                  player.EventReceived += (Commons.Music.Midi.MidiEvent e) => {
-                      if (e.EventType == Commons.Music.Midi.MidiEvent.Program)
-                          Console.WriteLine($"Program changed: Channel:{e.Channel} Instrument:{e.Msb}");
-                  };
-                  player.PlayAsync();
-
-                  player.Dispose();*/
+                bytes = ms.ToArray();
             }
+
+                            // write temp midi file
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            StorageFile sampleFile = await localFolder.CreateFileAsync("output.mid");
+            System.Diagnostics.Debug.WriteLine(sampleFile.Path);
+            await FileIO.WriteBytesAsync(sampleFile, bytes);
+
+#endif
+*/
+            /*
+
+              var access = MidiAccessManager.Default;
+              var output = access.OpenOutputAsync(access.Outputs.Last().Id).Result;
+              var music = new MidiMusic();
+              var player = new MidiPlayer(music, output);
+              player.EventReceived += (Commons.Music.Midi.MidiEvent e) => {
+                  if (e.EventType == Commons.Music.Midi.MidiEvent.Program)
+                      Console.WriteLine($"Program changed: Channel:{e.Channel} Instrument:{e.Msb}");
+              };
+              player.PlayAsync();
+
+              player.Dispose();*/
         }
 
         private void AlphaTabControl_RenderFinished(object sender, AlphaTab.Rendering.RenderFinishedEventArgs e)
