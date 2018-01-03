@@ -32,15 +32,15 @@ namespace Scalex.Views
                     this.TablatureImage.Source = ImageSource.FromResource(res, assembly);
                 }
 
-                if (res.EndsWith("Perform.png"))
+                if (res.EndsWith("band.png"))
                 {
                     this.PerformImage.Source = ImageSource.FromResource(res, assembly);
                 }
 
-                if (res.EndsWith("background.png"))
+                if (res.EndsWith("speaker-mesh.jpg"))
                 {
                     this.BackgroundPageImage.Source = ImageSource.FromResource(res, assembly);
-                    this.BackgroundPageImage.Scale = 4;
+                    this.BackgroundPageImage.Scale = 1;
                 }
             }
 

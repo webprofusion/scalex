@@ -24,12 +24,14 @@ namespace Scalex.Views
         private Lesson _lesson = null;
         private AlphaTab.Model.Score _score = null;
 
+        private string _serviceBaseUri = "https://api.soundshed.com/lessons/";
+
         public LessonPage()
         {
             InitializeComponent();
             MediaPlayerWebView.BindingContext = this;
 
-            MediaPlayerWebView.Source = "http://192.168.1.5:82/mediaview.html";
+            MediaPlayerWebView.Source = _serviceBaseUri + "assets/mediaview.html";
         }
 
         /// <summary>
@@ -126,9 +128,9 @@ namespace Scalex.Views
             }
         }
 
-        public async Task LoadLesson()
+        public async Task LoadLesson(string id)
         {
-            var lessonData = await FetchData("http://192.168.1.5:82/lesson-goulding-lickofdoom.json");
+            var lessonData = await FetchData(_serviceBaseUri + "lesson/" + id);
 
             _lesson = Newtonsoft.Json.JsonConvert.DeserializeObject<Lesson>(lessonData);
 
@@ -190,7 +192,7 @@ namespace Scalex.Views
 
                 if (!String.IsNullOrEmpty(tabUrl))
                 {
-                    tabUrl = "http://192.168.1.5:82/tablature/" + tabUrl;
+                    tabUrl = _serviceBaseUri + "assets/tablature/" + tabUrl;
 
                     await LoadTablature(tabUrl, itemIndex);
                 }
@@ -231,7 +233,15 @@ namespace Scalex.Views
 
         private async Task LoadTablature(string url, int itemIndex)
         {
-            _score = await new ScoreServiceManager().LoadScoreFromUrl(url);
+            try
+            {
+                _score = await new ScoreServiceManager().LoadScoreFromUrl(url);
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("Check connection", "Tablature score could not be loaded", "OK", "Cancel");
+                return;
+            }
 
             if (_score != null)
             {
@@ -243,14 +253,9 @@ namespace Scalex.Views
             }
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await LoadYoutubeVideo("uUUov6C0PcM");
-        }
-
         private async void Button_Clicked_1(object sender, EventArgs e)
         {
-            await LoadLesson();
+            await LoadLesson("lesson-goulding-lickofdoom");
         }
     }
 }

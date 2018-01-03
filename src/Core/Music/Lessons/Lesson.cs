@@ -23,11 +23,22 @@ namespace Webprofusion.Scalex.Lessons
         public decimal Position { get; set; }
     }
 
-    public class MediaSyncPoint
+    /// <summary>
+    /// Time sync point for a media item (used relative to other media items) 
+    /// </summary>
+    public class MediaSyncItem
     {
         public string Id { get; set; }
         public decimal Position { get; set; }
+    }
+
+    /// <summary>
+    /// Time Syncronisation points for one or more media items 
+    /// </summary>
+    public class MediaSyncPoint
+    {
         public string Title { get; set; }
+        public List<MediaSyncItem> SyncItems { get; set; }
     }
 
     public class Section
@@ -68,6 +79,17 @@ namespace Webprofusion.Scalex.Lessons
         }
 
         public List<Lesson> Lessons { get; set; }
+    }
+
+    public class LessonListItem
+    {
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string Summary { get; set; }
+
+        public string LessonDataUri { get; set; }
+        public string Levels { get; set; }
+        public string Instrument { get; set; }
     }
 
     public class ExampleCourse

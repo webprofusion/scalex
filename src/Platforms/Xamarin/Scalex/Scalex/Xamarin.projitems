@@ -111,6 +111,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\band.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\metronome.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\speaker-mesh.jpg" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\tuning.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\background.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\Lessons\lesson-goulding-lickofdoom.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Lessons\mediaview.html" />

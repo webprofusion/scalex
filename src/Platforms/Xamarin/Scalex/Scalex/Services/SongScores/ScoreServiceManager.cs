@@ -209,7 +209,7 @@ namespace Scalex
             string datafileUrl = song.LatestAvailableRevision.GuitarProTab.AttachmentUrl;
             string fileName = RootFolder + "s" + song.ID + "." + datafileUrl.Substring(datafileUrl.LastIndexOf('.') + 1, 3);
 
-            LogMessage("Fetching Track GP File: " + song.ID);
+            LogMessage("Fetching Track GP File: " + song.ID + " " + song.LatestAvailableRevision.GuitarProTab.AttachmentUrl);
 
             byte[] data = await ResourceRequestManager.GetAttachmentWithCaching(song.LatestAvailableRevision.GuitarProTab.AttachmentUrl, true, song.ID.ToString());
             song.LatestAvailableRevision.GuitarProTab.BinaryData = data;

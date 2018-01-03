@@ -116,7 +116,7 @@ namespace Scalex.Views
             {
                 SetCurrentTrack(_score.Tracks[trackPicker.SelectedIndex]);
 
-                // PlayMidi();
+                PlayMidi();
                 //this.Perform();
             }
         }
