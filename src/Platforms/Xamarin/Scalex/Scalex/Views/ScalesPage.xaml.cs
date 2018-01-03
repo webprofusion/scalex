@@ -70,6 +70,7 @@ namespace Scalex.Views
                 $"Scale Factor: {app.DisplayScaleFactor}";
 
             var drawScaleFactor = app.DisplayScaleFactor * (app.DisplayScreenWidth / 600);
+            if (drawScaleFactor < 1) drawScaleFactor = 1;
             skiaDrawingSurface.SetScale((float)drawScaleFactor);
 
             canvas.Clear();

@@ -11,9 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.iOS", "Scalex\Scalex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.UWP", "Scalex\Scalex.UWP\Scalex.UWP.csproj", "{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Core", "..\..\Core\Scalex.Core.csproj", "{409141D6-2ABA-4477-8FBB-013A80521DA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.Core", "..\..\Core\Scalex.Core.csproj", "{409141D6-2ABA-4477-8FBB-013A80521DA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Rendering", "..\..\Rendering\Scalex.Rendering.csproj", "{948B7852-DB15-4602-9D0A-D22CAC007C49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.Rendering", "..\..\Rendering\Scalex.Rendering.csproj", "{948B7852-DB15-4602-9D0A-D22CAC007C49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.Mac", "Scalex.Mac\Scalex.Mac.csproj", "{BBA770BC-32CA-4AF4-A101-05E2F44CB656}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -161,6 +163,30 @@ Global
 		{948B7852-DB15-4602-9D0A-D22CAC007C49}.Release|x64.Build.0 = Release|Any CPU
 		{948B7852-DB15-4602-9D0A-D22CAC007C49}.Release|x86.ActiveCfg = Release|Any CPU
 		{948B7852-DB15-4602-9D0A-D22CAC007C49}.Release|x86.Build.0 = Release|Any CPU
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|ARM.ActiveCfg = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|ARM.Build.0 = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|iPhone.ActiveCfg = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|iPhone.Build.0 = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|x64.ActiveCfg = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|x64.Build.0 = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|x86.Build.0 = Debug|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|ARM.ActiveCfg = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|ARM.Build.0 = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|iPhone.ActiveCfg = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|iPhone.Build.0 = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|x64.ActiveCfg = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|x64.Build.0 = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|x86.ActiveCfg = Release|iPhoneSimulator
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Release|x86.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

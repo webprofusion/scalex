@@ -50,7 +50,7 @@ namespace Scalex
             else return null;
         }
 
-        public async Task<List<SongListItem>> FetchSongsMostViewed()
+        public async Task<List<SongListItem>> FetchSongsMostViewed(int maxResults=50)
         {
             LogMessage("Fetching Most Viewed Song Details Async.");
 
@@ -62,7 +62,7 @@ namespace Scalex
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(MostViewedSongList));
 
                 MostViewedSongList songList = (MostViewedSongList)xmlSerializer.Deserialize(new StringReader(xmlresult));
-                return songList.Songs.ToList();
+                return songList.Songs.Take(maxResults).ToList();
             }
             return null;
         }

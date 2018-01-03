@@ -27,7 +27,7 @@ namespace Scalex.Models
 
         public async Task<string> LoadCachedFileText(string filename)
         {
-#if __ANDROID__ || __IOS__
+            #if __ANDROID__ || __IOS__ || __MACOS__
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var filePath = System.IO.Path.Combine(documentsPath, filename);
@@ -58,7 +58,7 @@ namespace Scalex.Models
 
         public async void StoreCachedFileBytes(string filename, byte[] value)
         {
-#if __ANDROID__ || __IOS__
+            #if __ANDROID__ || __IOS__ || __MACOS__
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var filePath = System.IO.Path.Combine(documentsPath, filename);
             System.IO.File.WriteAllBytes(filePath, value);
@@ -72,7 +72,7 @@ namespace Scalex.Models
 
         public async Task<byte[]> LoadCachedFileBytes(string filename)
         {
-#if __ANDROID__ || __IOS__
+            #if __ANDROID__ || __IOS__ || __MACOS__
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = System.IO.Path.Combine(documentsPath, filename);
