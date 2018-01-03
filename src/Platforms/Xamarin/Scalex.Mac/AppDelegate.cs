@@ -16,7 +16,7 @@ namespace Scalex.Mac
 
             var rect = new CoreGraphics.CGRect(200, 1000, 1024, 768);
             window = new NSWindow(rect, style, NSBackingStore.Buffered, false);
-            window.Title = "Xamarin.Forms on Mac!"; // choose your own Title here
+            window.Title = "Soundshed Guitar Toolkit";
             window.TitleVisibility = NSWindowTitleVisibility.Hidden;
 
            
