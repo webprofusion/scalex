@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Scalex.Views.IntroPage" Title="Soundshed.com Guitar Toolkit" Padding="16"
-             BackgroundColor="Black">
+             x:Class="Scalex.Views.IntroPage" Title="Soundshed.com Guitar Toolkit" Padding="16">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="48"></RowDefinition>
                 <RowDefinition Height="24"></RowDefinition>
                 <RowDefinition Height="48"></RowDefinition>
                 <RowDefinition Height="48"></RowDefinition>
@@ -18,25 +18,26 @@
                 <ColumnDefinition Width="200*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Text="Soundshed Guitar Toolkit is ideal for beginners looking to learn the ropes and for advanced guitarists looking for a refresher."></Label>
+            <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Soundshed Guitar Toolkit is ideal for beginners looking to learn the ropes and for advanced guitarists looking to extend their skills."></Label>
 
-            <Image  Aspect="Fill" Grid.Row="0" Grid.Column="0" x:Name="BackgroundPageImage"  Grid.ColumnSpan="3" Grid.RowSpan="5"></Image>
-            <Label StyleClass="Header"  Grid.Row="0" Grid.Column="0" Text="Learn" />
+            <Image IsVisible="False" Aspect="Fill" Grid.Row="0" Grid.Column="0" x:Name="BackgroundPageImage"  Grid.ColumnSpan="3" Grid.RowSpan="5"></Image>
 
-            <Image Aspect="AspectFit"  Grid.Row="1" x:Name="ScalesImage" StyleClass="Circle" ></Image>
-            <Button Grid.Row="2" StyleClass="Primary" Grid.Column="0"  x:Name="Scales" Text="Scales &amp; Arpeggios" Clicked="Scales_Clicked" WidthRequest="200"></Button>
+            <Label StyleClass="Header"   Grid.Row="1" Grid.Column="0" Text="Learn" />
 
-            <Image  Aspect="AspectFit" Grid.Row="3" x:Name="ChordsImage" StyleClass="Circle" ></Image>
-            <Button Grid.Row="4" StyleClass="Primary" Grid.Column="0" x:Name="Chords" Text="Chords" Clicked="Chords_Clicked"></Button>
+            <Image Aspect="AspectFit"  Grid.Row="2" x:Name="ScalesImage" StyleClass="Circle" ></Image>
+            <Button Grid.Row="3" Grid.Column="0" x:Name="Scales" Text="Scales &amp; Arpeggios" Clicked="Scales_Clicked" WidthRequest="200"></Button>
 
-            <Label  StyleClass="Header" Grid.Row="0" Grid.Column="1" Text="Play" />
-            <Image  Aspect="AspectFit"  Grid.Row="1" Grid.Column="1" x:Name="TablatureImage" StyleClass="Circle" ></Image>
-            <Button Grid.Row="2" StyleClass="Primary" Grid.Column="1" x:Name="Tablature" Text="Tablature" Clicked="Tablature_Clicked"></Button>
-            <Button Grid.Row="4" StyleClass="Primary" Grid.Column="1" x:Name="Lessons" Text="Lessons" Clicked="Lessons_Clicked"></Button>
+            <Image  Aspect="AspectFit" Grid.Row="4" x:Name="ChordsImage" StyleClass="Circle" ></Image>
+            <Button Grid.Row="5" StyleClass="Primary" Grid.Column="0" x:Name="Chords" Text="Chords" Clicked="Chords_Clicked"></Button>
 
-            <Label  StyleClass="Header" Grid.Row="0" Grid.Column="2" Text="Perform" />
-            <Image Aspect="AspectFit"  Grid.Row="1" Grid.Column="2" x:Name="PerformImage" StyleClass="Circle" ></Image>
-            <Button Grid.Row="2" StyleClass="Primary" Grid.Column="2"  x:Name="Soundshed" Text="Join a Band" Clicked="Soundshed_Clicked"></Button>
+            <Label  StyleClass="Header" Grid.Row="1" Grid.Column="1" Text="Play" />
+            <Image  Aspect="AspectFit"  Grid.Row="2" Grid.Column="1" x:Name="TablatureImage" StyleClass="Circle" ></Image>
+            <Button Grid.Row="3" StyleClass="Primary" Grid.Column="1" x:Name="Tablature" Text="Tablature" Clicked="Tablature_Clicked"></Button>
+            <Button Grid.Row="5" StyleClass="Primary" Grid.Column="1" x:Name="Lessons" Text="Lessons" Clicked="Lessons_Clicked"></Button>
+
+            <Label  StyleClass="Header" Grid.Row="1" Grid.Column="2" Text="Perform" />
+            <Image Aspect="AspectFit"  Grid.Row="2" Grid.Column="2" x:Name="PerformImage" StyleClass="Circle" ></Image>
+            <Button Grid.Row="3" StyleClass="Primary" Grid.Column="2"  x:Name="Soundshed" Text="Join a Band" Clicked="Soundshed_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
