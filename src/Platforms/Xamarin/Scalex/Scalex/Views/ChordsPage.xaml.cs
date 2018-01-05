@@ -56,20 +56,20 @@ namespace Scalex.Views
                 // this.CanvasView.HeightRequest = requiredHeight;
             }
 
-            var app = ((App)App.Current);
-            app.PopulateScreenDimensions();
-            var drawScaleFactor = app.DisplayScaleFactor * (app.DisplayScreenWidth / 600);
+            // work out the width we need for our diagram
+            var diagramRequiredWidth = chordDiagramRenderer.GetRequiredWidthPerChord();
+            var canvasWidth = info.Width;
 
-            skiaDrawingSurface.SetScale((float)drawScaleFactor);
+            var chordsPerRow = canvasWidth / diagramRequiredWidth;
+            if (chordsPerRow > 10) chordsPerRow = 10;
+            chordDiagramRenderer.ChordsPerRow = (int)chordsPerRow - 1;
+
+            float scaleFactor = canvasWidth / (diagramRequiredWidth * chordsPerRow);
+            if (scaleFactor < 1.5) scaleFactor = 1.5f;
+
+            skiaDrawingSurface.SetScale((float)scaleFactor);
+
             canvas.Clear();
-
-            //scale chords per row depending on available width
-            var widthPerChord = chordDiagramRenderer.GetRequiredWidthPerChord();
-            var scaledChordWidth = chordDiagramRenderer.GetRequiredWidthPerChord() * drawScaleFactor;
-            var chordsPerRow = Math.Floor((app.DisplayScreenWidth / scaledChordWidth));
-            if (chordsPerRow < 5) chordsPerRow = 5;
-            System.Diagnostics.Debug.WriteLine("Chords Per Row: " + chordsPerRow);
-            chordDiagramRenderer.ChordsPerRow = (int)chordsPerRow;
 
             chordDiagramRenderer.Render(skiaDrawingSurface);
         }

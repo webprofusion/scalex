@@ -36,6 +36,15 @@ namespace Webprofusion.Scalex.Rendering
             return 0;
         }
 
+        public int GetDiagramWidth()
+        {
+            if (GuitarModel != null)
+            {
+                return GuitarString.FretNumberToClientX(GuitarModel.GuitarModelSettings.NumberFrets, 0, GuitarModel.GuitarModelSettings.FretSpacing);
+            }
+            return 0;
+        }
+
         public void SetTuning(String tuning)
         {
             GuitarModel.SetTuning(tuning);

@@ -5,8 +5,8 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="48"></RowDefinition>
-                <RowDefinition Height="24"></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
                 <RowDefinition Height="48"></RowDefinition>
                 <RowDefinition Height="48"></RowDefinition>
                 <RowDefinition Height="48"></RowDefinition>
@@ -22,20 +22,20 @@
 
             <Image IsVisible="False" Aspect="Fill" Grid.Row="0" Grid.Column="0" x:Name="BackgroundPageImage"  Grid.ColumnSpan="3" Grid.RowSpan="5"></Image>
 
-            <Label StyleClass="Header"   Grid.Row="1" Grid.Column="0" Text="Learn" />
+            <Label Style="{DynamicResource Header}" Grid.Row="1" Grid.Column="0" Text="Learn" />
 
             <Image Aspect="AspectFit"  Grid.Row="2" x:Name="ScalesImage" StyleClass="Circle" ></Image>
-            <Button Grid.Row="3" Grid.Column="0" x:Name="Scales" Text="Scales &amp; Arpeggios" Clicked="Scales_Clicked" WidthRequest="200"></Button>
+            <Button Style="{DynamicResource PrimaryButton}" Grid.Row="3" Grid.Column="0" x:Name="Scales" Text="Scales &amp; Arpeggios" Clicked="Scales_Clicked" WidthRequest="200"></Button>
 
             <Image  Aspect="AspectFit" Grid.Row="4" x:Name="ChordsImage" StyleClass="Circle" ></Image>
             <Button Grid.Row="5" StyleClass="Primary" Grid.Column="0" x:Name="Chords" Text="Chords" Clicked="Chords_Clicked"></Button>
 
-            <Label  StyleClass="Header" Grid.Row="1" Grid.Column="1" Text="Play" />
+            <Label  Style="{DynamicResource Header}"  Grid.Row="1" Grid.Column="1" Text="Play" />
             <Image  Aspect="AspectFit"  Grid.Row="2" Grid.Column="1" x:Name="TablatureImage" StyleClass="Circle" ></Image>
             <Button Grid.Row="3" StyleClass="Primary" Grid.Column="1" x:Name="Tablature" Text="Tablature" Clicked="Tablature_Clicked"></Button>
             <Button Grid.Row="5" StyleClass="Primary" Grid.Column="1" x:Name="Lessons" Text="Lessons" Clicked="Lessons_Clicked"></Button>
 
-            <Label  StyleClass="Header" Grid.Row="1" Grid.Column="2" Text="Perform" />
+            <Label  Style="{DynamicResource Header}"  Grid.Row="1" Grid.Column="2" Text="Perform" />
             <Image Aspect="AspectFit"  Grid.Row="2" Grid.Column="2" x:Name="PerformImage" StyleClass="Circle" ></Image>
             <Button Grid.Row="3" StyleClass="Primary" Grid.Column="2"  x:Name="Soundshed" Text="Join a Band" Clicked="Soundshed_Clicked"></Button>
         </Grid>

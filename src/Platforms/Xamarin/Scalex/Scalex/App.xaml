@@ -8,7 +8,7 @@
             <!--MergedWith="dark:DarkThemeResources"-->
 
             <Color x:Key="Primary">#780000</Color>
-            <Color x:Key="PrimaryDark">#C50000</Color>
+            <Color x:Key="PrimaryDark">#330000</Color>
             <Color x:Key="Accent">#FF3434</Color>
             <Color x:Key="LightBackgroundColor">#780000</Color>
             <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
@@ -24,12 +24,11 @@
             </Style>
 
             <Style x:Key="Header" TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource textColor}" />
-                <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
                 <Setter Property="FontSize" Value="Medium" />
             </Style>
 
-            <Style x:Key="buttonStyles" TargetType="Button">
+            <Style x:Key="PrimaryButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
                 <Setter Property="TextColor" Value="{DynamicResource LightTextColor}" />
             </Style>
