@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46666"
+   version="1.1"
+   id="svg895"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="icon-tablature.svg">
+  <defs
+     id="defs889" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-118.57143"
+     inkscape:cy="560"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata892">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-161.53336)">
+    <g
+       id="g3833"
+       inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\icons\band.png"
+       inkscape:export-xdpi="9.2627468"
+       inkscape:export-ydpi="9.2627468"
+       transform="matrix(0.43234257,0,0,0.43234257,-74.161047,-152.43301)">
+      <ellipse
+         ry="141.42857"
+         rx="152.85715"
+         cy="539.50507"
+         cx="332.85715"
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\icons\band.png"
+         transform="matrix(0.94903526,0,0,1.025725,11.82933,329.65506)"
+         id="path2985-6-2"
+         style="fill:#ffffff;fill-opacity:0.50196078;stroke:#000000;stroke-width:20.27091408;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\icons\band.png"
+         sodipodi:nodetypes="cssc"
+         inkscape:connector-curvature="0"
+         id="path4096"
+         d="m 376.54434,813.32021 c -5.85456,-2.9746 -107.41036,-23.04002 -112.76915,31.17911 -2.336,23.6352 36.41298,116.58268 62.95498,120.02856 19.10949,2.48093 115.24055,-120.76553 49.81417,-151.20767 z"
+         style="fill:#f2f2f2;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

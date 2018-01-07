@@ -22,8 +22,6 @@ namespace Webprofusion.Scalex.Rendering
 
         public ChordDiagramRenderer()
         {
-            DrawingColor = ColorPalette[ThemeColorPreset.Foreground];
-            BackgroundColor = ColorPalette[ThemeColorPreset.Background];
             GuitarModel = new GuitarModel();
             CurrentChordDiagrams = GuitarModel.GetPopularChordDiagrams();
         }
@@ -43,6 +41,9 @@ namespace Webprofusion.Scalex.Rendering
         {
             if (EnableRendering == false) return;
             if (CurrentChordDiagrams == null) return;
+
+            DrawingColor = ColorPalette[ThemeColorPreset.Foreground];
+            BackgroundColor = ColorPalette[ThemeColorPreset.Background];
 
             IGenericDrawingSurface g = InitialiseDrawingSurface(canvas, 800, 1024);
 

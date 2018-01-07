@@ -33,6 +33,8 @@ namespace Scalex.Views
              ColorPalette.Add(ThemeColorPreset.Subtle, new ColorValue(164, 164, 164));
              ColorPalette.Add(ThemeColorPreset.Accent, new ColorValue(0xb4, 0x55, 0xb6));*/
 
+            SkiaDrawingSurface.ApplyThemeColours(scaleDiagramRenderer);
+
             //setup list of tunings
             var guitarModel = scaleDiagramRenderer.GuitarModel;
 

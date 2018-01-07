@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Webprofusion.Scalex.Guitar;
 using Webprofusion.Scalex.Util;
 
 #if !SILVERLIGHT && !NETFX_CORE && !XAMARIN
@@ -32,7 +29,17 @@ using GuitarToolkit;
 
 namespace Webprofusion.Scalex.Rendering
 {
-    public enum ThemeColorPreset { Foreground = 0, ForegroundText = 1, MutedForeground = 2, Subtle = 3, Accent = 4, MutedBackground = 5, Background = 6 };
+    public enum ThemeColorPreset
+    {
+        Foreground = 0,
+        TextShadow = 1,
+        ForegroundText = 2,
+        MutedForeground = 3,
+        Subtle = 4,
+        Accent = 5,
+        MutedBackground = 6,
+        Background = 7
+    };
 
     public class GenericColorPreset
     {

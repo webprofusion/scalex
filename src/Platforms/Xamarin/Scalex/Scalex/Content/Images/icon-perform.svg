@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg2104"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="icon-perform.svg">
+  <defs
+     id="defs2098">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2685">
+      <stop
+         style="stop-color:#ffd42a;stop-opacity:1;"
+         offset="0"
+         id="stop2681" />
+      <stop
+         style="stop-color:#ff7f2a;stop-opacity:1"
+         offset="1"
+         id="stop2683" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2685"
+       id="linearGradient2687"
+       x1="568.55255"
+       y1="435.57684"
+       x2="628.55255"
+       y2="615.57684"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-118.57143"
+     inkscape:cy="560"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata2101">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-161.53332)">
+    <circle
+       style="fill:#ffffff;fill-opacity:0.50196078;stroke:#000000;stroke-width:8.46042347;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2985-6-2-6-0"
+       inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\icons\band.png"
+       inkscape:export-xdpi="9.2627468"
+       inkscape:export-ydpi="9.2627468"
+       cx="67.65773"
+       cy="229.34224"
+       r="61.366337" />
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:url(#linearGradient2687);fill-opacity:1;stroke:#4d4d4d;stroke-width:13.181256;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2082"
+       sodipodi:sides="5"
+       sodipodi:cx="588.55255"
+       sodipodi:cy="495.57684"
+       sodipodi:r1="126.49111"
+       sodipodi:r2="63.245552"
+       sodipodi:arg1="1.2490458"
+       sodipodi:arg2="1.8773643"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 628.55255,615.57685 -59.08677,-59.70328 -82.67934,14.82757 38.52238,-74.64419 -39.65118,-74.05074 82.89491,13.57063 58.17356,-60.59345 12.70949,83.0313 75.60442,36.60194 -75.04001,37.74553 z"
+       inkscape:transform-center-x="-16.115761"
+       inkscape:transform-center-y="-0.38148295"
+       transform="matrix(0.36146666,0,0,0.34015593,-146.46159,64.762299)" />
+  </g>
+</svg>

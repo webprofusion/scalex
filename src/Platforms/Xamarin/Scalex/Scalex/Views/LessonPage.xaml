@@ -21,7 +21,7 @@
             <Button Grid.Row="0" Grid.Column="0" Clicked="Button_Clicked_1" Text="Load Lesson"></Button>
             <ScrollView Grid.Row="1" Grid.Column="0">
                 <StackLayout>
-                <Label  x:Name="SectionDescription"  Text="Description" FontSize="Small" Margin="6,6,6,6" />
+                    <Label TextColor="White"  x:Name="SectionDescription"  Text="Description" FontSize="Small" Margin="6,6,6,6" />
                 </StackLayout>
             </ScrollView>
             <custom:CustomWebView   Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"  x:Name="MediaPlayerWebView" EvaluateJavascript="{Binding EvaluateJavascript}, Mode=OneWayToSource}" Source="" WidthRequest="500" HeightRequest="300"></custom:CustomWebView>

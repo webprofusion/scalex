@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using FFImageLoading.Forms.Droid;
+using FFImageLoading.Svg.Forms;
 
 namespace Scalex.Droid
 {
@@ -16,6 +18,11 @@ namespace Scalex.Droid
             base.OnCreate(bundle);
 
             // global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
+
+            // image resource loading
+            CachedImageRenderer.Init(true);
+            var ignore = typeof(SvgCachedImage);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             var app = new App();
@@ -24,10 +31,6 @@ namespace Scalex.Droid
             app.DisplayScaleFactor = (double)Resources.DisplayMetrics.Density;
 
             LoadApplication(app);
-
-            var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
-            x = typeof(Xamarin.Forms.Themes.LightThemeResources);
-            x = typeof(Xamarin.Forms.Themes.Android.UnderlineEffect);
         }
     }
 }

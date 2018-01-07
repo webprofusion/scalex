@@ -1,4 +1,5 @@
 ﻿using SkiaSharp;
+using SkiaSharp.Views.Forms;
 using Webprofusion.Scalex.Rendering;
 using Webprofusion.Scalex.Util;
 
@@ -42,6 +43,16 @@ namespace Scalex
         public float GetScale()
         {
             return _scale;
+        }
+
+        public static void ApplyThemeColours(Generic2DRenderer surface)
+        {
+            var foregroundThemeColor = ((Xamarin.Forms.Color)App.Current.Resources["PrimaryTextColor"]).ToSKColor();
+            var mutedForegroundThemeColor = ((Xamarin.Forms.Color)App.Current.Resources["MutedForegroundColor"]).ToSKColor();
+            surface.ColorPalette[ThemeColorPreset.ForegroundText] = new ColorValue(foregroundThemeColor.Red, foregroundThemeColor.Green, foregroundThemeColor.Blue);
+            surface.ColorPalette[ThemeColorPreset.Foreground] = new ColorValue(foregroundThemeColor.Red, foregroundThemeColor.Green, foregroundThemeColor.Blue);
+            surface.ColorPalette[ThemeColorPreset.MutedForeground] = new ColorValue(mutedForegroundThemeColor.Red, mutedForegroundThemeColor.Green, mutedForegroundThemeColor.Blue);
+            surface.ColorPalette[ThemeColorPreset.TextShadow] = new ColorValue(mutedForegroundThemeColor.Red, mutedForegroundThemeColor.Green, mutedForegroundThemeColor.Blue);
         }
 
         #region IGenericDrawingSurface Members

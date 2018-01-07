@@ -55,6 +55,30 @@
     </XamMacArch>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FFImageLoading">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.3.3\lib\Xamarin.Mac20\FFImageLoading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Forms">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.3.3\lib\Xamarin.Mac20\FFImageLoading.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Forms.Mac">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.3.3\lib\Xamarin.Mac20\FFImageLoading.Forms.Mac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.3.3\lib\Xamarin.Mac20\FFImageLoading.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Svg.Forms">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Svg.Forms.2.3.3\lib\Xamarin.Mac20\FFImageLoading.Svg.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Svg.Platform">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Svg.2.3.3\lib\Xamarin.Mac20\FFImageLoading.Svg.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Mac" />
@@ -89,18 +113,6 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="FFImageLoading">
-      <HintPath>..\packages\Xamarin.FFImageLoading.2.3.2\lib\Xamarin.Mac20\FFImageLoading.dll</HintPath>
-    </Reference>
-    <Reference Include="FFImageLoading.Platform">
-      <HintPath>..\packages\Xamarin.FFImageLoading.2.3.2\lib\Xamarin.Mac20\FFImageLoading.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="FFImageLoading.Forms">
-      <HintPath>..\packages\Xamarin.FFImageLoading.Forms.2.3.2\lib\Xamarin.Mac20\FFImageLoading.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="FFImageLoading.Forms.Mac">
-      <HintPath>..\packages\Xamarin.FFImageLoading.Forms.2.3.2\lib\Xamarin.Mac20\FFImageLoading.Forms.Mac.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.MediaManager.Abstractions">
       <HintPath>..\packages\Plugin.MediaManager.0.4.5\lib\Xamarin.Mac\Plugin.MediaManager.Abstractions.dll</HintPath>
     </Reference>

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Reflection;
+﻿using Scalex.Helpers;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,37 +12,28 @@ namespace Scalex.Views
         {
             InitializeComponent();
 
-            //DEBUG
-            var assembly = typeof(IntroPage).GetTypeInfo().Assembly;
-            foreach (var res in assembly.GetManifestResourceNames())
+            ResourceLoader res = new ResourceLoader();
+            this.ScalesImage.Source = res.GetSVGImageResource("icon-scales.svg");
+            this.ChordsImage.Source = res.GetSVGImageResource("icon-chords.svg");
+            this.TablatureImage.Source = res.GetSVGImageResource("icon-tablature.svg");
+            this.LessonsImage.Source = res.GetSVGImageResource("icon-lessons.svg");
+
+            this.PerformImage.Source = res.GetSVGImageResource("icon-perform.svg");
+            /*if (res.EndsWith("Tablature.png"))
             {
-                System.Diagnostics.Debug.WriteLine("found resource: " + res);
-                if (res.EndsWith("Chords.png"))
-                {
-                    this.ChordsImage.Source = ImageSource.FromResource(res, assembly);
-                }
-
-                if (res.EndsWith("Scales.png"))
-                {
-                    this.ScalesImage.Source = ImageSource.FromResource(res, assembly);
-                }
-
-                if (res.EndsWith("Tablature.png"))
-                {
-                    this.TablatureImage.Source = ImageSource.FromResource(res, assembly);
-                }
-
-                if (res.EndsWith("band.png"))
-                {
-                    this.PerformImage.Source = ImageSource.FromResource(res, assembly);
-                }
-
-                if (res.EndsWith("speaker-mesh.jpg"))
-                {
-                    this.BackgroundPageImage.Source = ImageSource.FromResource(res, assembly);
-                    this.BackgroundPageImage.Scale = 1;
-                }
+                this.TablatureImage.Source = ImageSource.FromResource(res, assembly);
             }
+
+            if (res.EndsWith("band.png"))
+            {
+                this.PerformImage.Source = ImageSource.FromResource(res, assembly);
+            }
+
+            if (res.EndsWith("speaker-mesh.jpg"))
+            {
+                this.BackgroundPageImage.Source = ImageSource.FromResource(res, assembly);
+                this.BackgroundPageImage.Scale = 1;
+            }*/
 
             // scales image tap
             var tapGestureRecognizer = new TapGestureRecognizer();
@@ -58,6 +49,7 @@ namespace Scalex.Views
             {
                 Chords_Clicked(s, e);
             };
+            ChordsImage.GestureRecognizers.Add(tapChordGestureRecognizer);
 
             // tab image tap
             var tapTabGestureRecognizer = new TapGestureRecognizer();
@@ -65,6 +57,7 @@ namespace Scalex.Views
             {
                 Tablature_Clicked(s, e);
             };
+            TablatureImage.GestureRecognizers.Add(tapTabGestureRecognizer);
 
             // perform image tap
             var tapPerformGestureRecognizer = new TapGestureRecognizer();
@@ -72,6 +65,7 @@ namespace Scalex.Views
             {
                 Soundshed_Clicked(s, e);
             };
+            PerformImage.GestureRecognizers.Add(tapPerformGestureRecognizer);
         }
 
         private async void Scales_Clicked(object sender, EventArgs e)

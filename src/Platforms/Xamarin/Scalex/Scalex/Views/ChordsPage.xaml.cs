@@ -19,6 +19,8 @@ namespace Scalex.Views
 
             chordDiagramRenderer = new Webprofusion.Scalex.Rendering.ChordDiagramRenderer();
 
+            SkiaDrawingSurface.ApplyThemeColours(chordDiagramRenderer);
+
             var guitarModel = chordDiagramRenderer.GuitarModel;
 
             // tuning list

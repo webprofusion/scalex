@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512mm"
+   height="512mm"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg2990"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="icon-chords.svg">
+  <defs
+     id="defs2984" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="856.80818"
+     inkscape:cy="1267.8324"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata2987">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,215)">
+    <g
+       id="g3817"
+       inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\icons\chords.png"
+       inkscape:export-xdpi="9.2627468"
+       inkscape:export-ydpi="9.2627468"
+       transform="matrix(1.6502965,0,0,1.643003,-281.57674,-839.05251)">
+      <ellipse
+         ry="141.42857"
+         rx="152.85715"
+         cy="539.50507"
+         cx="332.85715"
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         transform="matrix(0.94903526,0,0,1.025725,9.1068285,-17.450212)"
+         id="path2985"
+         style="fill:#ffffff;fill-opacity:0.50196078;stroke:#000000;stroke-width:20.27091408;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         inkscape:connector-curvature="0"
+         id="path3755"
+         d="m 269.31813,485.43305 -2.85714,108.57143"
+         style="fill:#000000;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         inkscape:transform-center-y="37.142857"
+         inkscape:transform-center-x="-28.571429"
+         inkscape:connector-curvature="0"
+         id="path3755-1"
+         d="m 304.7512,485.43305 -2.85714,108.57143"
+         style="fill:#000000;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         inkscape:transform-center-y="37.142857"
+         inkscape:transform-center-x="-28.571429"
+         inkscape:connector-curvature="0"
+         id="path3755-1-7"
+         d="m 340.18427,485.43305 -2.85714,108.57143"
+         style="fill:#000000;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         inkscape:transform-center-y="37.142857"
+         inkscape:transform-center-x="-28.571429"
+         inkscape:connector-curvature="0"
+         id="path3755-1-4"
+         d="M 375.61734,485.43305 372.7602,594.00448"
+         style="fill:#000000;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         inkscape:transform-center-y="37.142857"
+         inkscape:transform-center-x="-28.571429"
+         inkscape:connector-curvature="0"
+         id="path3755-1-0"
+         d="m 233.88506,485.43305 -2.85714,108.57143"
+         style="fill:#000000;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         inkscape:transform-center-y="37.142857"
+         inkscape:transform-center-x="-28.571429"
+         inkscape:connector-curvature="0"
+         id="path3755-1-9"
+         d="m 414.63702,484.34486 -2.85714,108.57143"
+         style="fill:#000000;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         inkscape:transform-center-y="28.860527"
+         inkscape:transform-center-x="64.476464"
+         inkscape:connector-curvature="0"
+         id="path3755-1-48"
+         d="M 421.24114,485.43305 231.59385,483.4236"
+         style="fill:#000000;stroke:#000000;stroke-width:9.90828228;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <circle
+         r="17.716536"
+         cy="538.58264"
+         cx="230.31496"
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         transform="matrix(0.7723299,0,0,0.77232991,56.469358,69.469566)"
+         id="path3823"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:12.94783497;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:42.48563004;stroke-opacity:1" />
+      <circle
+         r="17.716536"
+         cy="538.58264"
+         cx="230.31496"
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         transform="matrix(0.7723299,0,0,0.77232991,91.438995,118.58565)"
+         id="path3823-8"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:12.94783497;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:42.48563004;stroke-opacity:1" />
+      <circle
+         r="17.716536"
+         cy="538.58264"
+         cx="230.31496"
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         transform="matrix(0.7723299,0,0,0.77232991,126.87207,118.58565)"
+         id="path3823-2"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:12.94783497;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:42.48563004;stroke-opacity:1" />
+      <circle
+         r="17.716536"
+         cy="538.58264"
+         cx="230.31496"
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         transform="matrix(0.7723299,0,0,0.77232991,162.81314,94.463218)"
+         id="path3823-2-7"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:12.94783497;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:42.48563004;stroke-opacity:1" />
+      <circle
+         r="17.716536"
+         cy="538.58264"
+         cx="230.31496"
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         transform="matrix(0.7723299,0,0,0.77232991,199.90992,70.269667)"
+         id="path3823-2-1"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:12.94783497;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:42.48563004;stroke-opacity:1" />
+      <circle
+         r="17.716536"
+         cy="538.58264"
+         cx="230.31496"
+         inkscape:export-ydpi="9.2627468"
+         inkscape:export-xdpi="9.2627468"
+         inkscape:export-filename="C:\Temp\SVN\scalex\trunk\Web\images\source\chords.png"
+         transform="matrix(0.7723299,0,0,0.77232991,235.39379,70.269666)"
+         id="path3823-2-2"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:12.94783497;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:42.48563004;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

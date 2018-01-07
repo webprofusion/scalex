@@ -1,8 +1,6 @@
 using System;
-using System.IO;
-
-using Webprofusion.Scalex.Music;
 using Webprofusion.Scalex.Guitar;
+using Webprofusion.Scalex.Music;
 
 namespace Webprofusion.Scalex
 {
@@ -20,8 +18,10 @@ namespace Webprofusion.Scalex
         public String BackgroundImageFileName { get; set; }
         public bool IsDebugMode { get; set; }
         public bool EnableDiagramBackgroundImage { get; set; }
+
         public bool EnableFretboardBackgroundFill { get; set; }
         public bool EnableFretNumbers { get; set; }
+
         public bool EnableDiagramFingering { get; set; }
         public bool EnableDiagramStrings { get; set; }
         public bool EnableDiagramNoteNames { get; set; }

@@ -340,14 +340,14 @@ namespace Webprofusion.Scalex.Rendering
                             if (strNote.Length == 1)
                             {
                                 labelX += markerFontSize * 0.3;
-                                g.DrawString(labelX + 0.5, labelY + 0.5, strNote, markerFontSize, ColorPalette[ThemeColorPreset.Background]); //shadow
+                                g.DrawString(labelX + 0.5, labelY + 0.5, strNote, markerFontSize, ColorPalette[ThemeColorPreset.TextShadow]); //shadow
                                 g.DrawString(labelX, labelY, strNote, markerFontSize, ColorPalette[ThemeColorPreset.ForegroundText]);
                             }
                             else
                             {
                                 labelX += markerFontSize * 0.2;
                                 labelY += markerFontSize * 0.1;
-                                g.DrawString(labelX + 0.5, labelY + 0.5, strNote, markerFontSize * .8, ColorPalette[ThemeColorPreset.Background]);
+                                g.DrawString(labelX + 0.5, labelY + 0.5, strNote, markerFontSize * .8, ColorPalette[ThemeColorPreset.TextShadow]);
                                 g.DrawString(labelX, labelY, strNote, markerFontSize * .8, ColorPalette[ThemeColorPreset.ForegroundText]);
                             }
                         }
