@@ -66,7 +66,7 @@ namespace Scalex.Views
 
             var diagramRequiredWidth = scaleDiagramRenderer.GetDiagramWidth();
             var canvasWidth = info.Width;
-            var scaleFactor = canvasWidth / diagramRequiredWidth;
+            float scaleFactor = (float)canvasWidth / (float)diagramRequiredWidth;
             if (scaleFactor < 2) scaleFactor = 2;
 
             skiaDrawingSurface.SetScale((float)scaleFactor);

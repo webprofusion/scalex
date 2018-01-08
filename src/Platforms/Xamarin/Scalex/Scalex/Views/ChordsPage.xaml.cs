@@ -66,7 +66,7 @@ namespace Scalex.Views
             if (chordsPerRow > 10) chordsPerRow = 10;
             chordDiagramRenderer.ChordsPerRow = (int)chordsPerRow - 1;
 
-            float scaleFactor = canvasWidth / (diagramRequiredWidth * chordsPerRow);
+            float scaleFactor = (float)canvasWidth / (float)(diagramRequiredWidth * chordsPerRow);
             if (scaleFactor < 1.5) scaleFactor = 1.5f;
 
             skiaDrawingSurface.SetScale((float)scaleFactor);

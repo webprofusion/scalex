@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using FFImageLoading.Forms.Touch;
+using FFImageLoading.Svg.Forms;
+using Foundation;
 using UIKit;
 
 namespace Scalex.iOS
@@ -8,8 +10,9 @@ namespace Scalex.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            //init video suppot
-            Rox.VideoIos.Init();
+            // image resource loading
+            CachedImageRenderer.Init();
+            var ignore = typeof(SvgCachedImage);
 
             global::Xamarin.Forms.Forms.Init();
 
@@ -19,10 +22,6 @@ namespace Scalex.iOS
             appInstance.DisplayScaleFactor = (double)UIScreen.MainScreen.Scale;
 
             LoadApplication(appInstance);
-
-            var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
-            x = typeof(Xamarin.Forms.Themes.LightThemeResources);
-            x = typeof(Xamarin.Forms.Themes.iOS.UnderlineEffect);
 
             return base.FinishedLaunching(app, options);
         }

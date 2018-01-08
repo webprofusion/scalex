@@ -5,7 +5,6 @@ using Xamarin.Forms.Platform.MacOS;
 
 namespace Scalex.Mac
 {
- 
     [Register("AppDelegate")]
     public class AppDelegate : FormsApplicationDelegate
     {
@@ -18,8 +17,6 @@ namespace Scalex.Mac
             window = new NSWindow(rect, style, NSBackingStore.Buffered, false);
             window.Title = "Soundshed Guitar Toolkit";
             window.TitleVisibility = NSWindowTitleVisibility.Hidden;
-
-           
         }
 
         public override NSWindow MainWindow
@@ -29,6 +26,10 @@ namespace Scalex.Mac
 
         public override void DidFinishLaunching(NSNotification notification)
         {
+            // image resource loading
+            CachedImageRenderer.Init();
+            var ignore = typeof(SvgCachedImage);
+
             Forms.Init();
 
             var appInstance = new App();

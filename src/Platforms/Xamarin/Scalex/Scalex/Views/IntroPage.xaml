@@ -8,10 +8,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="28"></RowDefinition>
                 <RowDefinition Height="32"></RowDefinition>
-                <RowDefinition Height="48"></RowDefinition>
-                <RowDefinition Height="48"></RowDefinition>
-                <RowDefinition Height="48"></RowDefinition>
-                <RowDefinition Height="48"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition Height="32"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200*"></ColumnDefinition>
@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="200*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Soundshed Guitar Toolkit is ideal for beginners looking to learn the ropes and for advanced guitarists looking to extend their skills."></Label>
+            <Label Style="{DynamicResource Header}" Grid.Row="0" Grid.ColumnSpan="3" Text="Soundshed Guitar Toolkit is ideal for beginners and advanced guitarists alike."></Label>
 
             <Image IsVisible="False" Aspect="Fill" Grid.Row="0" Grid.Column="0" x:Name="BackgroundPageImage"  Grid.ColumnSpan="3" Grid.RowSpan="5"></Image>
 
