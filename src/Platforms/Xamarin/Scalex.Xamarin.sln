@@ -21,6 +21,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Scalex\Scalex\Xamarin.projitems*{13bd1874-159e-49a4-ab93-94be2a4f6cc8}*SharedItemsImports = 4
 		Scalex\Scalex\Xamarin.projitems*{6a723c52-5562-4d8a-b694-5f4e04bbd9f2}*SharedItemsImports = 4
+		Scalex\Scalex\Xamarin.projitems*{bba770bc-32ca-4af4-a101-05e2f44cb656}*SharedItemsImports = 4
 		Scalex\Scalex\Xamarin.projitems*{c2dc3c3e-67e8-4773-a56c-df5377de2d68}*SharedItemsImports = 13
 		Scalex\Scalex\Xamarin.projitems*{ca2157e4-ec0e-4cc9-92b3-483e8afcf52c}*SharedItemsImports = 4
 	EndGlobalSection

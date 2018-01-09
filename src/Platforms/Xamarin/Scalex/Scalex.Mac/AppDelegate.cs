@@ -1,4 +1,6 @@
 ﻿using AppKit;
+using FFImageLoading.Forms.Mac;
+using FFImageLoading.Svg.Forms;
 using Foundation;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.MacOS;
@@ -8,7 +10,8 @@ namespace Scalex.Mac
     [Register("AppDelegate")]
     public class AppDelegate : FormsApplicationDelegate
     {
-        NSWindow window;
+        private NSWindow window;
+
         public AppDelegate()
         {
             var style = NSWindowStyle.Closable | NSWindowStyle.Resizable | NSWindowStyle.Titled;
