@@ -40,10 +40,7 @@ namespace Scalex.Droid.Helper
 
     internal class JavascriptCallback : Java.Lang.Object, IValueCallback
     {
-        public JavascriptCallback(Action<string> callback)
-        {
-            _callback = callback;
-        }
+        public JavascriptCallback(Action<string> callback) => _callback = callback;
 
         private Action<string> _callback;
 

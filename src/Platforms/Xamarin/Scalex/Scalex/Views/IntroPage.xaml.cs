@@ -19,21 +19,6 @@ namespace Scalex.Views
             this.LessonsImage.Source = res.GetSVGImageResource("icon-lessons.svg");
 
             this.PerformImage.Source = res.GetSVGImageResource("icon-perform.svg");
-            /*if (res.EndsWith("Tablature.png"))
-            {
-                this.TablatureImage.Source = ImageSource.FromResource(res, assembly);
-            }
-
-            if (res.EndsWith("band.png"))
-            {
-                this.PerformImage.Source = ImageSource.FromResource(res, assembly);
-            }
-
-            if (res.EndsWith("speaker-mesh.jpg"))
-            {
-                this.BackgroundPageImage.Source = ImageSource.FromResource(res, assembly);
-                this.BackgroundPageImage.Scale = 1;
-            }*/
 
             // scales image tap
             var tapGestureRecognizer = new TapGestureRecognizer();
@@ -92,6 +77,11 @@ namespace Scalex.Views
         {
             //await Navigation.PushAsync(new PlayerPage());
             Device.OpenUri(new Uri("https://soundshed.com?src=app"));
+        }
+
+        private async void Design_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DesignerPage());
         }
     }
 }

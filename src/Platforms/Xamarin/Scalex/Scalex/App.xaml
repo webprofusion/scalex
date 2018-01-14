@@ -31,20 +31,20 @@
 
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
-                <Setter Property="FontSize" Value="Micro" />
             </Style>
+
             <Style TargetType="TextCell">
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
             </Style>
             <Style x:Key="Header" TargetType="Label">
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
-                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
 
             <Style x:Key="PrimaryButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{DynamicResource DarkBackgroundColor}" />
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryDarkForeground}" />
-                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

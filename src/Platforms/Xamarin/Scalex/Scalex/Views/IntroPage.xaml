@@ -6,12 +6,12 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="28"></RowDefinition>
-                <RowDefinition Height="32"></RowDefinition>
-                <RowDefinition Height="32"></RowDefinition>
-                <RowDefinition Height="32"></RowDefinition>
-                <RowDefinition Height="32"></RowDefinition>
-                <RowDefinition Height="32"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="48*"></RowDefinition>
+                <RowDefinition Height="48*"></RowDefinition>
+                <RowDefinition Height="48*"></RowDefinition>
+                <RowDefinition Height="48*"></RowDefinition>
+                <RowDefinition Height="48*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200*"></ColumnDefinition>
@@ -43,6 +43,9 @@
             <Label  Style="{DynamicResource Header}"  Grid.Row="1" Grid.Column="2" Text="Perform" />
             <ffimageloadingsvg:SvgCachedImage x:Name="PerformImage" Grid.Row="2" Grid.Column="2"  WidthRequest="200" HeightRequest="200" />
             <Button Style="{DynamicResource PrimaryButton}" Grid.Row="3" StyleClass="Primary" Grid.Column="2"  x:Name="Soundshed" Text="Join a Band" Clicked="Soundshed_Clicked"></Button>
+
+            <ffimageloadingsvg:SvgCachedImage x:Name="DesignImage" Grid.Row="4" Grid.Column="2"  WidthRequest="200" HeightRequest="200" />
+            <Button Style="{DynamicResource PrimaryButton}" Grid.Row="5" StyleClass="Primary" Grid.Column="2"  x:Name="Designer" Text="Design a Guitar" Clicked="Design_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

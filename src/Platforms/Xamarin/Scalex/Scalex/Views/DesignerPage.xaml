@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Scalex.Views.DesignerPage" Title="Guitar Designer - Orsmby Guitars">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <WebView Source="https://designer.ormsbyguitars.com?src=com.webprofusion.scalex" Grid.Row="0" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModernHttpClient;
+using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -25,6 +26,11 @@ namespace Scalex.Views
         private AlphaTab.Model.Score _score = null;
 
         private string _serviceBaseUri = "https://api.soundshed.com/lessons/";
+
+        private HttpClient GetDefaultHttpClient()
+        {
+            return new HttpClient(new NativeMessageHandler());
+        }
 
         public LessonPage()
         {
@@ -102,7 +108,7 @@ namespace Scalex.Views
 
         private async Task<string> FetchData(string url)
         {
-            using (var httpClient = new HttpClient())
+            using (var httpClient = GetDefaultHttpClient())
             {
                 var uri = new Uri(url);
 

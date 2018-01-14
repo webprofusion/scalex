@@ -27,6 +27,8 @@ namespace Scalex.Views
         public TablaturePage()
         {
             InitializeComponent();
+            Playback.OnPlay += new PlaybackControl.PlayEventHandler(StartPlayback);
+            Playback.OnStop += new PlaybackControl.StopEventHandler(StopPlayback);
         }
 
         public TablaturePage(Models.SongListItem song)
@@ -53,7 +55,11 @@ namespace Scalex.Views
 
             //load gp score
             _score = await _scoreService.FetchSongScore(_song, true);
-
+            if (_score == null)
+            {
+                await DisplayAlert("Load failed", "Could not load song. Check internet connection", "OK");
+                return;
+            }
             var mostPopularTrack = _song.LatestAvailableRevision?.MostPopularTrack?.ID != null ? _song.LatestAvailableRevision.Tracks.FirstOrDefault(t => t.ID == _song.LatestAvailableRevision?.MostPopularTrack?.ID) : null;
             // this.trackPicker.Items.Clear();
             Track selectedTrack = null;
@@ -116,7 +122,7 @@ namespace Scalex.Views
             {
                 SetCurrentTrack(_score.Tracks[trackPicker.SelectedIndex]);
 
-                PlayMidi();
+                //PlayMidi();
                 //this.Perform();
             }
         }
@@ -142,6 +148,14 @@ namespace Scalex.Views
                     }
                 }
             }
+        }
+
+        private void StartPlayback()
+        {
+        }
+
+        private void StopPlayback()
+        {
         }
 
         private async Task PlayMidi()

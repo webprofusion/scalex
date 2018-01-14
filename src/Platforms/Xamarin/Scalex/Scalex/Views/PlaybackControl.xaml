@@ -4,8 +4,8 @@
              x:Class="Scalex.Views.PlaybackControl">
     <ContentView.Content>
         <StackLayout Orientation="Horizontal">
-            <Button Text="◼ Stop" />
-            <Button Text="▶ Play" />
+            <Button Text="◼ Stop" x:Name="StopButton" Clicked="StopButton_Clicked" />
+            <Button Text="▶ Play" x:Name="PlayButton" Clicked="PlayButton_Clicked" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Webprofusion.Scalex.Music;
 
 namespace Webprofusion.Scalex.Guitar
 {
-
     public enum FretMarkerStyle
     {
         Dots = 1,
@@ -27,27 +24,27 @@ namespace Webprofusion.Scalex.Guitar
         public PrefSettings GuitarModelSettings { get; set; }
 
         /// <summary>
-        /// Current fretboard fret marker style
+        /// Current fretboard fret marker style 
         /// </summary>
         public FretMarkerStyle FretMarkerStyle = FretMarkerStyle.Dots;
 
         /// <summary>
-        /// fret numbers which have a fret marker present
+        /// fret numbers which have a fret marker present 
         /// </summary>
         public List<int> FretsWithMarkers;
 
         /// <summary>
-        /// Hand used for fretting notes (left/right)
+        /// Hand used for fretting notes (left/right) 
         /// </summary>
         public FrettingHandOrientation FrettingHand { get; set; }
 
         /// <summary>
-        /// number of fingers on the fretting hand for use fretting scales or chords
+        /// number of fingers on the fretting hand for use fretting scales or chords 
         /// </summary>
         public int FrettingFingers { get; set; }
 
         /// <summary>
-        /// imaginary hand/fret position position at which scales/chords should start
+        /// imaginary hand/fret position position at which scales/chords should start 
         /// </summary>
         public int StartingFretPos { get; set; }
 
@@ -55,7 +52,40 @@ namespace Webprofusion.Scalex.Guitar
         /// Maximum stretch from first finger to 
         /// </summary>
         public int MaximumScalePositionStretch { get; set; }
+
         public int MaximumChordPositionStretch { get; set; }
+
+        public float DefaultScaleLength { get; set; } = 648;
+        public float PrimaryScaleLengthMM { get; set; } = 648;
+        public float SecondaryScaleLengthMM { get; set; } = 648;
+
+        public bool IsMultiScale
+        {
+            get
+            {
+                return PrimaryScaleLengthMM != SecondaryScaleLengthMM;
+            }
+            set
+            {
+                if (value == false)
+                {
+                    PrimaryScaleLengthMM = DefaultScaleLength;
+                }
+                else
+                {
+                    PrimaryScaleLengthMM = DefaultScaleLength;
+                    SecondaryScaleLengthMM = PrimaryScaleLengthMM + (6 * NumberOfStrings);
+                }
+            }
+        }
+
+        public float MultiScaleFanFactor
+        {
+            get
+            {
+                return (SecondaryScaleLengthMM - PrimaryScaleLengthMM) / NumberOfStrings;
+            }
+        }
 
         public GuitarModel()
             : this(new PrefSettings())
@@ -85,7 +115,7 @@ namespace Webprofusion.Scalex.Guitar
         }
 
         /// <summary>
-        /// Number of string on guitar
+        /// Number of string on guitar 
         /// </summary>
         public int NumberOfStrings
         {
@@ -93,7 +123,7 @@ namespace Webprofusion.Scalex.Guitar
         }
 
         /// <summary>
-        /// All supported tunings
+        /// All supported tunings 
         /// </summary>
         public List<GuitarTuning> AllTunings
         {
@@ -113,7 +143,6 @@ namespace Webprofusion.Scalex.Guitar
             }
         }
 
-
         public GuitarTuning SelectedTuning
         {
             get { return GuitarModelSettings.CurrentTuning; }
@@ -132,7 +161,6 @@ namespace Webprofusion.Scalex.Guitar
             set { SetKey(value); }
         }
 
-
         public bool EnableNoteNames
         {
             get { return GuitarModelSettings.EnableDiagramNoteNames; }
@@ -140,7 +168,7 @@ namespace Webprofusion.Scalex.Guitar
         }
 
         /// <summary>
-        /// Reapplies guitar string settings from current GuitarModelSettings values
+        /// Reapplies guitar string settings from current GuitarModelSettings values 
         /// </summary>
         public void RefreshStringSettings()
         {
@@ -212,12 +240,12 @@ namespace Webprofusion.Scalex.Guitar
             RefreshStringSettings();
         }
 
-
         public void SetKey(string noteName)
         {
             GuitarModelSettings.ScaleManager.SetKey(noteName);
             RefreshStringSettings();
         }
+
         public Note GetKey()
         {
             return GuitarModelSettings.ScaleManager.CurrentKey;
@@ -266,7 +294,6 @@ namespace Webprofusion.Scalex.Guitar
 
         public List<ChordDiagram> GetChordDiagramsByGroup(string groupName)
         {
-
             if (groupName == "popular")
             {
                 return GetPopularChordDiagrams();
@@ -274,7 +301,6 @@ namespace Webprofusion.Scalex.Guitar
 
             if (groupName == "major") groupName = "Maj";
             if (groupName == "minor") groupName = "Min";
-
 
             List<ChordDiagram> CurrentChordDiagrams = new List<ChordDiagram>();
             for (int i = 0; i < 11; i++)
@@ -284,10 +310,8 @@ namespace Webprofusion.Scalex.Guitar
             return CurrentChordDiagrams;
         }
 
-
         public List<ChordDiagram> GetPopularChordDiagrams()
         {
-
             List<ChordDiagram> CurrentChordDiagrams = new List<ChordDiagram>();
 
             //like http://www.guitarchordsmagic.com/guitar-chord-charts/free-printable-guitar-chord-chart.html
@@ -314,7 +338,7 @@ namespace Webprofusion.Scalex.Guitar
         }
 
         /// <summary>
-        /// Get chord diagram settings based on guitar model tuning/strings etc
+        /// Get chord diagram settings based on guitar model tuning/strings etc 
         /// </summary>
         /// <param name="rootNote"></param>
         /// <param name="chordType"></param>
@@ -377,7 +401,7 @@ namespace Webprofusion.Scalex.Guitar
         }
 
         /// <summary>
-        /// returns the fretted notes of a chord based on root note and chord type
+        /// returns the fretted notes of a chord based on root note and chord type 
         /// </summary>
         /// <param name="rootNote"></param>
         /// <param name="chordType"></param>
@@ -399,7 +423,7 @@ namespace Webprofusion.Scalex.Guitar
 
             //basic algorithm is to fret the root note of the chord on the first string possible (low to high)
             //then we fret the note on each string with the lowest fret position regardless of which interval it is in chord
-            
+
             for (int currentStringIndex = 0; currentStringIndex < NumberOfStrings; currentStringIndex++)
             {
                 //System.Diagnostics.Debug.WriteLine("Checking String:" + i);
@@ -436,7 +460,6 @@ namespace Webprofusion.Scalex.Guitar
 #else
                         chordDiagram.FrettedStrings[currentStringIndex] = chordNotesOnString.OrderBy(f => f.Fret).First();
 #endif
-      
                     }
                 }
             }
@@ -474,7 +497,5 @@ namespace Webprofusion.Scalex.Guitar
 
             return null;
         }
-
-
     }
 }

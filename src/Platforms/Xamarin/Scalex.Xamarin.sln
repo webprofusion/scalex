@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Scalex", "Scalex\Scalex\Scalex.shproj", "{C2DC3C3E-67E8-4773-A56C-DF5377DE2D68}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Rendering", "..\..\Rendering\Scalex.Rendering.csproj", "{948B7852-DB15-4602-9D0A-D22CAC007C49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.Mac", "Scalex\Scalex.Mac\Scalex.Mac.csproj", "{BBA770BC-32CA-4AF4-A101-05E2F44CB656}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{B895B8B8-D5D2-49BA-A097-E73073625BC1}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -46,7 +48,6 @@ Global
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|ARM.Build.0 = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|ARM.Deploy.0 = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhone.Deploy.0 = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
@@ -78,6 +79,7 @@ Global
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|ARM.ActiveCfg = Debug|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|iPhone.Build.0 = Debug|iPhone
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2}.Debug|x64.ActiveCfg = Debug|iPhone
@@ -169,7 +171,6 @@ Global
 		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|ARM.ActiveCfg = Debug|iPhoneSimulator
 		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|ARM.Build.0 = Debug|iPhoneSimulator
 		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|iPhone.ActiveCfg = Debug|iPhoneSimulator
-		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|iPhone.Build.0 = Debug|iPhoneSimulator
 		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{BBA770BC-32CA-4AF4-A101-05E2F44CB656}.Debug|x64.ActiveCfg = Debug|iPhoneSimulator
@@ -191,6 +192,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{13BD1874-159E-49A4-AB93-94BE2A4F6CC8} = {B895B8B8-D5D2-49BA-A097-E73073625BC1}
+		{6A723C52-5562-4D8A-B694-5F4E04BBD9F2} = {B895B8B8-D5D2-49BA-A097-E73073625BC1}
+		{CA2157E4-EC0E-4CC9-92B3-483E8AFCF52C} = {B895B8B8-D5D2-49BA-A097-E73073625BC1}
+		{BBA770BC-32CA-4AF4-A101-05E2F44CB656} = {B895B8B8-D5D2-49BA-A097-E73073625BC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E22E2D5-8091-4F43-80EE-7AD3C7D943E4}

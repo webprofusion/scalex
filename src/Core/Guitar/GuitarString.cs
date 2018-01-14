@@ -1,15 +1,15 @@
 using System;
-using Webprofusion.Scalex.Music;
 using System.Collections.Generic;
+using Webprofusion.Scalex.Music;
 
 namespace Webprofusion.Scalex.Guitar
 {
     public class SimpleRectangle
     {
-        int X { get; set; }
-        int Y { get; set; }
-        int Width { get; set; }
-        int Height { get; set; }
+        private int X { get; set; }
+        private int Y { get; set; }
+        private int Width { get; set; }
+        private int Height { get; set; }
 
         public SimpleRectangle(int x, int y, int w, int h)
         {
@@ -73,28 +73,41 @@ namespace Webprofusion.Scalex.Guitar
             StringNumber = 0;
         }
 
-        public static int FretNumberToClientX(int fretNumber, int startX, int fretSpacing)
+        public static int FretNumberToClientX(int fretNumber, int startX, GuitarModel guitarModel, int stringNumber)
         {
             //fret position = fretboardLength/1.0595^fretNumber from the bridge
-            double fretboardLength = PrefSettings.MaxNumberFrets * fretSpacing;
-            double fretPosX = startX + (fretboardLength - (fretboardLength / Math.Pow(1.0595, fretNumber)));
+
+            double fretOffset = 0;
+            double fretboardLength = PrefSettings.MaxNumberFrets * guitarModel.GuitarModelSettings.FretSpacing;
+            if (guitarModel.IsMultiScale)
+            {
+                fretboardLength = fretboardLength - (guitarModel.MultiScaleFanFactor * stringNumber);
+
+                /*if (fretNumber != 8)
+                {
+                    if (fretNumber < 8)
+                    {
+                        fretOffset = (int)(fretNumber * guitarModel.MultiScaleFanFactor);
+                    }
+                    if (fretNumber > 8)
+                    {
+                        fretOffset = (int)(fretNumber * guitarModel.MultiScaleFanFactor);
+                    }
+                }*/
+            }
+
+            double fretPosX = startX + fretOffset + (fretboardLength - (fretboardLength / Math.Pow(1.0595, fretNumber)));
 
             return (int)fretPosX;
         }
 
-        public int GetFretboardWidth()
+        public int GetFretboardWidth(GuitarModel model, int stringNumber)
         {
-            return GuitarString.FretNumberToClientX(NumberOfFrets, 0, FretSpacing);
+            return GuitarString.FretNumberToClientX(NumberOfFrets, 0, model, stringNumber);
         }
 
-        /// <summary>
-        /// return list of frets at which given note occurs on this string
-        /// </summary>
-        /// <param name="note"></param>
-        /// <returns></returns>
         public List<int> GetNoteFretPositions(Note note, int startingFretPosition)
         {
-            
             List<int> noteFrets = new List<int>();
 
             if (startingFretPosition > NumberOfFrets) return noteFrets;
@@ -110,6 +123,5 @@ namespace Webprofusion.Scalex.Guitar
             }
             return noteFrets;
         }
-
     }
 }

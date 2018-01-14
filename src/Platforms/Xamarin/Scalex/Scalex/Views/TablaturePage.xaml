@@ -7,7 +7,7 @@
      xmlns:custom="clr-namespace:Scalex.Views"
              x:Class="Scalex.Views.TablaturePage">
     <ContentPage.Content>
-        <Grid Margin="16,16,0,0">
+        <Grid Margin="16,16,16,16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32" />
 
@@ -22,7 +22,7 @@
             <!-- picker and album art-->
             <Picker Grid.Row="0" Grid.Column="0" x:Name="trackPicker" SelectedIndexChanged="trackPicker_SelectedIndexChanged" ></Picker>
 
-            <custom:PlaybackControl Grid.Row="0" Grid.Column="1"></custom:PlaybackControl>
+            <custom:PlaybackControl x:Name="Playback" Grid.Row="0" Grid.Column="1"></custom:PlaybackControl>
 
             <ffimageloading:CachedImage Grid.Row="0" Grid.Column="2" x:Name="AlbumArt" HorizontalOptions="Center" VerticalOptions="Center"
 			    WidthRequest="64" HeightRequest="64"

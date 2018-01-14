@@ -1,5 +1,6 @@
 ﻿using AlphaTab.Importer;
 using AlphaTab.Model;
+using ModernHttpClient;
 using Scalex.Models;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,11 @@ namespace Scalex
             dataCache = new Dictionary<string, byte[]>();
         }
 
+        private HttpClient GetDefaultHttpClient()
+        {
+            return new HttpClient(new NativeMessageHandler());
+        }
+
         public async Task<Song> FetchSongDetailsAsync(int songID)
         {
             LogMessage("Fetching Song Details Async: " + songID);
@@ -50,7 +56,7 @@ namespace Scalex
             else return null;
         }
 
-        public async Task<List<SongListItem>> FetchSongsMostViewed(int maxResults=50)
+        public async Task<List<SongListItem>> FetchSongsMostViewed(int maxResults = 50)
         {
             LogMessage("Fetching Most Viewed Song Details Async.");
 
@@ -216,8 +222,14 @@ namespace Scalex
 
             //save file to local cache
             //await CacheBinaryData(fileName, song.ID.ToString(), data);
-
-            return ScoreLoader.LoadScoreFromBytes(data);
+            if (data != null)
+            {
+                return ScoreLoader.LoadScoreFromBytes(data);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<Score> LoadScoreFromUrl(string url)
@@ -231,6 +243,11 @@ namespace Scalex
 
     internal class ResourceRequestManager
     {
+        private static HttpClient GetDefaultHttpClient()
+        {
+            return new HttpClient(new NativeMessageHandler());
+        }
+
         internal static async Task<byte[]> GetAttachmentWithCaching(string attachmentUrl, bool enableCache, string cacheKey)
         {
             var fileCache = new FileCache();
@@ -243,7 +260,7 @@ namespace Scalex
                 }
             }
 
-            using (var httpClient = new HttpClient())
+            using (var httpClient = GetDefaultHttpClient())
             {
                 var uri = new Uri(attachmentUrl);
 
@@ -276,7 +293,7 @@ namespace Scalex
                 }
             }
 
-            using (var httpClient = new HttpClient())
+            using (var httpClient = GetDefaultHttpClient())
             {
                 var uri = new Uri(url);
 

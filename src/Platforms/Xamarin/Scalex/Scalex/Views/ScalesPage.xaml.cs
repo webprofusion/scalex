@@ -16,6 +16,9 @@ namespace Scalex.Views
             InitializeComponent();
             scaleDiagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer();
             scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableDiagramTitle = false;
+            scaleDiagramRenderer.GuitarModel.IsMultiScale = false;
+            scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers = false;
+            //scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableFretboardBackgroundFill = true;
 
             //theme
             /* var resource = Application.Current.Resources;
