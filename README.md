@@ -9,10 +9,13 @@ This app is a work in progress cross platform version (mainly using Xamarin Form
 ## Chords
 ![](docs/screenshots/scalex.chords.windows10.png)
 
-
 ## Tablature
 ![](docs/screenshots/scalex.tablature.windows10.png)
 The Tablature feature uses AlphaTab for rendering and the Songsterr API for content.
+
+## Bonus Content - 3D Guitar Designer
+![](docs/screenshots/scalex.guitardesigner.windows10.png)
+Not part of the app codebase but a pretty interesting distraction for all guitarists.
 
 ## History
 Scalex was originally written in Turbo Pascal in 1994. In 2001 the scale diagram logic was ported to C# and some of that code remains today (sort of). 
