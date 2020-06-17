@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    xmlns:forms1="using:Xamarin.Forms" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:forms="clr-namespace:AlphaTab.Platform.CSharp.Xamarin.Forms;assembly=AlphaTab"
+    x:Class="Scalex.Views.TablaturePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:custom="clr-namespace:Scalex.Views"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-     xmlns:custom="clr-namespace:Scalex.Views"
-             x:Class="Scalex.Views.TablaturePage">
+    xmlns:forms1="using:Xamarin.Forms">
     <ContentPage.Content>
         <Grid Margin="16,16,16,16">
             <Grid.RowDefinitions>
@@ -19,21 +19,35 @@
                 <ColumnDefinition Width="240" />
             </Grid.ColumnDefinitions>
 
-            <!-- picker and album art-->
-            <Picker Grid.Row="0" Grid.Column="0" x:Name="trackPicker" SelectedIndexChanged="trackPicker_SelectedIndexChanged" ></Picker>
+            <!--  picker and album art  -->
+            <Picker
+                x:Name="trackPicker"
+                Grid.Row="0"
+                Grid.Column="0"
+                SelectedIndexChanged="trackPicker_SelectedIndexChanged" />
 
-            <custom:PlaybackControl x:Name="Playback" Grid.Row="0" Grid.Column="1"></custom:PlaybackControl>
+            <custom:PlaybackControl
+                x:Name="Playback"
+                Grid.Row="0"
+                Grid.Column="1" />
 
-            <ffimageloading:CachedImage Grid.Row="0" Grid.Column="2" x:Name="AlbumArt" HorizontalOptions="Center" VerticalOptions="Center"
-			    WidthRequest="64" HeightRequest="64"
-			    DownsampleToViewSize="true">
-            </ffimageloading:CachedImage>
+            <ffimageloading:CachedImage
+                x:Name="AlbumArt"
+                Grid.Row="0"
+                Grid.Column="2"
+                DownsampleToViewSize="true"
+                HeightRequest="64"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="64" />
 
-            <!-- tab view-->
+            <!--  tab view  -->
+            <!--
             <forms:AlphaTab Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="AlphaTabControl"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill"
                     BackgroundColor="White" RenderFinished="AlphaTabControl_RenderFinished" />
+            -->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

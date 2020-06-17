@@ -1,5 +1,5 @@
 ﻿using AppKit;
-using FFImageLoading.Forms.Mac;
+using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
 using Foundation;
 using Xamarin.Forms;

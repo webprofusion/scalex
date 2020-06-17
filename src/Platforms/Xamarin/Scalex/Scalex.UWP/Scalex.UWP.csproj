@@ -11,7 +11,7 @@
     <AssemblyName>Scalex.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
@@ -20,6 +20,7 @@
     <PackageCertificateKeyFile>Scalex.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>4BF390E58E11A4A692454DF70B6B42BA43E90544</PackageCertificateThumbprint>
     <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
+    <DisableExtraReferences>true</DisableExtraReferences>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -171,9 +172,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.Midi.GmDls, Version=10.0.15063.0">
-      <Name>Microsoft General MIDI DLS for Universal Windows Apps</Name>
-    </SDKReference>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
@@ -189,22 +187,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AlphaTab">
-      <HintPath>..\..\..\..\..\..\third-party\alphaTab\Build\CSharp.Xamarin.Forms\AlphaTab.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="AlphaTab">
+      <Version>0.9.7.354</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.CSharp">
-      <Version>4.4.1</Version>
+      <Version>4.7.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Net.Http">
       <Version>2.2.29</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.Platforms">
-      <Version>2.0.1</Version>
+      <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.5</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="modernhttpclient">
       <Version>2.4.2</Version>
@@ -213,22 +209,31 @@
       <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
+      <Version>12.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Plugin.MediaManager.Forms">
-      <Version>0.4.5</Version>
+    <PackageReference Include="SkiaSharp">
+      <Version>1.68.3</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views">
+      <Version>1.68.3</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views.Forms">
-      <Version>1.59.3</Version>
+      <Version>1.68.3</Version>
     </PackageReference>
     <PackageReference Include="UrhoSharp.Forms">
-      <Version>1.5.22</Version>
+      <Version>1.9.67</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
-      <Version>2.3.4</Version>
+      <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>2.5.0.121934</Version>
+      <Version>4.6.0.967</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="..\Xamarin\Xamarin.projitems" Label="Shared" Condition="Exists('..\Xamarin\Xamarin.projitems')" />

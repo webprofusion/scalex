@@ -107,10 +107,10 @@ namespace Scalex.Views
 
         private void SetCurrentTrack(Track t)
         {
-            AlphaTabControl.Tracks = new[]
+           /* AlphaTabControl.Tracks = new[]
             {
                t
-            };
+            };*/
 
             this.Title = $"{_score.Artist} : {_score.Title} - { t.Name} ";
             this._selectedTrack = t;
@@ -164,7 +164,7 @@ namespace Scalex.Views
                 .LatestAvailableRevision
                 .Tracks[_selectedTrackIndex]
                 .TrackAudio.FirstOrDefault(f => f.Speed == _playbackSpeed).MP3File.AttachmentUrl;
-            var audio = Plugin.MediaManager.CrossMediaManager.Current.Play(audioFileUrl);
+         //   var audio = Plugin.MediaManager.CrossMediaManager.Current.Play(audioFileUrl);
 
             /*
 #if WINDOWS_UWP

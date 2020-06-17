@@ -6,6 +6,8 @@
         {
             this.InitializeComponent();
 
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
             LoadApplication(new Scalex.App());
         }
     }

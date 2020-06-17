@@ -253,9 +253,9 @@ namespace Scalex.Views
             {
                 var track = _score.Tracks[itemIndex];
 
-                TablatureControl.Tracks = new[] {
+                /*TablatureControl.Tracks = new[] {
                     track
-                };
+                };*/
             }
         }
 
