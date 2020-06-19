@@ -25,7 +25,7 @@ namespace Scalex.Views
         private Lesson _lesson = null;
         private AlphaTab.Model.Score _score = null;
 
-        private string _serviceBaseUri = "https://api.soundshed.com/lessons/";
+        private string _serviceBaseUri = "https://api.soundshed.com";
 
         private HttpClient GetDefaultHttpClient()
         {
@@ -37,7 +37,7 @@ namespace Scalex.Views
             InitializeComponent();
             MediaPlayerWebView.BindingContext = this;
 
-            MediaPlayerWebView.Source = _serviceBaseUri + "assets/mediaview.html";
+            MediaPlayerWebView.Source = _serviceBaseUri + "/assets/mediaview.html";
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Scalex.Views
 
         public async Task LoadLesson(string id)
         {
-            var lessonData = await FetchData(_serviceBaseUri + "lesson/" + id);
+            var lessonData = await FetchData($"{_serviceBaseUri}/lesson/{id}");
 
             _lesson = Newtonsoft.Json.JsonConvert.DeserializeObject<Lesson>(lessonData);
 
@@ -198,7 +198,7 @@ namespace Scalex.Views
 
                 if (!String.IsNullOrEmpty(tabUrl))
                 {
-                    tabUrl = _serviceBaseUri + "assets/tablature/" + tabUrl;
+                    tabUrl = _serviceBaseUri + "/assets/tablature/" + tabUrl;
 
                     await LoadTablature(tabUrl, itemIndex);
                 }

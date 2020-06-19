@@ -235,7 +235,7 @@ namespace Scalex
         public async Task<Score> LoadScoreFromUrl(string url)
         {
             byte[] data = await ResourceRequestManager.GetAttachmentWithCaching(url, false, "notcached");
-            return ScoreLoader.LoadScoreFromBytes(data);
+            return ScoreLoader.LoadScoreFromBytes(data, new AlphaTab.Settings {  });
         }
 
         #endregion private methods
