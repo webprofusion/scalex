@@ -2,6 +2,6 @@
 
     splashScreenImage: "Assets/SplashScreen.png",
     splashScreenColor: "#0078D7",
-    displayName: "Scalex.Uno"
+    displayName: "Scalex.Uno.Wasm"
 
 }

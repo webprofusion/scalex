@@ -1,0 +1,37 @@
+﻿<UserControl
+    x:Class="Scalex.Uno.Shared.Controls.ScaleBrowser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Scalex.Uno.Shared.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:skia="using:SkiaSharp.Views.UWP"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <StackPanel>
+            <TextBlock
+                Margin="20"
+                FontSize="30"
+                Text="Scales" />
+            <ComboBox
+                x:Name="tuningPicker"
+                DisplayMemberPath="Name"
+                SelectedValuePath="ID"
+                SelectionChanged="TuningPicker_SelectionChanged" />
+            <ComboBox
+                x:Name="scalePicker"
+                DisplayMemberPath="Name"
+                SelectedValuePath="ID"
+                SelectionChanged="ScalePicker_SelectionChanged" />
+
+            <skia:SKXamlCanvas
+                x:Name="SkiaCanvas"
+                Height="500"
+                PaintSurface="OnPaintSurface" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

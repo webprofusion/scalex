@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page xmlns:my="using:Scalex.Uno.Shared.Controls" 
     x:Class="Scalex.Uno.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,12 +8,9 @@
     xmlns:skia="using:SkiaSharp.Views.UWP"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock
-            Margin="20"
-            FontSize="30"
-            Text="Hello, world!" />
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <my:ScaleBrowser />
 
-        <skia:SKXamlCanvas x:Name="SkiaCanvas" PaintSurface="OnPaintSurface" />
-    </Grid>
+        <my:ChordBrowser />
+    </StackPanel>
 </Page>
