@@ -1,0 +1,7 @@
+﻿Tuning (starting point for notes)
+Number of frets
+Scale size (top/bottom)
+
+Scale sequence
+Scale sequence applied to string (which notes are part of scale)
+Scale sequence fretted (which subset of pattern is fretted: box patterns etc, 3 notes per string)

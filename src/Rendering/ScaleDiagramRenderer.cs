@@ -11,7 +11,7 @@ namespace Webprofusion.Scalex.Rendering
     /// </summary>
     public class ScaleDiagramRenderer : Generic2DRenderer
     {
-        public GuitarModel GuitarModel = null;
+        private GuitarModel _guitarModel = null;
         public const int BasicFontSizePt = 5;
         public int PaddingLeft { get; set; } = 10;
         public int PaddingRight { get; set; } = 10;
@@ -19,68 +19,29 @@ namespace Webprofusion.Scalex.Rendering
 
         public bool IsExportMode { get; set; }
 
-        public ScaleDiagramRenderer()
+        public ScaleDiagramRenderer(GuitarModel model)
         {
-            GuitarModel = new GuitarModel();
-        }
-
-        public ScaleDiagramRenderer(Webprofusion.Scalex.PrefSettings myAppSettings)
-        {
-            //init scale renderer
-            GuitarModel = new GuitarModel(myAppSettings);
+            _guitarModel = model;
         }
 
         public int GetFretboardHeight()
         {
-            if (GuitarModel != null)
+            if (_guitarModel != null)
             {
-                return GuitarModel.GuitarModelSettings.StringSpacing * (GuitarModel.NumberOfStrings - 1);
+                return _guitarModel.GuitarModelSettings.StringSpacing * (_guitarModel.NumberOfStrings - 1);
             }
             return 0;
         }
 
         public int GetDiagramWidth()
         {
-            if (GuitarModel != null)
+            if (_guitarModel != null)
             {
                 return PaddingLeft
-                    + GuitarString.FretNumberToClientX(GuitarModel.GuitarModelSettings.NumberFrets, 0, GuitarModel, 0)
+                    + GuitarString.FretNumberToClientX(_guitarModel.GuitarModelSettings.NumberFrets, _guitarModel, 0)
                     + PaddingRight;
             }
             return 0;
-        }
-
-        public void SetTuning(String tuning)
-        {
-            GuitarModel.SetTuning(tuning);
-        }
-
-        public void SetScale(String scale)
-        {
-            GuitarModel.SetScale(scale);
-        }
-
-        public List<string> AllTunings
-        {
-            get { return GuitarModel.GuitarModelSettings.TuningManager.GetTuningNameList(); }
-        }
-
-        public List<string> AllScales
-        {
-            get { return GuitarModel.GuitarModelSettings.ScaleManager.GetScaleNameList(); }
-        }
-
-        public List<string> AllKeys
-        {
-            get
-            {
-                return NoteManager.NoteNames;
-            }
-        }
-
-        public void SetKey(string NoteName)
-        {
-            GuitarModel.SetKey(NoteName);
         }
 
         public override void Render(IGenericDrawingSurface canvas)
@@ -90,42 +51,42 @@ namespace Webprofusion.Scalex.Rendering
             //select and init rendering surface type
             IGenericDrawingSurface g = InitialiseDrawingSurface(canvas);
 
-            int numberOfStrings = GuitarModel.GuitarModelSettings.CurrentTuning.NumberStrings;
-            int numberFrets = GuitarModel.GuitarModelSettings.NumberFrets;
+            int numberOfStrings = _guitarModel.GuitarModelSettings.CurrentTuning.NumberStrings;
+            int numberFrets = _guitarModel.GuitarModelSettings.NumberFrets;
 
             int startX = PaddingLeft;
             int startY = PaddingTop;
 
             ColorValue defaultCanvasFontColor = ColorPalette[ThemeColorPreset.Foreground];
 
-            int fboardWidth = GuitarString.FretNumberToClientX(GuitarModel.GuitarModelSettings.NumberFrets, 0, GuitarModel, 0);
+            int fboardWidth = GuitarString.FretNumberToClientX(_guitarModel.GuitarModelSettings.NumberFrets, _guitarModel, 0);
 
-            int fboardHeight = GuitarModel.GuitarModelSettings.StringSpacing * (numberOfStrings - 1);
+            int fboardHeight = _guitarModel.GuitarModelSettings.StringSpacing * (numberOfStrings - 1);
 
-            if (GuitarModel.GuitarModelSettings.EnableFretboardBackgroundFill)
+            if (_guitarModel.GuitarModelSettings.EnableFretboardBackgroundFill)
             {
                 // optional background fretboard fill
-                g.FillRectangle(startX, startY + GuitarModel.GuitarModelSettings.StringSpacing, fboardWidth, fboardHeight, ColorPalette[ThemeColorPreset.Background], ColorPalette[ThemeColorPreset.Subtle]);
+                g.FillRectangle(startX, startY + _guitarModel.GuitarModelSettings.StringSpacing, fboardWidth, fboardHeight, ColorPalette[ThemeColorPreset.Background], ColorPalette[ThemeColorPreset.Subtle]);
             }
 
             //draw frets..
             DrawFrets(numberOfStrings, g, startX, startY);
 
             //draw strings (and note markers)..
-            startY = PaddingTop + (GuitarModel.GuitarModelSettings.StringSpacing * numberOfStrings);
+            startY = PaddingTop + (_guitarModel.GuitarModelSettings.StringSpacing * numberOfStrings);
             startY = DrawGuitarStrings(numberOfStrings, g, PaddingLeft, startY);
 
             //draw fret numbers
-            if (GuitarModel.GuitarModelSettings.EnableFretNumbers)
+            if (_guitarModel.GuitarModelSettings.EnableFretNumbers)
             {
                 startX = PaddingLeft;
-                startY = PaddingTop + 5 + GuitarModel.GuitarModelSettings.StringSpacing * (numberOfStrings);
+                startY = PaddingTop + 5 + _guitarModel.GuitarModelSettings.StringSpacing * (numberOfStrings);
 
                 DrawFretNumbers(numberFrets, g, startX, startY, defaultCanvasFontColor);
             }
 
             //show scale intervals & notes
-            var scale = GuitarModel.SelectedScale;
+            var scale = _guitarModel.SelectedScale;
 
             DrawScaleFormulaIntervals(g, PaddingLeft + 4, startY, scale, defaultCanvasFontColor);
             DrawScaleNoteList(g, PaddingLeft + 4, startY, scale, defaultCanvasFontColor);
@@ -136,13 +97,14 @@ namespace Webprofusion.Scalex.Rendering
                 g.DrawString(PaddingLeft + 5, startY + 10, "Generated by Guitar Toolkit - Copyright " + System.DateTime.Now.Year + " Soundshed.com");
             }
 
-            startX = PaddingLeft + 5;
-            startY = PaddingTop + 20;
+            startX =0;
+            startY =10;
 
             //draw scale title
-            if (GuitarModel.GuitarModelSettings.EnableDiagramTitle)
+            if (_guitarModel.GuitarModelSettings.EnableDiagramTitle)
             {
-                g.DrawString(startX, startY, GuitarModel.GuitarModelSettings.ScaleManager.GetKeyName(GuitarModel.GuitarModelSettings.EnableDiagramNoteNamesSharp).Trim() + " " + GuitarModel.GuitarModelSettings.ScaleManager.CurrentScale.Name.Trim() + " scale on " + GuitarModel.GuitarModelSettings.CurrentTuning.Name.Trim(), defaultCanvasFontColor);
+                var title = _guitarModel.GetDiagramTitle();
+                g.DrawString(startX, startY, title, 8,  defaultCanvasFontColor);
             }
         }
 
@@ -158,7 +120,7 @@ namespace Webprofusion.Scalex.Rendering
                     {
                         notePos++;
 
-                        scaleNotes += NoteManager.GetNoteName(scale.GetNoteAtSequencePosition(notePos, NoteManager.GetNoteByName(GuitarModel.SelectedKey)), true);
+                        scaleNotes += NoteManager.GetNoteName(scale.GetNoteAtSequencePosition(notePos, NoteManager.GetNoteByName(_guitarModel.SelectedKey)), true);
                         scaleNotes += "  ";
                     }
                 }
@@ -172,17 +134,9 @@ namespace Webprofusion.Scalex.Rendering
             g.DrawString(offsetX + 40, startY + 18, scaleNotes, BasicFontSizePt, fontColor);
         }
 
-        private static void DrawScaleFormulaIntervals(IGenericDrawingSurface g, int offsetX, int startY, ScaleItem scale, ColorValue fontColor)
+        private void DrawScaleFormulaIntervals(IGenericDrawingSurface g, int offsetX, int startY, ScaleItem scale, ColorValue fontColor)
         {
-            string scaleIntervals = "";
-            for (int i = 0; i < scale.ScaleIntervals.Length; i++)
-            {
-                if (scale.ScaleIntervals[i])
-                {
-                    scaleIntervals += scale.GetIntervalNameInScale(i) + "  ";
-                }
-            }
-
+            string scaleIntervals = _guitarModel.GetScaleIntervals();
             g.DrawString(offsetX + 2, startY + 11, "Intervals:", BasicFontSizePt, fontColor);
             g.DrawString(offsetX + 40, startY + 11, scaleIntervals, BasicFontSizePt, fontColor);
         }
@@ -191,8 +145,8 @@ namespace Webprofusion.Scalex.Rendering
         {
             for (int i = 0; i < numberOfStrings; i++)
             {
-                DrawGuitarString(GuitarModel.GuitarStrings[i], startY, offsetX, g);
-                startY = startY - GuitarModel.GuitarModelSettings.StringSpacing;
+                DrawGuitarString(_guitarModel.GuitarStrings[i], startY, offsetX, g);
+                startY = startY - _guitarModel.GuitarModelSettings.StringSpacing;
             }
             return startY;
         }
@@ -200,35 +154,35 @@ namespace Webprofusion.Scalex.Rendering
         private void DrawFrets(int numberOfStrings, IGenericDrawingSurface g, int startX, int startY)
         {
             //draw nut
-            double fretLength = (GuitarModel.GuitarModelSettings.StringSpacing * (numberOfStrings));
+            double fretLength = (_guitarModel.GuitarModelSettings.StringSpacing * (numberOfStrings));
 
             var nutX = startX - 2;
-            g.DrawLine(nutX, startY + GuitarModel.GuitarModelSettings.StringSpacing, nutX, startY + fretLength, 2, ColorPalette[ThemeColorPreset.MutedForeground]);
+            g.DrawLine(nutX, startY + _guitarModel.GuitarModelSettings.StringSpacing, nutX, startY + fretLength, 2, ColorPalette[ThemeColorPreset.MutedForeground]);
 
-            for (int i = 0; i < GuitarModel.GuitarModelSettings.NumberFrets + 1; i++)
+            for (int i = 0; i < _guitarModel.GuitarModelSettings.NumberFrets + 1; i++)
             {
-                int fretTopX = GuitarString.FretNumberToClientX(i, startX, GuitarModel, 0);
-                int fretBottomX = GuitarString.FretNumberToClientX(i, startX, GuitarModel, GuitarModel.NumberOfStrings - 1);
+                int fretTopX = startX + GuitarString.FretNumberToClientX(i, _guitarModel, 0);
+                int fretBottomX = startX + GuitarString.FretNumberToClientX(i, _guitarModel, _guitarModel.NumberOfStrings - 1);
 
-                int nextFretX = GuitarString.FretNumberToClientX(i + 1, startX, GuitarModel, 0);
+                int nextFretX = startX + GuitarString.FretNumberToClientX(i + 1, _guitarModel, 0);
 
-                g.DrawLine(fretTopX, startY + GuitarModel.GuitarModelSettings.StringSpacing, fretBottomX, startY + fretLength, 1, ColorPalette[ThemeColorPreset.Foreground]);
+                g.DrawLine(fretTopX, startY + _guitarModel.GuitarModelSettings.StringSpacing, fretBottomX, startY + fretLength, 1, ColorPalette[ThemeColorPreset.Foreground]);
 
                 //draw fret marker at specific points
-                if (GuitarModel.FretsWithMarkers.Contains(i))
+                if (_guitarModel.FretsWithMarkers.Contains(i))
                 {
                     double markerLeft = fretTopX - ((nextFretX - fretTopX) / 2) - 3;
 
-                    if (GuitarModel.FretMarkerStyle == FretMarkerStyle.Dots)
+                    if (_guitarModel.FretMarkerStyle == FretMarkerStyle.Dots)
                     {
                         if (i % 12 == 0) //fret 12 & 24 get double marker
                         {
-                            g.FillEllipse(markerLeft, startY + (GuitarModel.GuitarModelSettings.StringSpacing * numberOfStrings) - GuitarModel.GuitarModelSettings.StringSpacing, 5, 5, ColorPalette[ThemeColorPreset.Subtle], ColorPalette[ThemeColorPreset.Subtle]);
-                            g.FillEllipse(markerLeft, startY + (GuitarModel.GuitarModelSettings.StringSpacing * 2), 5, 5, ColorPalette[ThemeColorPreset.Subtle], ColorPalette[ThemeColorPreset.Subtle]);
+                            g.FillEllipse(markerLeft, startY + (_guitarModel.GuitarModelSettings.StringSpacing * numberOfStrings) - _guitarModel.GuitarModelSettings.StringSpacing, 5, 5, ColorPalette[ThemeColorPreset.Subtle], ColorPalette[ThemeColorPreset.Subtle]);
+                            g.FillEllipse(markerLeft, startY + (_guitarModel.GuitarModelSettings.StringSpacing * 2), 5, 5, ColorPalette[ThemeColorPreset.Subtle], ColorPalette[ThemeColorPreset.Subtle]);
                         }
                         else
                         {
-                            g.FillEllipse(markerLeft, startY + (GuitarModel.GuitarModelSettings.StringSpacing * (numberOfStrings / 2)) + 2, 5, 5, ColorPalette[ThemeColorPreset.Subtle], ColorPalette[ThemeColorPreset.Subtle]);
+                            g.FillEllipse(markerLeft, startY + (_guitarModel.GuitarModelSettings.StringSpacing * (numberOfStrings / 2)) + 2, 5, 5, ColorPalette[ThemeColorPreset.Subtle], ColorPalette[ThemeColorPreset.Subtle]);
                         }
                     }
                 }
@@ -239,13 +193,13 @@ namespace Webprofusion.Scalex.Rendering
         {
             for (int fretNum = 0; fretNum <= numberFrets; fretNum++)
             {
-                int fretX = GuitarString.FretNumberToClientX(fretNum, startX, GuitarModel, 0);
+                int fretX = startX + GuitarString.FretNumberToClientX(fretNum, _guitarModel, 0);
 
-                if (GuitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers)
+                if (_guitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers)
                 {
                     if (fretNum > 0)
                     {
-                        var posL = fretX - GuitarString.FretNumberToClientX(fretNum - 1, 0, GuitarModel, 0);
+                        var posL = fretX - GuitarString.FretNumberToClientX(fretNum - 1, _guitarModel, 0);
                         fretX -= posL / 2;
                     }
                     else
@@ -269,39 +223,39 @@ namespace Webprofusion.Scalex.Rendering
             int startX = offsetX;
 
             //draw string
-            int fretboardWidth = s.GetFretboardWidth(GuitarModel, s.StringNumber);
-            int fanScaleMM = (int)GuitarModel.MultiScaleFanFactor;
+            int fretboardWidth = s.GetFretboardWidth(_guitarModel, s.StringNumber);
+            int fanScaleMM = (int)_guitarModel.MultiScaleFanFactor;
 
-            if (GuitarModel.IsMultiScale)
+            if (_guitarModel.IsMultiScale)
             {
                 startX += (s.StringNumber * fanScaleMM);
                 fretboardWidth = fretboardWidth - (s.StringNumber * fanScaleMM * 2);
             }
 
-            if (GuitarModel.GuitarModelSettings.EnableDiagramStrings)
+            if (_guitarModel.GuitarModelSettings.EnableDiagramStrings)
             {
-                var stringThickness = 0.3 + ((GuitarModel.NumberOfStrings - s.StringNumber) * 0.1);
+                var stringThickness = 0.3 + ((_guitarModel.NumberOfStrings - s.StringNumber) * 0.1);
 
                 g.DrawLine(startX, startY - 0.5, startX + fretboardWidth, startY - 0.5, stringThickness, ColorPalette[ThemeColorPreset.Foreground]);
                 g.DrawLine(startX, startY, startX + fretboardWidth, startY, stringThickness, ColorPalette[ThemeColorPreset.MutedForeground]);
             }
 
-            for (int fretNum = 0; fretNum <= GuitarModel.GuitarModelSettings.NumberFrets; fretNum++)
+            for (int fretNum = 0; fretNum <= _guitarModel.GuitarModelSettings.NumberFrets; fretNum++)
             {
                 int tmpVal = fretNum + (int)s.OpenTuning.SelectedNote;
                 if (tmpVal > 11) tmpVal = tmpVal - 12;
                 if (tmpVal > 11) tmpVal = tmpVal - 12;
 
-                int sclVal = (fretNum - (int)GuitarModel.GuitarModelSettings.ScaleManager.CurrentKey) + (int)s.OpenTuning.SelectedNote;
+                int sclVal = (fretNum - (int)_guitarModel.GuitarModelSettings.ScaleManager.CurrentKey) + (int)s.OpenTuning.SelectedNote;
                 if (sclVal < 0) sclVal = sclVal + 12;
                 if (sclVal > 11) sclVal = sclVal - 12;
                 if (sclVal > 11) sclVal = sclVal - 12;
 
                 if (sclVal < 0) System.Diagnostics.Debug.WriteLine(sclVal);
 
-                if (GuitarModel.SelectedScale.ScaleIntervals[sclVal] == true)
+                if (_guitarModel.SelectedScale.ScaleIntervals[sclVal] == true)
                 {
-                    if (fretNum <= GuitarModel.GuitarModelSettings.NumberFrets)
+                    if (fretNum <= _guitarModel.GuitarModelSettings.NumberFrets)
                     {
                         ColorValue strokeColor = ColorPalette[ThemeColorPreset.Foreground];
                         ColorValue fillColor = ColorPalette[ThemeColorPreset.Foreground];
@@ -312,50 +266,50 @@ namespace Webprofusion.Scalex.Rendering
                             fillColor = ColorPalette[ThemeColorPreset.Subtle];
                         }
 
-                        if ((Note)tmpVal == GuitarModel.GetKey())
+                        if ((Note)tmpVal == _guitarModel.GetKey())
                         {
                             //root note has accent colour border
                             strokeColor = ColorPalette[ThemeColorPreset.Accent];
                         }
 
-                        if (GuitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers)
+                        if (_guitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers)
                         {
                             //displace marker to place behind fret
 
                             if (fretNum > 0)
                             {
-                                var posL = startX - GuitarString.FretNumberToClientX(fretNum - 1, 0, GuitarModel, 0);
+                                var posL = startX - GuitarString.FretNumberToClientX(fretNum - 1, _guitarModel, s.StringNumber);
                                 startX -= posL / 2;
-                                startX += (GuitarModel.GuitarModelSettings.MarkerSize / 2);
+                                startX += (_guitarModel.GuitarModelSettings.MarkerSize / 2);
                             }
                             else
                             {
                                 //fret 0, displace marker behind nut
-                                startX = startX - (GuitarModel.GuitarModelSettings.MarkerSize / 2);
+                                startX = startX - (_guitarModel.GuitarModelSettings.MarkerSize / 2);
                             }
                         }
 
                         //draw note marker centered behind fret
-                        if (GuitarModel.GuitarModelSettings.EnableNoteColours == true)
+                        if (_guitarModel.GuitarModelSettings.EnableNoteColours == true)
                         {
                             var noteColor = NoteManager.GetNoteColour((Note)tmpVal, 2);
 
-                            g.FillEllipse(startX - (GuitarModel.GuitarModelSettings.MarkerSize / 2), startY - (GuitarModel.GuitarModelSettings.MarkerSize / 2), GuitarModel.GuitarModelSettings.MarkerSize, GuitarModel.GuitarModelSettings.MarkerSize, ColorPalette[ThemeColorPreset.MutedBackground], noteColor);
+                            g.FillEllipse(startX - (_guitarModel.GuitarModelSettings.MarkerSize / 2), startY - (_guitarModel.GuitarModelSettings.MarkerSize / 2), _guitarModel.GuitarModelSettings.MarkerSize, _guitarModel.GuitarModelSettings.MarkerSize, ColorPalette[ThemeColorPreset.MutedBackground], noteColor);
                         }
                         else
                         {
-                            g.FillEllipse(startX - (GuitarModel.GuitarModelSettings.MarkerSize / 2), startY - (GuitarModel.GuitarModelSettings.MarkerSize / 2), GuitarModel.GuitarModelSettings.MarkerSize, GuitarModel.GuitarModelSettings.MarkerSize, fillColor, strokeColor);
+                            g.FillEllipse(startX - (_guitarModel.GuitarModelSettings.MarkerSize / 2), startY - (_guitarModel.GuitarModelSettings.MarkerSize / 2), _guitarModel.GuitarModelSettings.MarkerSize, _guitarModel.GuitarModelSettings.MarkerSize, fillColor, strokeColor);
                         }
 
                         //if enabled, draw note name/sequence number
-                        if (GuitarModel.GuitarModelSettings.EnableDiagramNoteNames || GuitarModel.GuitarModelSettings.EnableDiagramNoteSequence || GuitarModel.GuitarModelSettings.EnableDiagramScaleIntervals)
+                        if (_guitarModel.GuitarModelSettings.EnableDiagramNoteNames || _guitarModel.GuitarModelSettings.EnableDiagramNoteSequence || _guitarModel.GuitarModelSettings.EnableDiagramScaleIntervals)
                         {
-                            if (GuitarModel.GuitarModelSettings.EnableDiagramNoteNames) strNote = NoteManager.GetNoteName((Note)tmpVal, GuitarModel.GuitarModelSettings.EnableDiagramNoteNamesSharp);
-                            if (GuitarModel.GuitarModelSettings.EnableDiagramNoteSequence) strNote = "" + GuitarModel.GuitarModelSettings.ScaleManager.CurrentScale.GetSequenceNumberInScale(sclVal);
-                            if (GuitarModel.GuitarModelSettings.EnableDiagramScaleIntervals) strNote = "" + GuitarModel.GuitarModelSettings.ScaleManager.CurrentScale.GetIntervalNameInScale(sclVal);
+                            if (_guitarModel.GuitarModelSettings.EnableDiagramNoteNames) strNote = NoteManager.GetNoteName((Note)tmpVal, _guitarModel.GuitarModelSettings.EnableDiagramNoteNamesSharp);
+                            if (_guitarModel.GuitarModelSettings.EnableDiagramNoteSequence) strNote = "" + _guitarModel.GuitarModelSettings.ScaleManager.CurrentScale.GetSequenceNumberInScale(sclVal);
+                            if (_guitarModel.GuitarModelSettings.EnableDiagramScaleIntervals) strNote = "" + _guitarModel.GuitarModelSettings.ScaleManager.CurrentScale.GetIntervalNameInScale(sclVal);
 
                             double markerFontSize = BasicFontSizePt;
-                            double labelX = startX - (GuitarModel.GuitarModelSettings.MarkerSize * 0.45);
+                            double labelX = startX - (_guitarModel.GuitarModelSettings.MarkerSize * 0.45);
                             double labelY = startY - (markerFontSize * 0.3);
                             if (strNote.Length == 1)
                             {
@@ -374,7 +328,7 @@ namespace Webprofusion.Scalex.Rendering
                     }
                 }
 
-                startX = GuitarString.FretNumberToClientX(fretNum + 1, offsetX, GuitarModel, 0);
+                startX = offsetX+ GuitarString.FretNumberToClientX(fretNum + 1, _guitarModel, s.StringNumber);
             }
         }
     }

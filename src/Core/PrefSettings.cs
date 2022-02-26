@@ -9,7 +9,7 @@ namespace Webprofusion.Scalex
     /// </summary>
     public class PrefSettings
     {
-        public int FretSpacing { get; set; }
+   
         public int StringSpacing { get; set; }
         public int NumberFrets { get; set; }
         public static int MaxNumberFrets = 26;
@@ -38,7 +38,7 @@ namespace Webprofusion.Scalex
 
         public PrefSettings()
         {
-            FretSpacing = 20;
+
             StringSpacing = 10;
             NumberFrets = 24;
             MarkerSize = 8;

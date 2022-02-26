@@ -46,13 +46,11 @@ namespace Webprofusion.Scalex.Guitar
 
     public class FrettedNote
     {
-        public SimpleRectangle displayArea;
         public bool boolSelected;
         public string NoteName = "";
 
         public FrettedNote(int X, int Y, int Width, int Height)
         {
-            displayArea = new SimpleRectangle(X, Y, Width, Height);
             boolSelected = false;
         }
     }
@@ -68,42 +66,47 @@ namespace Webprofusion.Scalex.Guitar
         public GuitarString(PrefSettings appSettings)
         {
             NumberOfFrets = appSettings.NumberFrets;
-            FretSpacing = appSettings.FretSpacing;
             FrettedNotes = null;
             StringNumber = 0;
         }
 
-        public static int FretNumberToClientX(int fretNumber, int startX, GuitarModel guitarModel, int stringNumber)
+        public static int FretNumberToClientX(int fretNumber, GuitarModel model, int stringNumber)
         {
-            //fret position = fretboardLength/1.0595^fretNumber from the bridge
+            // fret position = fretboardLength/1.0595^fretNumber from the bridge on a standard guitar,
+            // for multiscale the fan factor decreses towards 12th (neutral) fret and inverts for higher frets
+            // actual fret position per string varies depending on the scale length applicable for the given string (Primary to Secondary scale length)
 
-            double fretOffset = 0;
-            double fretboardLength = PrefSettings.MaxNumberFrets * guitarModel.GuitarModelSettings.FretSpacing;
-            if (guitarModel.IsMultiScale)
+            if (model.IsMultiScale)
             {
-                fretboardLength = fretboardLength - (guitarModel.MultiScaleFanFactor * stringNumber);
 
-                /*if (fretNumber != 8)
-                {
-                    if (fretNumber < 8)
-                    {
-                        fretOffset = (int)(fretNumber * guitarModel.MultiScaleFanFactor);
-                    }
-                    if (fretNumber > 8)
-                    {
-                        fretOffset = (int)(fretNumber * guitarModel.MultiScaleFanFactor);
-                    }
-                }*/
+
+                /*var exp = (float)(fretNumber + 1) / 12;
+                var pow = Math.Pow(2, exp);
+                var BASS = model.PrimaryScaleLengthMM - (model.PrimaryScaleLengthMM / pow);
+                var TREBLE = model.SecondaryScaleLengthMM - (model.SecondaryScaleLengthMM / pow);
+
+
+               */
+
+
+                double fretboardLength = model.PrimaryScaleLengthMM;
+                double fretPosX = (fretboardLength - (fretboardLength / Math.Pow(1.0595, fretNumber)));
+                return (int)fretPosX;
+
+            }
+            else
+            {
+                double fretboardLength = model.PrimaryScaleLengthMM;
+                double fretPosX = (fretboardLength - (fretboardLength / Math.Pow(1.0595, fretNumber)));
+                return (int)fretPosX;
             }
 
-            double fretPosX = startX + fretOffset + (fretboardLength - (fretboardLength / Math.Pow(1.0595, fretNumber)));
 
-            return (int)fretPosX;
         }
 
         public int GetFretboardWidth(GuitarModel model, int stringNumber)
         {
-            return GuitarString.FretNumberToClientX(NumberOfFrets, 0, model, stringNumber);
+            return GuitarString.FretNumberToClientX(NumberOfFrets, model, stringNumber);
         }
 
         public List<int> GetNoteFretPositions(Note note, int startingFretPosition)

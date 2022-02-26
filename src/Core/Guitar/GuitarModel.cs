@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Webprofusion.Scalex.Music;
 
@@ -55,9 +56,19 @@ namespace Webprofusion.Scalex.Guitar
 
         public int MaximumChordPositionStretch { get; set; }
 
-        public float DefaultScaleLength { get; set; } = 648;
-        public float PrimaryScaleLengthMM { get; set; } = 648;
-        public float SecondaryScaleLengthMM { get; set; } = 648;
+        public static float DefaultScaleLength { get; set; } = 648f;
+
+        /// <summary>
+        /// Scale length on string 0 (generally lowest pitch string)
+        /// </summary>
+        public float PrimaryScaleLengthMM { get; set; } = DefaultScaleLength;
+
+        /// <summary>
+        /// Scale length on string MAX (generally highest pitch string)
+        /// </summary>
+        public float SecondaryScaleLengthMM { get; set; } = DefaultScaleLength;
+
+        private static float DefaultMultiscaleSecondaryScaleLengthMM = 666f;
 
         public bool IsMultiScale
         {
@@ -74,7 +85,7 @@ namespace Webprofusion.Scalex.Guitar
                 else
                 {
                     PrimaryScaleLengthMM = DefaultScaleLength;
-                    SecondaryScaleLengthMM = PrimaryScaleLengthMM + (6 * NumberOfStrings);
+                    SecondaryScaleLengthMM = DefaultMultiscaleSecondaryScaleLengthMM;
                 }
             }
         }
@@ -86,6 +97,8 @@ namespace Webprofusion.Scalex.Guitar
                 return (SecondaryScaleLengthMM - PrimaryScaleLengthMM) / NumberOfStrings;
             }
         }
+
+        public int MultiScaleNeutralFret { get; set; } = 12;
 
         public GuitarModel()
             : this(new PrefSettings())
@@ -120,6 +133,12 @@ namespace Webprofusion.Scalex.Guitar
         public int NumberOfStrings
         {
             get { return GuitarModelSettings.CurrentTuning.NumberStrings; }
+        }
+
+        public string GetDiagramTitle()
+        {
+            var title = $"{ GuitarModelSettings.ScaleManager.GetKeyName(GuitarModelSettings.EnableDiagramNoteNamesSharp).Trim()} {GuitarModelSettings.ScaleManager.CurrentScale.Name.Trim() } scale on {GuitarModelSettings.CurrentTuning.Name.Trim()}";
+            return title;            
         }
 
         /// <summary>
@@ -183,7 +202,6 @@ namespace Webprofusion.Scalex.Guitar
                 else
                 {
                     GuitarStrings[i].NumberOfFrets = GuitarModelSettings.NumberFrets;
-                    GuitarStrings[i].FretSpacing = GuitarModelSettings.FretSpacing;
                 }
 
                 if (GuitarModelSettings.CurrentTuning != null)
@@ -193,6 +211,21 @@ namespace Webprofusion.Scalex.Guitar
 
                 GuitarStrings[i].StringNumber = i;
             }
+        }
+
+        public string GetScaleIntervals()
+        {
+            string scaleIntervals = "";
+            for (int i = 0; i < SelectedScale.ScaleIntervals.Length; i++)
+            {
+                if (SelectedScale.ScaleIntervals[i])
+                {
+                    scaleIntervals += SelectedScale.GetIntervalNameInScale(i) + "  ";
+                }
+            }
+
+            return scaleIntervals;
+
         }
 
         public void SetTuning(int id)
@@ -449,17 +482,7 @@ namespace Webprofusion.Scalex.Guitar
                     }
                     else
                     {
-                        //min and order by not supported by sharpkit
-#if SHARPKIT
-                        var minFrettedNote = chordNotesOnString[0];
-                        foreach (var frettedNote in chordNotesOnString)
-                        {
-                            if (frettedNote.Fret < minFrettedNote.Fret) minFrettedNote = frettedNote;
-                        }
-                        chordDiagram.FrettedStrings[currentStringIndex] = minFrettedNote;
-#else
                         chordDiagram.FrettedStrings[currentStringIndex] = chordNotesOnString.OrderBy(f => f.Fret).First();
-#endif
                     }
                 }
             }

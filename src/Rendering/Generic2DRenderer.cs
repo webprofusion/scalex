@@ -2,31 +2,6 @@
 using System.Collections.Generic;
 using Webprofusion.Scalex.Util;
 
-#if !SILVERLIGHT && !NETFX_CORE && !XAMARIN
-
-#endif
-
-#if NETFX_CORE
-using Windows.UI.Xaml.Controls;
-using Windows.UI;
-#endif
-
-#if !NETFX_CORE && !SHARPKIT && !MONO && !XAMARIN
-
-#endif
-
-#if SHARPKIT
-using SharpKit.JavaScript;
-#endif
-
-#if MONO
-using Scalex.Android.Core.Rendering;
-#endif
-#if XAMARIN
-using SkiaSharp;
-using GuitarToolkit;
-#endif
-
 namespace Webprofusion.Scalex.Rendering
 {
     public enum ThemeColorPreset
@@ -85,76 +60,7 @@ namespace Webprofusion.Scalex.Rendering
         public IGenericDrawingSurface InitialiseDrawingSurface(IGenericDrawingSurface canvas, double? width = null, double? height = null)
         {
             IGenericDrawingSurface g = canvas;
-#if MONO
-            g = new AndroidRenderer((Android.Graphics.Canvas)canvas);
-#endif
 
-#if SHARPKIT
-            g = canvas.As<IGenericDrawingSurface>();
-#endif
-
-#if NETFX_CORE || DESKTOP || SILVERLIGHT
-            if (canvas is Canvas)
-            {
-                //Set WPF specific settings
-                g = new WPFDrawingSurface((Canvas)canvas);
-                foreach (GenericColorPreset p in ColorOverrides)
-                {
-                    ((WPFDrawingSurface)g).OveridePresetColor(p);
-                }
-            }
-
-            if (width != null && height != null)
-            {
-                ((Canvas)canvas).Width = (double)width;
-                ((Canvas)canvas).Height = (double)height;
-            }
-#endif
-
-#if !SILVERLIGHT && !NETFX_CORE && !SHARPKIT && !MONO && !XAMARIN
-            /*
-            float zoomLevel = GuitarModel.GuitarModelSettings.ZoomLevelDefault;
-            if (canvas is Graphics)
-            {
-                //Set GDI Specific settings
-                g = new GDIDrawingSurface((Graphics)canvas);
-
-                //Set drawing mode to AntiAlias
-                if (GuitarModel.GuitarModelSettings.EnableDiagramHighQuality)
-                {
-                    ((Graphics)canvas).CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                    ((Graphics)canvas).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    ((Graphics)canvas).TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-                }
-                else
-                {
-                    ((Graphics)canvas).CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
-                    ((Graphics)canvas).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-                    ((Graphics)canvas).TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-                }
-
-                //set drawing transform to scale drawing depending on zoom level
-                ((Graphics)canvas).ScaleTransform(zoomLevel, zoomLevel);
-
-                //fill background color
-                SolidBrush backgroundBrush = new SolidBrush(Color.White);
-                ((Graphics)canvas).FillRectangle(backgroundBrush, ((Graphics)canvas).VisibleClipBounds);
-                backgroundBrush.Dispose();
-            }
-
-            if (canvas is PdfSharp.Pdf.PdfDocument)
-            {
-                //Set PDF specific settings
-                g = new PDFDrawingSurface((PdfSharp.Pdf.PdfDocument)canvas);
-                ((PDFDrawingSurface)g).RequestNewPage = true;
-            }
-*/
-
-#endif
-
-#if XAMARIN
-			g= new GuitarToolkit.SkiaDrawingSurface((SKCanvas)canvas);
-#endif
             return g;
         }
 
