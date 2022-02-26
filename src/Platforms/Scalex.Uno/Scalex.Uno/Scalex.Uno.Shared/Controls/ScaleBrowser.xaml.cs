@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Webprofusion.Scalex.Guitar;
 using Webprofusion.Scalex.Rendering;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -23,29 +24,29 @@ namespace Scalex.Uno.Shared.Controls
 {
     public sealed partial class ScaleBrowser : UserControl
     {
-
+        private GuitarModel _guitarModel = new GuitarModel();
         private Webprofusion.Scalex.Rendering.ScaleDiagramRenderer diagramRenderer;
         public ScaleBrowser()
         {
             this.InitializeComponent();
 
-            diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer();
+            diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(_guitarModel);
 
             // TODO : guitar model settings changes should cause global update to scales/chords etc
-            diagramRenderer.GuitarModel.IsMultiScale = false;
-            diagramRenderer.GuitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers = false;
+            _guitarModel.IsMultiScale = false;
+            _guitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers = false;
 
 
             SkiaDrawingSurface.ApplyThemeColours(diagramRenderer);
 
-            var guitarModel = diagramRenderer.GuitarModel;
+      
 
             // tuning list
-            this.tuningPicker.ItemsSource = guitarModel.AllTunings;
+            this.tuningPicker.ItemsSource = _guitarModel.AllTunings;
             this.tuningPicker.SelectedIndex = 0;
 
             // scale list
-            this.scalePicker.ItemsSource = guitarModel.AllScales;
+            this.scalePicker.ItemsSource = _guitarModel.AllScales;
             this.scalePicker.SelectedIndex = 0;
         }
 
@@ -88,7 +89,7 @@ namespace Scalex.Uno.Shared.Controls
             if (tuningPicker.SelectedIndex > -1)
             {
                 var tuning = (Webprofusion.Scalex.Guitar.GuitarTuning)tuningPicker.SelectedItem;
-                this.diagramRenderer.GuitarModel.SetTuning(tuning.ID);
+                _guitarModel.SetTuning(tuning.ID);
                 SkiaCanvas.Invalidate();
                 // SetPageTitle();
             }
@@ -99,7 +100,7 @@ namespace Scalex.Uno.Shared.Controls
             if (scalePicker.SelectedIndex > -1)
             {
                 var scale = (Webprofusion.Scalex.Music.ScaleItem)scalePicker.SelectedItem;
-                this.diagramRenderer.GuitarModel.SetScale(scale.ID);
+                _guitarModel.SetScale(scale.ID);
                 SkiaCanvas.Invalidate();
                 //SetPageTitle();
             }
