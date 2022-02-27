@@ -51,7 +51,7 @@
 							</ComboBox.ItemTemplate>
 						</ComboBox>
 					</StackPanel>
-					<ScrollViewer HorizontalScrollBarVisibility="Auto" Background="AliceBlue">
+					<ScrollViewer HorizontalScrollBarVisibility="Auto" >
 						<controls:ScaleDiagram x:Name="scaleDiagram"></controls:ScaleDiagram>
 					</ScrollViewer>
 				</StackPanel>
@@ -60,9 +60,19 @@
 				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Chords</TextBlock>
 				</TabItem.Header>
-				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
-					<Rectangle Fill="Blue" Width="63" Height="41"/>
+				<StackPanel >
+					<StackPanel>
+						<ComboBox x:Name="chordGroups"   SelectedIndex="0" SelectionChanged="ChordGroup_SelectionChanged">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding ShortName}"/>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<ScrollViewer HorizontalScrollBarVisibility="Auto">
+						<controls:ChordDiagram x:Name="chordDiagram"></controls:ChordDiagram>
+					</ScrollViewer>
 				</StackPanel>
 			</TabItem>
 			<TabItem>
@@ -70,8 +80,8 @@
 					<TextBlock VerticalAlignment="Center">Settings</TextBlock>
 				</TabItem.Header>
 				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
-					<Rectangle Fill="Blue" Width="63" Height="41"/>
+					<TextBlock Text="No Settings" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+					
 				</StackPanel>
 			</TabItem>
 		</TabControl>

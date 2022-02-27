@@ -8,11 +8,13 @@ namespace Scalex.UI.Utils
     class DigramRenderingDrawOp : ICustomDrawOperation
     {
         private Webprofusion.Scalex.Rendering.Generic2DRenderer _diagramRenderer;
-        public DigramRenderingDrawOp(Rect bounds, Webprofusion.Scalex.Rendering.Generic2DRenderer diagramRenderer)
+        private float _scale = 3;
+
+        public DigramRenderingDrawOp(Rect bounds, Webprofusion.Scalex.Rendering.Generic2DRenderer diagramRenderer, float scale=3)
         {
             Bounds = bounds;
             _diagramRenderer = diagramRenderer;
-
+            _scale = scale;
             SkiaDrawingSurface.ApplyThemeColours(_diagramRenderer);
         }
 
@@ -38,7 +40,7 @@ namespace Scalex.UI.Utils
 
 
                 var skiaDrawingSurface = new SkiaDrawingSurface(canvas);
-                skiaDrawingSurface.SetScale(3);
+                skiaDrawingSurface.SetScale(_scale);
                 _diagramRenderer.Render(skiaDrawingSurface);
 
             }

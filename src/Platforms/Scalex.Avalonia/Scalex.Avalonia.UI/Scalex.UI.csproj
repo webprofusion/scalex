@@ -22,6 +22,9 @@
     <ProjectReference Include="..\..\..\Rendering\Scalex.Rendering.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\ChordDiagram.axaml.cs">
+      <DependentUpon>ChordDiagram.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Controls\ScaleDiagram.axaml.cs">
       <DependentUpon>ScaleDiagram.axaml</DependentUpon>
     </Compile>

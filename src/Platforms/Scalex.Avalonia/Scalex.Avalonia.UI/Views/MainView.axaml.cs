@@ -8,6 +8,7 @@ using SkiaSharp;
 using Webprofusion.Scalex.Util;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Threading;
+using Webprofusion.Scalex.Music;
 
 namespace Scalex.UI.Views
 {
@@ -26,6 +27,9 @@ namespace Scalex.UI.Views
 
             keyList.Items = ViewModels.MainViewModel.GuitarModel.AllKeys;
             keyList.SelectedIndex = 0;
+
+            chordGroups.Items = ViewModels.MainViewModel.GuitarModel.GetAllChordDefinitions();
+            chordGroups.SelectedIndex = 0;
         }
 
         private void ScaleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,6 +54,14 @@ namespace Scalex.UI.Views
             var key = cb.SelectedItem as string;
             ViewModels.MainViewModel.GuitarModel.SetKey(key);
             this.scaleDiagram.InvalidateVisual();
+        }
+
+        private void ChordGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cb = e.Source as ComboBox;
+            ChordDefinition def = cb.SelectedItem as ChordDefinition;
+            chordDiagram.ChordDefinition = def;
+            this.chordDiagram.InvalidateVisual();
         }
     }
 }

@@ -20,6 +20,11 @@ namespace Webprofusion.Scalex.Rendering
         public ColorValue DrawingColor { get; set; }
         public ColorValue BackgroundColor { get; set; }
 
+        public ChordDiagramRenderer(GuitarModel guitarModel)
+        {
+            GuitarModel = guitarModel;
+            CurrentChordDiagrams = GuitarModel.GetPopularChordDiagrams();
+        }
         public ChordDiagramRenderer()
         {
             GuitarModel = new GuitarModel();

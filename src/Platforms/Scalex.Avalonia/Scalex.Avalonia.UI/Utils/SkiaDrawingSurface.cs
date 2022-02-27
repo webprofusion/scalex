@@ -47,8 +47,8 @@ namespace Scalex
 
         public static void ApplyThemeColours(Generic2DRenderer surface)
         {
-            var foregroundThemeColor = new SKColor(64, 64, 64);
-            var mutedForegroundThemeColor = new SKColor(128, 128, 128);
+            var foregroundThemeColor = new SKColor(140, 140, 140);
+            var mutedForegroundThemeColor = new SKColor(64, 64, 64);
             surface.ColorPalette[ThemeColorPreset.Background] = new ColorValue(0, 0, 0);
             surface.ColorPalette[ThemeColorPreset.Subtle] = new ColorValue(64, 64, 64);
             surface.ColorPalette[ThemeColorPreset.ForegroundText] = new ColorValue(foregroundThemeColor.Red, foregroundThemeColor.Green, foregroundThemeColor.Blue);
