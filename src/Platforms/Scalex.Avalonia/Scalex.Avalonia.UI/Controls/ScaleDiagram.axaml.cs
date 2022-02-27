@@ -3,9 +3,9 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
-using Scalex.Avalonia.UI.Utils;
+using Scalex.UI.Utils;
 
-namespace Scalex.Avalonia.UI.Controls
+namespace Scalex.UI.Controls
 {
     public partial class ScaleDiagram : UserControl
     {
@@ -27,10 +27,11 @@ namespace Scalex.Avalonia.UI.Controls
 
         public override void Render(DrawingContext context)
         {
+            base.Render(context);
             var guitarModel = ViewModels.MainViewModel.GuitarModel;
 
             _diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(guitarModel);
-
+            
             _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer);
 
             context.Custom(_customDrawingOp);

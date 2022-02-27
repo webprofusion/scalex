@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Webprofusion.Scalex.Guitar;
 
-namespace Scalex.Avalonia.UI.ViewModels
+namespace Scalex.UI.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public string Greeting => "Scalex Guitar Toolkit";
+        public string AppTitle => "Scalex Guitar Toolkit";
 
         private static GuitarModel? _guitarModel;
         public static GuitarModel GuitarModel { get { return _guitarModel ?? (_guitarModel = new GuitarModel()); } }

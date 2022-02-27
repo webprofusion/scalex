@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ReactiveUI;
 
-namespace Scalex.Avalonia.UI.ViewModels
+namespace Scalex.UI.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {

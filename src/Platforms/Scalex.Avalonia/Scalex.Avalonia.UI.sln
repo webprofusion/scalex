@@ -3,11 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Avalonia.UI", "Scalex.Avalonia.UI\Scalex.Avalonia.UI.csproj", "{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.UI", "Scalex.Avalonia.UI\Scalex.UI.csproj", "{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Avalonia.UI.Desktop", "Scalex.Avalonia.UI.Desktop\Scalex.Avalonia.UI.Desktop.csproj", "{ABC31E74-02FF-46EB-B3B2-4E6AE43B456C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.UI.Desktop", "Scalex.Avalonia.UI.Desktop\Scalex.UI.Desktop.csproj", "{ABC31E74-02FF-46EB-B3B2-4E6AE43B456C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568} = {EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}
+		{87F0D26C-4E80-444D-AF07-1358B25D4AEF} = {87F0D26C-4E80-444D-AF07-1358B25D4AEF}
+		{F84933B9-FD95-4C50-92FE-9B3A1681403D} = {F84933B9-FD95-4C50-92FE-9B3A1681403D}
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Avalonia.UI.Web", "Scalex.Avalonia.UI.Web\Scalex.Avalonia.UI.Web.csproj", "{1C1A049E-235C-4CD0-B6FA-D53AC418F4DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.UI.Web", "Scalex.Avalonia.UI.Web\Scalex.UI.Web.csproj", "{1C1A049E-235C-4CD0-B6FA-D53AC418F4DA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568} = {EBFA8512-1EA5-4D8C-B4AC-AB5B48A6D568}
+		{87F0D26C-4E80-444D-AF07-1358B25D4AEF} = {87F0D26C-4E80-444D-AF07-1358B25D4AEF}
+		{F84933B9-FD95-4C50-92FE-9B3A1681403D} = {F84933B9-FD95-4C50-92FE-9B3A1681403D}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Core", "..\..\Core\Scalex.Core.csproj", "{F84933B9-FD95-4C50-92FE-9B3A1681403D}"
 EndProject

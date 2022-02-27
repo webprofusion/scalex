@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Scalex.Avalonia.UI.ViewModels;
-using Scalex.Avalonia.UI.Views;
+using Scalex.UI.ViewModels;
+using Scalex.UI.Views;
 
-namespace Scalex.Avalonia.UI
+namespace Scalex.UI
 {
     public partial class App : Application
     {

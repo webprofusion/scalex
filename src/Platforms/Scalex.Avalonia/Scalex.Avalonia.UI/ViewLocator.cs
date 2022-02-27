@@ -1,9 +1,9 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Scalex.Avalonia.UI.ViewModels;
+using Scalex.UI.ViewModels;
 
-namespace Scalex.Avalonia.UI
+namespace Scalex.UI
 {
     public class ViewLocator : IDataTemplate
     {

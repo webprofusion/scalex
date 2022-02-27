@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Scalex.Avalonia.UI.Web;
+using Scalex.UI.Web;
 
 public class Program
 {

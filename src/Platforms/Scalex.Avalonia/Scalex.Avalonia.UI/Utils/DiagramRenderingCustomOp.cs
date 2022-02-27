@@ -3,7 +3,7 @@ using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Skia;
 
-namespace Scalex.Avalonia.UI.Utils
+namespace Scalex.UI.Utils
 {
     class DigramRenderingDrawOp : ICustomDrawOperation
     {
@@ -33,8 +33,8 @@ namespace Scalex.Avalonia.UI.Utils
                 var r = new Scalex.SkiaDrawingSurface(canvas);
 
                 //canvas.Clear(new SKColor(255, 255, 255));
-
-                canvas.Clear();
+               
+                canvas.Clear(new SkiaSharp.SKColor(0,0,0));
 
 
                 var skiaDrawingSurface = new SkiaDrawingSurface(canvas);

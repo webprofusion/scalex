@@ -30,7 +30,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.Avalonia.UI.csproj" />
+    <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Scalex.Avalonia.UI.Views
+namespace Scalex.UI.Views
 {
     public partial class MainWindow : Window
     {

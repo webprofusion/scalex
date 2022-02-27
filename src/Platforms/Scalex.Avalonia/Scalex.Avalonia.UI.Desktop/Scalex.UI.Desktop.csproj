@@ -3,7 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <RootNamespace>Scalex.Avalonia.UI.Windows</RootNamespace>
+    <RootNamespace>Scalex.UI.Windows</RootNamespace>
     <AvaloniaVersion>0.10.12</AvaloniaVersion>
 	<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 	<TrimMode>copyused</TrimMode>
@@ -25,6 +25,6 @@
     <PackageReference Include="SkiaSharp" Version="2.88.0-preview.209" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.Avalonia.UI.csproj" />
+    <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
   </ItemGroup>
 </Project>

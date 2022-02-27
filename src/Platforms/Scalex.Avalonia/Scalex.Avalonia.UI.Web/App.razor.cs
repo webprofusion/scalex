@@ -1,7 +1,7 @@
 using Avalonia.ReactiveUI;
 using Avalonia.Web.Blazor;
 
-namespace Scalex.Avalonia.UI.Web;
+namespace Scalex.UI.Web;
 
 public partial class App
 {
@@ -9,7 +9,7 @@ public partial class App
     {
         base.OnParametersSet();
         
-        WebAppBuilder.Configure<Scalex.Avalonia.UI.App>()
+        WebAppBuilder.Configure<Scalex.UI.App>()
             .UseReactiveUI()
             .SetupWithSingleViewLifetime();
     }

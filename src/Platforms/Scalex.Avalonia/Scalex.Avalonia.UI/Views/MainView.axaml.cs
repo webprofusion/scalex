@@ -9,7 +9,7 @@ using Webprofusion.Scalex.Util;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Threading;
 
-namespace Scalex.Avalonia.UI.Views
+namespace Scalex.UI.Views
 {
     public partial class MainView : UserControl
     {
@@ -20,6 +20,12 @@ namespace Scalex.Avalonia.UI.Views
 
             scaleList.Items = ViewModels.MainViewModel.GuitarModel.AllScales;
             scaleList.SelectedIndex = 0;
+
+            tuningList.Items = ViewModels.MainViewModel.GuitarModel.AllTunings;
+            tuningList.SelectedIndex = 0;
+
+            keyList.Items = ViewModels.MainViewModel.GuitarModel.AllKeys;
+            keyList.SelectedIndex = 0;
         }
 
         private void ScaleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -27,6 +33,22 @@ namespace Scalex.Avalonia.UI.Views
             var cb = e.Source as ComboBox;
             var scale = cb.SelectedItem as Webprofusion.Scalex.Music.ScaleItem;
             ViewModels.MainViewModel.GuitarModel.SetScale(scale.ID);
+            this.scaleDiagram.InvalidateVisual();
+        }
+
+        private void TuningList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cb = e.Source as ComboBox;
+            var tuning = cb.SelectedItem as Webprofusion.Scalex.Guitar.GuitarTuning;
+            ViewModels.MainViewModel.GuitarModel.SetTuning(tuning.ID);
+            this.scaleDiagram.InvalidateVisual();
+        }
+
+        private void KeyList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cb = e.Source as ComboBox;
+            var key = cb.SelectedItem as string;
+            ViewModels.MainViewModel.GuitarModel.SetKey(key);
             this.scaleDiagram.InvalidateVisual();
         }
     }

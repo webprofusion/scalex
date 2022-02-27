@@ -2,7 +2,7 @@
 using Avalonia;
 using Avalonia.ReactiveUI;
 
-namespace Scalex.Avalonia.UI.Desktop
+namespace Scalex.UI.Desktop
 {
     class Program
     {
