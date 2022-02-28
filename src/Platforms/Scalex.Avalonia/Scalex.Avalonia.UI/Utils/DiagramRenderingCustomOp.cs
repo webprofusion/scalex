@@ -32,17 +32,12 @@ namespace Scalex.UI.Utils
             if (canvas != null)
             {
                 // draw stuff 
-                var r = new Scalex.SkiaDrawingSurface(canvas);
-
-                //canvas.Clear(new SKColor(255, 255, 255));
-               
-                canvas.Clear(new SkiaSharp.SKColor(0,0,0));
-
 
                 var skiaDrawingSurface = new SkiaDrawingSurface(canvas);
-                skiaDrawingSurface.SetScale(_scale);
-                _diagramRenderer.Render(skiaDrawingSurface);
 
+                skiaDrawingSurface.SetScale(_scale);
+                
+                _diagramRenderer.Render(skiaDrawingSurface);
             }
         }
     }

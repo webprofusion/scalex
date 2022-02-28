@@ -1,5 +1,5 @@
 ﻿html, body {
-    font-family: "Nunito", sans-serif;
+    font-family: sans-serif;
     margin: 0;
     height: 100vh;
     overflow: hidden;
@@ -52,7 +52,7 @@ canvas
 
 #app, .page {
     height: 100%;
-    background: #171C2C;
+    background: rgb(39, 38, 38);
     color: white;
 }
 

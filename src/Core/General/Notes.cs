@@ -112,8 +112,8 @@
         public static String GetNoteName(Note myNote, bool boolUseSharps)
         {
             String strNote = "";
-            string sharp = "♯"; // ♯
-            string flat = "♭";// ♭
+            string sharp = "#"; // ♯
+            string flat = "b";// ♭
             switch (myNote)
             {
                 case Note.Bb:

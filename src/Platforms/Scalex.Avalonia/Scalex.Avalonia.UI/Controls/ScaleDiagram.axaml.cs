@@ -21,8 +21,6 @@ namespace Scalex.UI.Controls
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-
-           
         }
 
         public override void Render(DrawingContext context)
@@ -31,14 +29,14 @@ namespace Scalex.UI.Controls
             var guitarModel = ViewModels.MainViewModel.GuitarModel;
 
             _diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(guitarModel);
-            
+
             _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer);
 
             context.Custom(_customDrawingOp);
 
             Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
 
-            this.Width = _diagramRenderer.GetDiagramWidth()*4;
+            this.Width = _diagramRenderer.GetDiagramWidth() * 4;
             this.Height = _diagramRenderer.GetFretboardHeight() * 2;
         }
     }

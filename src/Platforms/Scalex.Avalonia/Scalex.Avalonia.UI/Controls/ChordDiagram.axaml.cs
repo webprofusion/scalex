@@ -38,7 +38,6 @@ namespace Scalex.UI.Controls
                 _diagramRenderer.CurrentChordDiagrams = guitarModel.GetChordDiagramsByGroup(ChordDefinition.ChordGroup.ToString());
             }
 
-
             _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 1.5f);
 
             context.Custom(_customDrawingOp);

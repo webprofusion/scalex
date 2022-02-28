@@ -6,7 +6,11 @@
         xmlns:views="clr-namespace:Scalex.UI.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Scalex.UI.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Scalex.UI">
-        <views:MainView />
+        Icon="/Assets/icon.ico"
+        Title="Scalex Guitar Toolkit"
+        Background="Black"
+	>
+
+	<views:MainView />
+
 </Window>
