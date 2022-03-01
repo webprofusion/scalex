@@ -24,28 +24,28 @@ namespace Scalex.UI.Controls
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+
+            _diagramRenderer = new Webprofusion.Scalex.Rendering.ChordDiagramRenderer(ViewModels.MainViewModel.GuitarModel);
+            _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 1.5f);
+
         }
 
         public override void Render(DrawingContext context)
         {
             base.Render(context);
-            var guitarModel = ViewModels.MainViewModel.GuitarModel;
-
-            _diagramRenderer = new Webprofusion.Scalex.Rendering.ChordDiagramRenderer(guitarModel);
 
             if (ChordDefinition != null)
             {
-                _diagramRenderer.CurrentChordDiagrams = guitarModel.GetChordDiagramsByGroup(ChordDefinition.ChordGroup.ToString());
+                _diagramRenderer.CurrentChordDiagrams = ViewModels.MainViewModel.GuitarModel.GetChordDiagramsByGroup(ChordDefinition.ChordGroup.ToString());
             }
-
-            _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 1.5f);
 
             context.Custom(_customDrawingOp);
 
             Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
 
-            this.Width = _diagramRenderer.GetRequiredWidthPerChord() * _diagramRenderer.ChordsPerRow;
-            this.Height = 500;
+            var diagramWidth = _diagramRenderer.GetRequiredWidthPerChord() * _diagramRenderer.ChordsPerRow;
+            if (this.Width != diagramWidth) this.Width = diagramWidth;
+            if (this.Height != 500) this.Height = 500;
         }
     }
 }

@@ -31,6 +31,11 @@ namespace Webprofusion.Scalex.Rendering
             CurrentChordDiagrams = GuitarModel.GetPopularChordDiagrams();
         }
 
+        public void SetGuitarModel(GuitarModel guitarModel)
+        {
+            GuitarModel = guitarModel;
+        }
+
         public int GetRequiredHeight(IGenericDrawingSurface canvas)
         {
             return 1024 * 3;

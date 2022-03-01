@@ -77,6 +77,14 @@
 			</TabItem>
 			<TabItem>
 				<TabItem.Header>
+					<TextBlock VerticalAlignment="Center">Tablature</TextBlock>
+				</TabItem.Header>
+				<StackPanel Orientation="Horizontal">
+					<controls:TabDiagram></controls:TabDiagram>
+				</StackPanel>
+			</TabItem>
+			<TabItem>
+				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Settings</TextBlock>
 				</TabItem.Header>
 				<StackPanel Orientation="Horizontal">

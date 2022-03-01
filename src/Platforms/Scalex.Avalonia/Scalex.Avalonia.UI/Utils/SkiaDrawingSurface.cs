@@ -30,8 +30,8 @@ namespace Scalex
 
             // canvas.Scale(new SKPoint(_scale, _scale));
 
-            typeface = SKFontManager.Default.MatchCharacter("Arial", '#');
-            System.Diagnostics.Debug.WriteLine("Autoselected font:" + typeface?.FamilyName);
+           typeface = SKFontManager.Default.MatchCharacter("Arial", '#');
+           // System.Diagnostics.Debug.WriteLine("Autoselected font:" + typeface?.FamilyName);
         }
 
         public void SetScale(float scale)

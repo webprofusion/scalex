@@ -19,9 +19,14 @@ namespace Webprofusion.Scalex.Rendering
 
         public bool IsExportMode { get; set; }
 
-        public ScaleDiagramRenderer(GuitarModel model)
+        public ScaleDiagramRenderer(GuitarModel guitarModel)
         {
-            _guitarModel = model;
+            _guitarModel = guitarModel;
+        }
+
+        public void SetGuitarModel(GuitarModel guitarModel)
+        {
+            _guitarModel = guitarModel;
         }
 
         public int GetFretboardHeight()
