@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
 using Scalex.UI.Utils;
+using System;
 
 namespace Scalex.UI.Controls
 {
@@ -12,11 +13,14 @@ namespace Scalex.UI.Controls
         private Webprofusion.Scalex.Rendering.ScaleDiagramRenderer _diagramRenderer;
 
         private DigramRenderingDrawOp _customDrawingOp;
-
+        Rect _currentBounds;
         public ScaleDiagram()
         {
             InitializeComponent();
+
         }
+
+    
 
         private void InitializeComponent()
         {
@@ -37,7 +41,7 @@ namespace Scalex.UI.Controls
 
             context.Custom(_customDrawingOp);
 
-            Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
+            //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
 
             var diagramWidth = _diagramRenderer.GetDiagramWidth() * 4; 
             var diagramHeight = _diagramRenderer.GetFretboardHeight() * 2;

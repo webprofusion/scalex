@@ -14,7 +14,7 @@ namespace Scalex.UI.Utils
         private SKPaint _paintQuality = new SKPaint { IsAntialias = true, FilterQuality = SKFilterQuality.High };
 
 
-    public ImageCustomDrawingOp(Rect bounds, List<SKImage> images)
+        public ImageCustomDrawingOp(Rect bounds, List<SKImage> images)
         {
             Bounds = bounds;
             _images = images;
@@ -40,10 +40,17 @@ namespace Scalex.UI.Utils
                     // draw stuff 
                     int startx = 0;
                     int starty = 0;
-                    foreach (var img in _images)
+
+                    try
                     {
-                        canvas.DrawImage(img, startx, starty, _paintQuality);
-                        starty += img.Height;
+                        foreach (var img in _images)
+                        {
+                            canvas.DrawImage(img, startx, starty, _paintQuality);
+                            starty += img.Height;
+                        }
+                    }
+                    catch { 
+                        // failed to render, collection may be modified
                     }
                 }
             }

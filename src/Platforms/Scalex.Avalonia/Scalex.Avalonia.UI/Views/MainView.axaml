@@ -79,9 +79,12 @@
 				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Tablature</TextBlock>
 				</TabItem.Header>
-				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Width="970" Height="800">
-					<controls:TabDiagram></controls:TabDiagram>
-				</ScrollViewer>
+				<StackPanel Height="800">
+					<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MaxHeight="800">
+						<controls:TabDiagram></controls:TabDiagram>
+					</ScrollViewer>
+				</StackPanel>
+				
 			</TabItem>
 			<TabItem>
 				<TabItem.Header>

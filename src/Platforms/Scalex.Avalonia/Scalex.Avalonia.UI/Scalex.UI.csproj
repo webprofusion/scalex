@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Scalex.Core.csproj" />
     <ProjectReference Include="..\..\..\Rendering\Scalex.Rendering.csproj" />
+    <ProjectReference Include="..\..\..\Utils\Scalex.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>

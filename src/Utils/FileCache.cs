@@ -7,7 +7,7 @@ using Windows.Storage;
 
 #endif
 
-namespace Scalex.Models
+namespace Scalex.Utils
 {
     public class FileCache
     {
@@ -27,6 +27,7 @@ namespace Scalex.Models
 
         public async Task<string> LoadCachedFileText(string filename)
         {
+            return null;
             #if __ANDROID__ || __IOS__ || __MACOS__
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -72,6 +73,7 @@ namespace Scalex.Models
 
         public async Task<byte[]> LoadCachedFileBytes(string filename)
         {
+            return null;
             #if __ANDROID__ || __IOS__ || __MACOS__
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);

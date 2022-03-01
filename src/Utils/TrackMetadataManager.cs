@@ -1,6 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+﻿
+using Newtonsoft.Json.Linq;
+using Scalex.Utils;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Scalex
@@ -35,7 +38,14 @@ namespace Scalex
 
     public class TrackMetadataManager
     {
-        public static async Task<TrackMetadata> GetTrackMetadata(string artist, string track)
+        private ResourceRequestManager _resourceManager;
+
+        public TrackMetadataManager()
+        {
+            _resourceManager = new ResourceRequestManager(new HttpClient());
+        }
+
+        public  async Task<TrackMetadata> GetTrackMetadata(string artist, string track)
         {
             string url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=510d5833237825522124952ecb00465c&format=json&artist=" + artist + "&track=" + track;
 
@@ -43,7 +53,7 @@ namespace Scalex
 
             try
             {
-                result = await ResourceRequestManager.GetStringWithCaching(url, true, "metadata");
+                result = await _resourceManager.GetStringWithCaching(url, true, "metadata");
             }
             catch (Exception exp)
             {

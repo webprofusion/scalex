@@ -1,6 +1,6 @@
-﻿using AlphaTab.Importer;
+﻿
+using AlphaTab.Importer;
 using AlphaTab.Model;
-using ModernHttpClient;
 using Scalex.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Scalex
+namespace Scalex.Utils
 {
     public class ScoreServiceManager
     {
@@ -26,18 +26,16 @@ namespace Scalex
         private string RootFolder = "";
         private Dictionary<string, byte[]> dataCache { get; set; }
 
-        #region public methods
+        private ResourceRequestManager _resourceManager;
+        
 
         public ScoreServiceManager()
         {
             EnableFileCaching = false;
             dataCache = new Dictionary<string, byte[]>();
+            _resourceManager = new ResourceRequestManager(new HttpClient());
         }
 
-        private HttpClient GetDefaultHttpClient()
-        {
-            return new HttpClient(new NativeMessageHandler());
-        }
 
         public async Task<Song> FetchSongDetailsAsync(int songID)
         {
@@ -45,7 +43,7 @@ namespace Scalex
 
             string url = SongDetailsURL.Replace("{songid}", songID.ToString());
 
-            string songXML = await ResourceRequestManager.GetStringWithCaching(url, true, songID.ToString() + ".xml");
+            string songXML = await _resourceManager.GetStringWithCaching(url, true, songID.ToString() + ".xml");
             if (songXML != null)
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(Song));
@@ -61,7 +59,7 @@ namespace Scalex
             LogMessage("Fetching Most Viewed Song Details Async.");
 
             string url = SongsMostViewedURL;
-            string xmlresult = await ResourceRequestManager.GetStringWithCaching(url, true, "mostviewed");
+            string xmlresult = await _resourceManager.GetStringWithCaching(url, true, "mostviewed");
 
             if (xmlresult != null)
             {
@@ -78,7 +76,7 @@ namespace Scalex
             LogMessage("Fetching Favourites Song Details Async.");
 
             string url = SongsMostViewedURL;
-            string xmlresult = await ResourceRequestManager.GetStringWithCaching(url, true, "favourites");
+            string xmlresult = await _resourceManager.GetStringWithCaching(url, true, "favourites");
 
             if (xmlresult != null)
             {
@@ -97,7 +95,7 @@ namespace Scalex
             try
             {
                 string url = SongSearchURL.Replace("{keywords}", keywords);
-                string xmlresult = await ResourceRequestManager.GetStringWithCaching(url, false, "searchresults");
+                string xmlresult = await _resourceManager.GetStringWithCaching(url, false, "searchresults");
 
                 if (xmlresult != null)
                 {
@@ -122,9 +120,7 @@ namespace Scalex
             return null;
         }
 
-        #endregion public methods
-
-        #region private methods
+ 
 
         private void LogMessage(string msg)
         {
@@ -217,7 +213,7 @@ namespace Scalex
 
             LogMessage("Fetching Track GP File: " + song.ID + " " + song.LatestAvailableRevision.GuitarProTab.AttachmentUrl);
 
-            byte[] data = await ResourceRequestManager.GetAttachmentWithCaching(song.LatestAvailableRevision.GuitarProTab.AttachmentUrl, true, song.ID.ToString());
+            byte[] data = await _resourceManager.GetAttachmentWithCaching(song.LatestAvailableRevision.GuitarProTab.AttachmentUrl, true, song.ID.ToString());
             song.LatestAvailableRevision.GuitarProTab.BinaryData = data;
 
             //save file to local cache
@@ -234,85 +230,9 @@ namespace Scalex
 
         public async Task<Score> LoadScoreFromUrl(string url)
         {
-            byte[] data = await ResourceRequestManager.GetAttachmentWithCaching(url, false, "notcached");
-            return ScoreLoader.LoadScoreFromBytes(data, new AlphaTab.Settings {  });
+            byte[] data = await _resourceManager.GetAttachmentWithCaching(url, false, "notcached");
+            return ScoreLoader.LoadScoreFromBytes(data, new AlphaTab.Settings { });
         }
 
-        #endregion private methods
-    }
-
-    internal class ResourceRequestManager
-    {
-        private static HttpClient GetDefaultHttpClient()
-        {
-            return new HttpClient(new NativeMessageHandler());
-        }
-
-        internal static async Task<byte[]> GetAttachmentWithCaching(string attachmentUrl, bool enableCache, string cacheKey)
-        {
-            var fileCache = new FileCache();
-            if (enableCache)
-            {
-                var cachedResult = await fileCache.LoadCachedFileBytes(cacheKey);
-                if (cachedResult != null)
-                {
-                    return cachedResult;
-                }
-            }
-
-            using (var httpClient = GetDefaultHttpClient())
-            {
-                var uri = new Uri(attachmentUrl);
-
-                var response = await httpClient.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsByteArrayAsync();
-                    if (enableCache)
-                    {
-                        new FileCache().StoreCachedFileBytes(cacheKey, content);
-                    }
-                    return content;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        internal static async Task<string> GetStringWithCaching(string url, bool enableCache, string cacheKey)
-        {
-            var fileCache = new FileCache();
-            if (enableCache)
-            {
-                var cachedResult = await fileCache.LoadCachedFileText(cacheKey);
-                if (cachedResult != null)
-                {
-                    return cachedResult;
-                }
-            }
-
-            using (var httpClient = GetDefaultHttpClient())
-            {
-                var uri = new Uri(url);
-
-                var response = await httpClient.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-
-                    if (enableCache)
-                    {
-                        new FileCache().StoreCachedFileText(cacheKey, content);
-                    }
-                    return content;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
     }
 }
