@@ -8,6 +8,9 @@
   <ItemGroup>    
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\TestFiles\Tab.gp4" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AlphaTab" Version="1.2.2" />

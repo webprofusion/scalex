@@ -79,18 +79,17 @@
 				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Tablature</TextBlock>
 				</TabItem.Header>
-				<StackPanel Orientation="Horizontal">
+				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Width="970" Height="800">
 					<controls:TabDiagram></controls:TabDiagram>
-				</StackPanel>
+				</ScrollViewer>
 			</TabItem>
 			<TabItem>
 				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Settings</TextBlock>
 				</TabItem.Header>
-				<StackPanel Orientation="Horizontal">
+	
 					<TextBlock Text="No Settings" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-					
-				</StackPanel>
+				
 			</TabItem>
 		</TabControl>
 

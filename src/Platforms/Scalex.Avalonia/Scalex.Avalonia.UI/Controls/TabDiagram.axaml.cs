@@ -28,6 +28,7 @@ namespace Scalex.UI.Controls
 
         public override void Render(Avalonia.Media.DrawingContext context)
         {
+         
            // base.Render(context);
 
             context.Custom(new ImageCustomDrawingOp(new Rect(0, 0, Bounds.Width, Bounds.Height), partialImages));
@@ -36,10 +37,10 @@ namespace Scalex.UI.Controls
 
         private void LoadAndRender()
         {
-            var file = @"Steve Vai -Juice.gp4";
+
             var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
            
-            var stream = assets.Open(new Uri("avares://Scalex.UI/Assets/Juice.gp4"));
+            var stream = assets.Open(new Uri("avares://Scalex.UI/Assets/TestFiles/Tab.gp4"));
             byte[] scoreBytes;
             using (var memoryStream = new MemoryStream())
             {
@@ -50,7 +51,10 @@ namespace Scalex.UI.Controls
             var track = score.Tracks[1];
             // render score with svg engine and desired rendering width
             var settings = new AlphaTab.Settings();
-            settings.Core.Engine = "skia";
+            settings.Display.Scale = 0.8;
+
+
+            //settings.Core.Engine = "skia";
             var renderer = new AlphaTab.Rendering.ScoreRenderer(settings)
             {
                 Width = 970
@@ -58,7 +62,6 @@ namespace Scalex.UI.Controls
 
             var totalWidth = 0;
             var totalHeight = 0;
-
 
             renderer.PartialRenderFinished.On(r => { partialImages.Add((SKImage)r.RenderResult); });
             renderer.RenderFinished.On(r =>

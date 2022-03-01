@@ -10,14 +10,14 @@ namespace Scalex.UI.Utils
 {
     class ImageCustomDrawingOp : ICustomDrawOperation
     {
-        private Webprofusion.Scalex.Rendering.Generic2DRenderer _diagramRenderer;
         private List<SKImage> _images;
+        private SKPaint _paintQuality = new SKPaint { IsAntialias = true, FilterQuality = SKFilterQuality.High };
 
-        public ImageCustomDrawingOp(Rect bounds, List<SKImage> images)
+
+    public ImageCustomDrawingOp(Rect bounds, List<SKImage> images)
         {
             Bounds = bounds;
             _images = images;
-
         }
 
         public void Dispose()
@@ -35,17 +35,16 @@ namespace Scalex.UI.Utils
             {
                 if (_images?.Any() == true)
                 {
+                    canvas.Clear(SKColor.Parse("#f0f0f0"));
 
-                    
                     // draw stuff 
                     int startx = 0;
                     int starty = 0;
-                    foreach(var img in _images)
+                    foreach (var img in _images)
                     {
-                        canvas.DrawImage(img, startx, starty);
+                        canvas.DrawImage(img, startx, starty, _paintQuality);
                         starty += img.Height;
                     }
-                   
                 }
             }
         }
