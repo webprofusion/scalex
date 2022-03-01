@@ -1,7 +1,7 @@
 # Scalex Guitar Toolkit
 A cross-platform .net based guitar toolkit providing Scales, Chords and Tablature.
 
-This app is a work in progress cross platform version (mainly using Xamarin Forms).
+This app is a work in progress cross platform version (implemented as various platforms including Avalonia UI, Xamarin and Uno).
 
 ## Scales
 ![Scales in any tuning for multiple instrument types](docs/screenshots/scalex.scales.windows10.png)
