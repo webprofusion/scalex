@@ -28,7 +28,6 @@ namespace Scalex.UI.Controls
 
         public override void Render(Avalonia.Media.DrawingContext context)
         {
-         
             base.Render(context);
 
             context.Custom(new ImageCustomDrawingOp(new Rect(0, 0, Bounds.Width, Bounds.Height), partialImages));
@@ -52,7 +51,7 @@ namespace Scalex.UI.Controls
             // render score with svg engine and desired rendering width
             var settings = new AlphaTab.Settings();
             settings.Core.Engine = "skia";
-            settings.Display.Scale = 0.8;
+            settings.Display.Scale = 1;
 
 
             //settings.Core.Engine = "skia";
