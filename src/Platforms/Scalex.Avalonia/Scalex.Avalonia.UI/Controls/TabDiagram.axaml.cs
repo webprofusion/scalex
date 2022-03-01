@@ -40,7 +40,7 @@ namespace Scalex.UI.Controls
 
             var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
            
-            var stream = assets.Open(new Uri("avares://Scalex.UI/Assets/TestFiles/Tab.gp4"));
+            var stream = assets.Open(new Uri("avares://Scalex.UI/Assets/TestFiles/bends.gp4"));
             byte[] scoreBytes;
             using (var memoryStream = new MemoryStream())
             {
@@ -48,7 +48,7 @@ namespace Scalex.UI.Controls
                 scoreBytes= memoryStream.ToArray();
             }
             var score = AlphaTab.Importer.ScoreLoader.LoadScoreFromBytes(scoreBytes);
-            var track = score.Tracks[1];
+            var track = score.Tracks[0];
             // render score with svg engine and desired rendering width
             var settings = new AlphaTab.Settings();
             settings.Display.Scale = 0.8;
@@ -63,7 +63,9 @@ namespace Scalex.UI.Controls
             var totalWidth = 0;
             var totalHeight = 0;
 
-            renderer.PartialRenderFinished.On(r => { partialImages.Add((SKImage)r.RenderResult); });
+            renderer.PartialRenderFinished.On(r => { 
+                partialImages.Add((SKImage)r.RenderResult); 
+            });
             renderer.RenderFinished.On(r =>
             {
                 totalWidth = (int)r.TotalWidth;
