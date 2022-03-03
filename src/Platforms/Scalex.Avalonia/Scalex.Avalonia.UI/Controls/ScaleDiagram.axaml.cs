@@ -5,6 +5,7 @@ using Avalonia.Media;
 using Avalonia.Threading;
 using Scalex.UI.Utils;
 using System;
+using Webprofusion.Scalex.Music;
 
 namespace Scalex.UI.Controls
 {
@@ -31,7 +32,26 @@ namespace Scalex.UI.Controls
 
             _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer);
 
+            AddHandler(PointerPressedEvent, (object sender, Avalonia.Input.PointerPressedEventArgs e) => {
+                var point = e.GetCurrentPoint(this);
+                Webprofusion.Scalex.Rendering.ScaleDiagramRenderer.NoteItem? note = _diagramRenderer.GetNoteAtPoint(point.Position.X, point.Position.Y);
+
+                if (note != null)
+                {
+                    System.Diagnostics.Debug.WriteLine(note);
+                }
+
+            }, Avalonia.Interactivity.RoutingStrategies.Tunnel, handledEventsToo:true);
+
         }
+
+        protected override void OnPointerPressed(Avalonia.Input.PointerPressedEventArgs e)
+        {
+            base.OnPointerPressed(e);
+
+          
+        }
+        
 
         public override void Render(DrawingContext context)
         {

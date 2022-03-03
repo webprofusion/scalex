@@ -26,17 +26,20 @@ namespace Scalex.UI.Controls
 
         public TabDiagram()
         {
+            this.UseLayoutRounding = true;
             InitializeComponent();
+            
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
 
+            Dispatcher.UIThread.InvokeAsync(LoadScore, DispatcherPriority.Background);
 
             this.LayoutUpdated += TabDiagram_LayoutUpdated;
-      
         }
+
 
         private void TabDiagram_LayoutUpdated(object sender, EventArgs e)
         {
@@ -44,7 +47,7 @@ namespace Scalex.UI.Controls
             if (_currentBounds != null && !this.Bounds.Equals(_currentBounds) && this.Bounds.Width!=_currentBounds.Width)
             {
                 _currentBounds = this.Bounds;
-                Dispatcher.UIThread.InvokeAsync(LoadAndRender, DispatcherPriority.Background);
+             
             }
 
             if (_currentBounds == null)
@@ -53,13 +56,19 @@ namespace Scalex.UI.Controls
             }
         }
 
+        bool isFirstPass = true;
         public override void Render(Avalonia.Media.DrawingContext context)
         {
-            if (!_isRenderInProgress)
-            {
-                base.Render(context);
+            isFirstPass = false;
 
-                context.Custom(new ImageCustomDrawingOp(new Rect(0, 0, Bounds.Width, Bounds.Height), partialImages));
+            base.Render(context);
+
+            if (!_isRenderInProgress && !isFirstPass)
+            {
+                if (this.IsEffectivelyVisible && partialImages != null)
+                {
+                    context.Custom(new ImageCustomDrawingOp(new Rect(0, 0, Bounds.Width, Bounds.Height), partialImages));
+                }
             }
         }
 
@@ -89,7 +98,7 @@ namespace Scalex.UI.Controls
             return score;
         }
 
-        private async Task LoadAndRender()
+        private async Task LoadScore()
         {
             _isRenderInProgress = true;
             var trackIndex = 0;
@@ -112,13 +121,13 @@ namespace Scalex.UI.Controls
 
                 var renderer = new AlphaTab.Rendering.ScoreRenderer(settings)
                 {
-                    Width = this.Bounds.Width
+                    Width = 970// this.Bounds.Width
                 };
 
 
                 var totalWidth = 0;
                 var totalHeight = 0;
-
+               
                 renderer.PartialRenderFinished.On(r => {
                     partialImages.Add((SKImage)r.RenderResult);
                 });
