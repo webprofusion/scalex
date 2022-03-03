@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Webprofusion.Scalex.Guitar;
 using Webprofusion.Scalex.Music;
 using Webprofusion.Scalex.Util;
@@ -26,9 +27,13 @@ namespace Webprofusion.Scalex.Rendering
             public Note Note;
             public int FretNumber;
             public int StringNumber;
+            public int Octave;
+            public bool IsHighlighted;
+
         }
 
         private List<NoteItem> _noteList = new List<NoteItem>();
+        private List<NoteItem> _hightlightedNotes = new List<NoteItem>();
 
         public ScaleDiagramRenderer(GuitarModel guitarModel)
         {
@@ -52,20 +57,33 @@ namespace Webprofusion.Scalex.Rendering
         public NoteItem? GetNoteAtPoint(double x, double y)
         {
             var noteSize = _guitarModel.GuitarModelSettings.MarkerSize;
-           foreach(var note in _noteList)
+            foreach (var note in _noteList)
             {
-                
-                if (x>=note.X && x<=note.X+ noteSize)
+
+                if (x >= note.X && x <= note.X + noteSize)
                 {
-                    if (y>=note.Y && y<=note.Y+ noteSize)
+                    if (y >= note.Y && y <= note.Y + noteSize)
                     {
                         return note;
                     }
-                    
+
                 }
             }
 
             return null;
+        }
+
+        public void HighlightNote(NoteItem note)
+        {
+            for (var i = 0; i < _noteList.Count; i++)
+            {
+                var n = _noteList[i];
+                if (n.StringNumber == note.StringNumber && n.FretNumber == note.FretNumber)
+                {
+                    n.IsHighlighted = true;
+                    if (!_hightlightedNotes.Contains(n)) _hightlightedNotes.Add(n);
+                }
+            }
         }
 
         public int GetDiagramWidth()
@@ -280,8 +298,17 @@ namespace Webprofusion.Scalex.Rendering
             for (int fretNum = 0; fretNum <= _guitarModel.GuitarModelSettings.NumberFrets; fretNum++)
             {
                 int tmpVal = fretNum + (int)s.OpenTuning.SelectedNote;
-                if (tmpVal > 11) tmpVal = tmpVal - 12;
-                if (tmpVal > 11) tmpVal = tmpVal - 12;
+                int octave = 1;
+                if (tmpVal > 11)
+                {
+                    tmpVal = tmpVal - 12;
+                    octave++;
+                }
+                if (tmpVal > 11)
+                {
+                    tmpVal = tmpVal - 12;
+                    octave++;
+                }
 
                 int sclVal = (fretNum - (int)_guitarModel.GuitarModelSettings.ScaleManager.CurrentKey) + (int)s.OpenTuning.SelectedNote;
                 if (sclVal < 0) sclVal = sclVal + 12;
@@ -326,13 +353,35 @@ namespace Webprofusion.Scalex.Rendering
                             }
                         }
 
-                        _noteList.Add(new NoteItem { Note = (Note)tmpVal, X = startX- (_guitarModel.GuitarModelSettings.MarkerSize / 2), Y = startY- (_guitarModel.GuitarModelSettings.MarkerSize / 2), FretNumber = fretNum, StringNumber = s.StringNumber });
+                        var currentNote = new NoteItem
+                        {
+                            Note = (Note)tmpVal,
+                            X = startX - (_guitarModel.GuitarModelSettings.MarkerSize / 2),
+                            Y = startY - (_guitarModel.GuitarModelSettings.MarkerSize / 2),
+                            FretNumber = fretNum,
+                            StringNumber = s.StringNumber,
+                            Octave = octave
+                        };
+
+                        _noteList.Add(currentNote);
+
+
+                        if (_hightlightedNotes.Any(n => n.Note == currentNote.Note && n.StringNumber == currentNote.StringNumber && n.Octave == currentNote.Octave))
+                        {
+                            // highlight
+
+                            g.FillEllipse(startX - (_guitarModel.GuitarModelSettings.MarkerSize / 2), startY - (_guitarModel.GuitarModelSettings.MarkerSize / 2), _guitarModel.GuitarModelSettings.MarkerSize, _guitarModel.GuitarModelSettings.MarkerSize, ColorPalette[ThemeColorPreset.MutedBackground], new ColorValue(255, 255, 255, 255));
+
+                        }
 
                         //draw note marker centered behind fret
                         if (_guitarModel.GuitarModelSettings.EnableNoteColours == true)
                         {
                             var noteColor = NoteManager.GetNoteColour((Note)tmpVal, 2);
-
+                            if (_hightlightedNotes.Any())
+                            {
+                                noteColor.A = 128;
+                            }
                             g.FillEllipse(startX - (_guitarModel.GuitarModelSettings.MarkerSize / 2), startY - (_guitarModel.GuitarModelSettings.MarkerSize / 2), _guitarModel.GuitarModelSettings.MarkerSize, _guitarModel.GuitarModelSettings.MarkerSize, ColorPalette[ThemeColorPreset.MutedBackground], noteColor);
                         }
                         else

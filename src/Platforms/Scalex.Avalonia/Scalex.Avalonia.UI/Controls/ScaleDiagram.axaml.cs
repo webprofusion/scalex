@@ -30,31 +30,35 @@ namespace Scalex.UI.Controls
 
             _diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(ViewModels.MainViewModel.GuitarModel);
 
-            float scaling = 3;
             _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 3);
 
-            AddHandler(PointerPressedEvent, (object sender, Avalonia.Input.PointerPressedEventArgs e) =>
-            {
-                var point = e.GetCurrentPoint(this);
-                var pos = e.GetPosition(this);
+              AddHandler(PointerPressedEvent, (object sender, Avalonia.Input.PointerPressedEventArgs e) =>
+              {
 
-                var pointerX = point.Position.X / scaling;
-                var pointerY = point.Position.Y / scaling;
-                Webprofusion.Scalex.Rendering.ScaleDiagramRenderer.NoteItem? note = _diagramRenderer.GetNoteAtPoint(pointerX, pointerY);
-
-                if (note != null)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Fret:{note.Value.FretNumber} String:{note.Value.StringNumber + 1} Note:{note.Value.Note.ToString()}");
-                }
-
-            }, Avalonia.Interactivity.RoutingStrategies.Tunnel, handledEventsToo: true);
+              }, Avalonia.Interactivity.RoutingStrategies.Tunnel, handledEventsToo: true);
 
         }
 
         protected override void OnPointerPressed(Avalonia.Input.PointerPressedEventArgs e)
         {
             base.OnPointerPressed(e);
+            var point = e.GetCurrentPoint(this);
+            var pos = e.GetPosition(this);
 
+
+            float scaling = 3;
+
+            var pointerX = point.Position.X / scaling;
+            var pointerY = point.Position.Y / scaling;
+            var note = _diagramRenderer.GetNoteAtPoint(pointerX, pointerY);
+
+            if (note != null)
+            {
+                _diagramRenderer.HighlightNote(note.Value);
+                //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Render);
+                //InvalidateVisual();
+                System.Diagnostics.Debug.WriteLine($"Fret:{note.Value.FretNumber} String:{note.Value.StringNumber + 1} Note:{note.Value.Note.ToString()}");
+            }
 
         }
 
@@ -67,7 +71,7 @@ namespace Scalex.UI.Controls
 
             context.Custom(_customDrawingOp);
 
-            //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
+            Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
 
             var diagramWidth = _diagramRenderer.GetDiagramWidth() * 4;
             var diagramHeight = _diagramRenderer.GetFretboardHeight() * 2;
