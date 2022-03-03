@@ -51,7 +51,7 @@ namespace Webprofusion.Scalex.Rendering
 
         public NoteItem? GetNoteAtPoint(double x, double y)
         {
-            var noteSize = 10;
+            var noteSize = _guitarModel.GuitarModelSettings.MarkerSize;
            foreach(var note in _noteList)
             {
                 
@@ -326,7 +326,7 @@ namespace Webprofusion.Scalex.Rendering
                             }
                         }
 
-                        _noteList.Add(new NoteItem { Note = (Note)tmpVal, X = startX, Y = startY, FretNumber = fretNum, StringNumber = s.StringNumber });
+                        _noteList.Add(new NoteItem { Note = (Note)tmpVal, X = startX- (_guitarModel.GuitarModelSettings.MarkerSize / 2), Y = startY- (_guitarModel.GuitarModelSettings.MarkerSize / 2), FretNumber = fretNum, StringNumber = s.StringNumber });
 
                         //draw note marker centered behind fret
                         if (_guitarModel.GuitarModelSettings.EnableNoteColours == true)

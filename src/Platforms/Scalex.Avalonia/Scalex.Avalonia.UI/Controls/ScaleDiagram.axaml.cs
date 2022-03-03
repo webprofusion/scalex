@@ -21,27 +21,33 @@ namespace Scalex.UI.Controls
 
         }
 
-    
+
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
 
- 
+
             _diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(ViewModels.MainViewModel.GuitarModel);
 
-            _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer);
+            float scaling = 3;
+            _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 3);
 
-            AddHandler(PointerPressedEvent, (object sender, Avalonia.Input.PointerPressedEventArgs e) => {
+            AddHandler(PointerPressedEvent, (object sender, Avalonia.Input.PointerPressedEventArgs e) =>
+            {
                 var point = e.GetCurrentPoint(this);
-                Webprofusion.Scalex.Rendering.ScaleDiagramRenderer.NoteItem? note = _diagramRenderer.GetNoteAtPoint(point.Position.X, point.Position.Y);
+                var pos = e.GetPosition(this);
+
+                var pointerX = point.Position.X / scaling;
+                var pointerY = point.Position.Y / scaling;
+                Webprofusion.Scalex.Rendering.ScaleDiagramRenderer.NoteItem? note = _diagramRenderer.GetNoteAtPoint(pointerX, pointerY);
 
                 if (note != null)
                 {
-                    System.Diagnostics.Debug.WriteLine(note);
+                    System.Diagnostics.Debug.WriteLine($"Fret:{note.Value.FretNumber} String:{note.Value.StringNumber + 1} Note:{note.Value.Note.ToString()}");
                 }
 
-            }, Avalonia.Interactivity.RoutingStrategies.Tunnel, handledEventsToo:true);
+            }, Avalonia.Interactivity.RoutingStrategies.Tunnel, handledEventsToo: true);
 
         }
 
@@ -49,9 +55,9 @@ namespace Scalex.UI.Controls
         {
             base.OnPointerPressed(e);
 
-          
+
         }
-        
+
 
         public override void Render(DrawingContext context)
         {
@@ -63,11 +69,11 @@ namespace Scalex.UI.Controls
 
             //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
 
-            var diagramWidth = _diagramRenderer.GetDiagramWidth() * 4; 
+            var diagramWidth = _diagramRenderer.GetDiagramWidth() * 4;
             var diagramHeight = _diagramRenderer.GetFretboardHeight() * 2;
             if (this.Width != diagramWidth) this.Width = diagramWidth;
             if (this.Height != diagramWidth) this.Height = diagramHeight;
-     
+
         }
     }
 }

@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AlphaTab" Version="1.2.2" />
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />    
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
@@ -23,7 +24,6 @@
 	<PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\ThirdParty\alphaTab\src.csharp\AlphaTab\AlphaTab.csproj" />
     <ProjectReference Include="..\..\..\Core\Scalex.Core.csproj" />
     <ProjectReference Include="..\..\..\Rendering\Scalex.Rendering.csproj" />
     <ProjectReference Include="..\..\..\Utils\Scalex.Utils.csproj" />

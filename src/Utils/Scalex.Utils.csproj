@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AlphaTab" Version="1.2.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\ThirdParty\alphaTab\src.csharp\AlphaTab\AlphaTab.csproj" />
   </ItemGroup>
 
 </Project>
