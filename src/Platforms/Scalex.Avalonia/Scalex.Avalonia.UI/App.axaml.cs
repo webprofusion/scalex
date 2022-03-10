@@ -29,7 +29,7 @@ namespace Scalex.UI
                     DataContext = new MainViewModel()
                 };
             }
-
+      
             base.OnFrameworkInitializationCompleted();
         }
     }

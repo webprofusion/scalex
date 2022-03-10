@@ -32,11 +32,11 @@ namespace Scalex.UI.Controls
 
             _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 3);
 
-              AddHandler(PointerPressedEvent, (object sender, Avalonia.Input.PointerPressedEventArgs e) =>
+            /*  AddHandler(PointerPressedEvent, (object sender, Avalonia.Input.PointerPressedEventArgs e) =>
               {
 
               }, Avalonia.Interactivity.RoutingStrategies.Tunnel, handledEventsToo: true);
-
+            */
         }
 
         protected override void OnPointerPressed(Avalonia.Input.PointerPressedEventArgs e)
@@ -56,8 +56,9 @@ namespace Scalex.UI.Controls
             {
                 _diagramRenderer.HighlightNote(note.Value);
                 //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Render);
-                //InvalidateVisual();
+             
                 System.Diagnostics.Debug.WriteLine($"Fret:{note.Value.FretNumber} String:{note.Value.StringNumber + 1} Note:{note.Value.Note.ToString()}");
+                this.Width -= 0.0001;
             }
 
         }
@@ -71,7 +72,7 @@ namespace Scalex.UI.Controls
 
             context.Custom(_customDrawingOp);
 
-            Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
+            //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
 
             var diagramWidth = _diagramRenderer.GetDiagramWidth() * 4;
             var diagramHeight = _diagramRenderer.GetFretboardHeight() * 2;

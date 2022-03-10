@@ -204,12 +204,13 @@ namespace Webprofusion.Scalex.Music
             scaleList.Add(new ScaleItem(13, "Byzantine",
                 true, true, false, false, true, true, false, true, true, false, false, true,
                ""));
+
+            scaleList.Add(new ScaleItem(14, "Phrygian Dominant", true, true, false, false, true, true, false, true, true, false, true, false, "5th Mode of the Harmonic Minor Scale"));
+
             scaleList.Add(new ScaleItem(0, "Chromatic", 
                 true, true, true, true, true, true, true, true, true, true, true, true, 
                 ""));
 
-            //scaleList.Add(new ScaleItem(12, "Phrygian dominant", true, true, false, false, true, true, false, true, true, false, true, false, "5th Mode of the Harmonic Minor Scale"));
-            
             CurrentScale = scaleList[0];
 
         }
