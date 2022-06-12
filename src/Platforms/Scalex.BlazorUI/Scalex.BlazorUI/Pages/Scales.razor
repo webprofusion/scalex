@@ -1,0 +1,110 @@
+﻿@page "/"
+@page "/scales"
+
+@using SkiaSharp
+@using SkiaSharp.Views.Blazor
+@using Webprofusion.Scalex.Guitar
+@using Webprofusion.Scalex.Music
+
+<PageTitle>Scalex Guitar Toolkit - Chords</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <select class="form-select" aria-label="Select Key" @onchange="SelectKey">
+                @foreach (var item in _guitarModel.AllKeys)
+                {
+                    <option>@item</option>
+                }
+            </select>
+
+        </div>
+        <div class="col">
+            <select class="form-select" aria-label="Select Scale" @onchange="SelectScale">
+                @foreach (var item in _guitarModel.AllScales)
+                {
+                    <option value="@item.ID">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col">
+
+            <select class="form-select" aria-label="Select Tuning" @onchange="SelectTuning">
+                @foreach (var item in _guitarModel.AllTunings)
+                {
+                    <option value="@item.ID">@item.Name</option>
+                }
+            </select>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<SKCanvasView OnPaintSurface="PaintSurface" style="width:100%;height:800px;" @ref="canvasView" />
+
+@code
+{
+    private GuitarModel _guitarModel = new Webprofusion.Scalex.Guitar.GuitarModel();
+    private Webprofusion.Scalex.Rendering.ScaleDiagramRenderer _diagramRenderer;
+    private SKTypeface _typeface = SkiaDrawingSurface.GetPreferredTypeface('#');
+    private SKCanvasView canvasView;
+    private int _zoom = 3;
+
+    void PaintSurface(SKPaintSurfaceEventArgs e)
+    {
+        var canvas = e.Surface.Canvas;
+        canvas.Clear(SKColors.Empty);
+
+        if (canvas != null)
+        {
+            // draw stuff
+
+            var skiaDrawingSurface = new SkiaDrawingSurface(canvas, _typeface);
+            SkiaDrawingSurface.ApplyThemeColours(_diagramRenderer);
+            skiaDrawingSurface.SetScale(_zoom);
+
+            _diagramRenderer.Render(skiaDrawingSurface);
+        }
+
+    }
+
+    void SelectKey(ChangeEventArgs e)
+    {
+        if (e?.Value != null)
+        {
+            _guitarModel.SelectedKey = e.Value.ToString();
+            canvasView.Invalidate();
+        }
+    }
+
+    void SelectScale(ChangeEventArgs e)
+    {
+        if (e?.Value != null)
+        {
+            _guitarModel.SelectedScale = _guitarModel.GetScaleById(int.Parse(e.Value?.ToString()));
+            canvasView.Invalidate();
+        }
+    }
+
+
+    void SelectTuning(ChangeEventArgs e)
+    {
+        if (e?.Value != null)
+        {
+            _guitarModel.SelectedTuning = _guitarModel.GetTuningById(int.Parse(e.Value?.ToString()));
+            canvasView.Invalidate();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        _diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(_guitarModel);
+    }
+}
