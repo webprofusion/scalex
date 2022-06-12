@@ -22,11 +22,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Skia" Version="0.10.12" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.2" PrivateAssets="all" />
-    <PackageReference Include="Avalonia.Web.Blazor" Version="0.10.12" />
-    <PackageReference Include="SkiaSharp" Version="2.88.0-preview.209" />
+    <PackageReference Include="Avalonia.Skia" Version="0.10.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.5" PrivateAssets="all" />
+    <PackageReference Include="Avalonia.Web.Blazor" Version="0.10.14" />
+    <PackageReference Include="SkiaSharp" Version="2.88.0" />
   </ItemGroup>
   
   <ItemGroup>

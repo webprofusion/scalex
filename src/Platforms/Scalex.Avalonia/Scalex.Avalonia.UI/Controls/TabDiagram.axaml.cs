@@ -1,3 +1,5 @@
+using AlphaTab;
+using AlphaTab.Rendering;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -28,26 +30,26 @@ namespace Scalex.UI.Controls
         {
             this.UseLayoutRounding = true;
             InitializeComponent();
-            
+
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
 
-            Dispatcher.UIThread.InvokeAsync(LoadScore, DispatcherPriority.Background);
+
+            this.isFirstPass = true;
 
             this.LayoutUpdated += TabDiagram_LayoutUpdated;
         }
 
-
         private void TabDiagram_LayoutUpdated(object sender, EventArgs e)
         {
             // only perform render if bounds have changed
-            if (_currentBounds != null && !this.Bounds.Equals(_currentBounds) && this.Bounds.Width!=_currentBounds.Width)
+            if (_currentBounds != null && !this.Bounds.Equals(_currentBounds) && this.Bounds.Width != _currentBounds.Width)
             {
                 _currentBounds = this.Bounds;
-             
+
             }
 
             if (_currentBounds == null)
@@ -59,16 +61,25 @@ namespace Scalex.UI.Controls
         bool isFirstPass = true;
         public override void Render(Avalonia.Media.DrawingContext context)
         {
-            isFirstPass = false;
+          
 
             base.Render(context);
 
-            if (!_isRenderInProgress && !isFirstPass)
-            {
-                if (this.IsEffectivelyVisible && partialImages != null)
+   
+
+            //if (!_isRenderInProgress && !isFirstPass)
+            // {
+            if (partialImages?.Any() == true)
                 {
                     context.Custom(new ImageCustomDrawingOp(new Rect(0, 0, Bounds.Width, Bounds.Height), partialImages));
                 }
+           // }
+
+            if (isFirstPass)
+            {
+                isFirstPass = false;
+
+                Dispatcher.UIThread.InvokeAsync(LoadScore, DispatcherPriority.Background);
             }
         }
 
@@ -102,7 +113,7 @@ namespace Scalex.UI.Controls
         {
             _isRenderInProgress = true;
             var trackIndex = 0;
-            
+
             if (!_isScoreLoaded)
             {
                 _isScoreLoaded = true;
@@ -127,9 +138,34 @@ namespace Scalex.UI.Controls
 
                 var totalWidth = 0;
                 var totalHeight = 0;
-               
-                renderer.PartialRenderFinished.On(r => {
-                    partialImages.Add((SKImage)r.RenderResult);
+
+             
+
+                renderer.PreRender.On(isResize =>
+                {
+                   
+                    totalWidth = 0;
+                    totalHeight = 0;
+                });
+
+                renderer.Error.On(e =>
+                {
+
+                    System.Diagnostics.Debug.WriteLine(e);
+
+                });
+                renderer.PartialLayoutFinished.On(e =>
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                    // request this render result when finished.
+                    renderer.RenderResult(e.Id);
+                });
+                renderer.PartialRenderFinished.On(r =>
+                {
+                    if (r != null)
+                    {
+                        partialImages.Add((SKImage)r.RenderResult);
+                    }
                 });
                 renderer.RenderFinished.On(r =>
                 {
@@ -143,7 +179,7 @@ namespace Scalex.UI.Controls
                 renderer.RenderScore(_score, new double[] { track.Index });
             }
 
-          
+
         }
     }
 }
