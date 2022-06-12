@@ -290,6 +290,17 @@ namespace Webprofusion.Scalex.Guitar
             SetKey(noteName);
         }
 
+        public GuitarTuning GetTuningById(int id)
+        {
+            return AllTunings.FirstOrDefault(t => t.ID == id);
+        }
+
+        public ScaleItem GetScaleById(int id)
+        {
+            
+            return AllScales.FirstOrDefault(t => t.ID == id);
+        }
+
         public void SetNumberOfFrets(int numFrets)
         {
             GuitarModelSettings.NumberFrets = numFrets;

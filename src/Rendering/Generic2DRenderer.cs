@@ -47,6 +47,7 @@ namespace Webprofusion.Scalex.Rendering
 
             // setup default colour theme
             ColorPalette.Add(ThemeColorPreset.Foreground, new ColorValue(0, 0, 0));
+            ColorPalette.Add(ThemeColorPreset.TextShadow, new ColorValue(128, 128, 128));
             ColorPalette.Add(ThemeColorPreset.ForegroundText, new ColorValue(0, 0, 0));
             ColorPalette.Add(ThemeColorPreset.MutedForeground, new ColorValue(128, 128, 128));
             ColorPalette.Add(ThemeColorPreset.Background, new ColorValue(255, 255, 255));
