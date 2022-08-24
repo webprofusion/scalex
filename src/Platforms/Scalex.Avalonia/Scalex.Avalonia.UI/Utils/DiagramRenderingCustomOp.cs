@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Skia;
@@ -28,17 +28,22 @@ namespace Scalex.UI.Utils
         public bool Equals(ICustomDrawOperation other) => false;
         public void Render(IDrawingContextImpl context)
         {
-            var canvas = (context as ISkiaDrawingContextImpl)?.SkCanvas;
-            if (canvas != null)
-            {
-                // draw stuff 
+            var leaseFeature = context.GetFeature<ISkiaSharpApiLeaseFeature>();
+            if (leaseFeature == null)
+                return;
+            using var lease = leaseFeature.Lease();
+            var canvas = lease.SkCanvas;
 
-                var skiaDrawingSurface = new SkiaDrawingSurface(canvas);
+             if (canvas != null)
+             {
+                 // draw stuff 
 
-                skiaDrawingSurface.SetScale(_scale);
-                
-                _diagramRenderer.Render(skiaDrawingSurface);
-            }
+                 var skiaDrawingSurface = new SkiaDrawingSurface(canvas);
+
+                 skiaDrawingSurface.SetScale(_scale);
+
+                 _diagramRenderer.Render(skiaDrawingSurface);
+             }
         }
     }
 }

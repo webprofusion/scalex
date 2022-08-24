@@ -75,6 +75,7 @@
 					</ScrollViewer>
 				</StackPanel>
 			</TabItem>
+			<!--
 			<TabItem>
 				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Tablature</TextBlock>
@@ -86,6 +87,8 @@
 				</StackPanel>
 				
 			</TabItem>
+			-->
+			<!--
 			<TabItem>
 				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Settings</TextBlock>
@@ -94,6 +97,7 @@
 					<TextBlock Text="No Settings" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 				
 			</TabItem>
+			-->
 		</TabControl>
 
 

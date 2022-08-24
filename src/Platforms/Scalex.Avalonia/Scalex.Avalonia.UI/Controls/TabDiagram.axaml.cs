@@ -154,11 +154,11 @@ namespace Scalex.UI.Controls
                     System.Diagnostics.Debug.WriteLine(e);
 
                 });
-                renderer.PartialLayoutFinished.On(e =>
+                renderer.PartialRenderFinished.On(e =>
                 {
                     System.Diagnostics.Debug.WriteLine(e);
                     // request this render result when finished.
-                    renderer.RenderResult(e.Id);
+                    //renderer.RenderResult(e.Id);
                 });
                 renderer.PartialRenderFinished.On(r =>
                 {
