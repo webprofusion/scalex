@@ -22,8 +22,8 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview1" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview1" />
     <PackageReference Include="Avalonia.Skia" Version="11.0.0-preview1" />
-    <PackageReference Include="SkiaSharp" Version="2.88.2" />
-    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="2.88.2" />
+    <PackageReference Include="SkiaSharp" Version="2.88.3" />
+    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="2.88.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
