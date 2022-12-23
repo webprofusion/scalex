@@ -71,14 +71,6 @@ namespace Scalex.UI.Controls
             _diagramRenderer.SetGuitarModel(ViewModels.MainViewModel.GuitarModel);
 
             context.Custom(_customDrawingOp);
-
-            //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
-
-            var diagramWidth = _diagramRenderer.GetDiagramWidth() * 4;
-            var diagramHeight = _diagramRenderer.GetFretboardHeight() * 2;
-            if (this.Width != diagramWidth) this.Width = diagramWidth;
-            if (this.Height != diagramWidth) this.Height = diagramHeight;
-
         }
     }
 }

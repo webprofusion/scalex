@@ -40,12 +40,6 @@ namespace Scalex.UI.Controls
             }
 
             context.Custom(_customDrawingOp);
-
-            //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
-
-            var diagramWidth = _diagramRenderer.GetRequiredWidthPerChord() * _diagramRenderer.ChordsPerRow;
-            if (this.Width != diagramWidth) this.Width = diagramWidth;
-            if (this.Height != 500) this.Height = 500;
         }
     }
 }
