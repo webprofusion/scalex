@@ -14,19 +14,14 @@ namespace Scalex.UI.Controls
         private Webprofusion.Scalex.Rendering.ScaleDiagramRenderer _diagramRenderer;
 
         private DigramRenderingDrawOp _customDrawingOp;
-        Rect _currentBounds;
         public ScaleDiagram()
         {
             InitializeComponent();
-
         }
-
-
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-
 
             _diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(ViewModels.MainViewModel.GuitarModel);
 
@@ -55,14 +50,12 @@ namespace Scalex.UI.Controls
             if (note != null)
             {
                 _diagramRenderer.HighlightNote(note.Value);
-                //Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Render);
-             
+
                 System.Diagnostics.Debug.WriteLine($"Fret:{note.Value.FretNumber} String:{note.Value.StringNumber + 1} Note:{note.Value.Note.ToString()}");
                 this.Width -= 0.0001;
             }
 
         }
-
 
         public override void Render(DrawingContext context)
         {
