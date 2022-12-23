@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Scalex.UI.Web;
 
+
 public class Program
 {
     public static async Task Main(string[] args)

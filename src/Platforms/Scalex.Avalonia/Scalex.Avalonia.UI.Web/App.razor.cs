@@ -1,4 +1,4 @@
-using Avalonia.ReactiveUI;
+using Avalonia;
 using Avalonia.Web.Blazor;
 
 namespace Scalex.UI.Web;
@@ -7,10 +7,10 @@ public partial class App
 {
     protected override void OnParametersSet()
     {
-        base.OnParametersSet();
-        
-        WebAppBuilder.Configure<Scalex.UI.App>()
-            .UseReactiveUI()
+        AppBuilder.Configure<Scalex.UI.App>()
+            .UseBlazor()
             .SetupWithSingleViewLifetime();
+
+        base.OnParametersSet();
     }
 }

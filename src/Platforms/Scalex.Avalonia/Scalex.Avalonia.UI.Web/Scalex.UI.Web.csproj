@@ -1,31 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <!--Temporal hack that fixes compilation in VS-->
-    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+		<WasmMainJSPath>main.js</WasmMainJSPath>
+		<OutputType>Exe</OutputType>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<MSBuildEnableWorkloadResolver>true</MSBuildEnableWorkloadResolver>
+		<WasmBuildNative>true</WasmBuildNative>
+		<EmccFlags>-sVERBOSE -sERROR_ON_UNDEFINED_SYMBOLS=0</EmccFlags>
+	</PropertyGroup>
 
-  <!-- In debug, make builds faster by reducing optimizations -->
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <WasmNativeStrip>false</WasmNativeStrip>
-    <EmccCompileOptimizationFlag>-O1</EmccCompileOptimizationFlag>
-    <RunAOTCompilation>true</RunAOTCompilation>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <Optimize>true</Optimize>
-    <WasmNativeStrip>true</WasmNativeStrip>
-	<EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
-    <EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
-    <RunAOTCompilation>false</RunAOTCompilation>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<RunAOTCompilation>true</RunAOTCompilation>
+		<PublishTrimmed>true</PublishTrimmed>
+		<TrimMode>full</TrimMode>
+		<WasmBuildNative>true</WasmBuildNative>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<WasmEnableSIMD>true</WasmEnableSIMD>
+		<EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
+		<EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
+	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Skia" Version="11.0.0-preview1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
-    <PackageReference Include="Avalonia.Web.Blazor" Version="11.0.0-preview1" />
+    <PackageReference Include="Avalonia.Skia" Version="11.0.0-preview3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0" PrivateAssets="all" />
+    <PackageReference Include="Avalonia.Web.Blazor" Version="11.0.0-preview3" />
     <PackageReference Include="SkiaSharp" Version="2.88.3" />
     <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="2.88.3" />
   </ItemGroup>
