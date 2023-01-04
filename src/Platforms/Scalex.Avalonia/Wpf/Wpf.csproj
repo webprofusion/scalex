@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AlphaTab.Windows" Version="1.3.0-alpha.439" />
+    <PackageReference Include="AlphaTab.Windows" Version="1.3.0-alpha.496" />
   </ItemGroup>
 
 </Project>
