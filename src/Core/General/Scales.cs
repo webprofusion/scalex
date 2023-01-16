@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Webprofusion.Scalex.Music
 {
     public class ScaleItem : IEnumerable
     {
-        public int ID {get;set;}
-        public string Name {get;set;}
+        public int ID { get; set; }
+        public string Name { get; set; }
         public bool[] ScaleIntervals = { true, true, true, true, true, true, true, true, true, true, true, true }; //all notes of chromatic scale
         public string Description { get; set; }
 
@@ -29,7 +29,7 @@ namespace Webprofusion.Scalex.Music
         {
             ID = 0;
             Name = "Chromatic";
-            ScaleIntervals =new bool[] { true, true, true, true, true, true, true, true, true, true, true, true }; //all notes of chromatic scale
+            ScaleIntervals = new bool[] { true, true, true, true, true, true, true, true, true, true, true, true }; //all notes of chromatic scale
 
         }
 
@@ -126,7 +126,7 @@ namespace Webprofusion.Scalex.Music
                     sequenceCount++;
                     if (i == pos)
                     {
-                        switch (i+1)
+                        switch (i + 1)
                         {
                             case 1: return "1";
                             case 2: return "b2";
@@ -140,7 +140,7 @@ namespace Webprofusion.Scalex.Music
                             case 10: return "6";
                             case 11: return "b7";
                             case 12: return "7";
-                                                                
+
                             default: return "";
                         }
                     }
@@ -168,35 +168,35 @@ namespace Webprofusion.Scalex.Music
 
 
             //  1     ♭2    2nd   ♭3     3      4    ♭5     5     ♭6     6    ♭7     7
-            scaleList.Add(new ScaleItem(1, "Major", 
+            scaleList.Add(new ScaleItem(1, "Major",
                 true, false, true, false, true, true, false, true, false, true, false, true,
                 null));
-            scaleList.Add(new ScaleItem(2, "Minor", 
+            scaleList.Add(new ScaleItem(2, "Minor",
                 true, false, true, true, false, true, false, true, true, false, true, false,
                 "Natural Minor"));
-            scaleList.Add(new ScaleItem(3, "Harmonic Minor", 
-                true, false, true, true, false, true, false, true, true, false, false, true, 
+            scaleList.Add(new ScaleItem(3, "Harmonic Minor",
+                true, false, true, true, false, true, false, true, true, false, false, true,
                 ""));
-            scaleList.Add(new ScaleItem(4, "Pentatonic Minor", 
-                true, false, false, true, false, true, false, true, false, false, true, false, 
+            scaleList.Add(new ScaleItem(4, "Pentatonic Minor",
+                true, false, false, true, false, true, false, true, false, false, true, false,
                 ""));
-            scaleList.Add(new ScaleItem(5, "Pentatonic Minor (Blues)", 
-                true, false, false, true, false, true, true, true, false, false, true, false, 
+            scaleList.Add(new ScaleItem(5, "Pentatonic Minor (Blues)",
+                true, false, false, true, false, true, true, true, false, false, true, false,
                 ""));
-            scaleList.Add(new ScaleItem(6, "Melodic Minor", 
-                true, false, true, true, false, true, false, true, false, true, false, true, 
+            scaleList.Add(new ScaleItem(6, "Melodic Minor",
+                true, false, true, true, false, true, false, true, false, true, false, true,
                     "The melodic minor scale is based on the natural minor with the sixth and seventh tones raised by a semitone (half step) when the scale is ascending. When the scale is descending, the melodic minor is the same as the natural minor"));
-            scaleList.Add(new ScaleItem(8, "Whole Tone", 
-                true, false, true, false, true, false, true, false, true, false, true, false, 
+            scaleList.Add(new ScaleItem(8, "Whole Tone",
+                true, false, true, false, true, false, true, false, true, false, true, false,
                 ""));
-            scaleList.Add(new ScaleItem(9, "Iwato", 
-                true, true, false, false, false, true, true, false, false, false, true, false, 
+            scaleList.Add(new ScaleItem(9, "Iwato",
+                true, true, false, false, false, true, true, false, false, false, true, false,
                 ""));
-            scaleList.Add(new ScaleItem(10, "Algerian", 
-                true, false, true, true, false, true, true, true, true, false, false, true, 
+            scaleList.Add(new ScaleItem(10, "Algerian",
+                true, false, true, true, false, true, true, true, true, false, false, true,
                 ""));
-            scaleList.Add(new ScaleItem(11, "Double Harmonic Major", 
-                true, false, true, true, false, true, true, false, true, true, false, true, 
+            scaleList.Add(new ScaleItem(11, "Double Harmonic Major",
+                true, false, true, true, false, true, true, false, true, true, false, true,
                 ""));
             scaleList.Add(new ScaleItem(12, "Persian",
                 true, true, false, false, true, true, true, false, true, false, false, true,
@@ -207,8 +207,8 @@ namespace Webprofusion.Scalex.Music
 
             scaleList.Add(new ScaleItem(14, "Phrygian Dominant", true, true, false, false, true, true, false, true, true, false, true, false, "5th Mode of the Harmonic Minor Scale"));
 
-            scaleList.Add(new ScaleItem(0, "Chromatic", 
-                true, true, true, true, true, true, true, true, true, true, true, true, 
+            scaleList.Add(new ScaleItem(0, "Chromatic",
+                true, true, true, true, true, true, true, true, true, true, true, true,
                 ""));
 
             CurrentScale = scaleList[0];

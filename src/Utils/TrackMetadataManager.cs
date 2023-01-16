@@ -45,7 +45,7 @@ namespace Scalex
             _resourceManager = new ResourceRequestManager(new HttpClient());
         }
 
-        public  async Task<TrackMetadata> GetTrackMetadata(string artist, string track)
+        public async Task<TrackMetadata> GetTrackMetadata(string artist, string track)
         {
             string url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=510d5833237825522124952ecb00465c&format=json&artist=" + artist + "&track=" + track;
 

@@ -27,7 +27,7 @@ namespace Scalex.Utils
         private Dictionary<string, byte[]> dataCache { get; set; }
 
         private ResourceRequestManager _resourceManager;
-        
+
 
         public ScoreServiceManager()
         {
@@ -120,7 +120,7 @@ namespace Scalex.Utils
             return null;
         }
 
- 
+
 
         private void LogMessage(string msg)
         {

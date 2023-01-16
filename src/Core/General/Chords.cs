@@ -122,20 +122,20 @@ namespace Webprofusion.Scalex.Music
             //http://johncomino.tripod.com/const.htm
 
             ChordDefinitions = new List<ChordDefinition>();
-            ChordDefinitions.Add(new ChordDefinition(ChordGroup.Major, "Major", "Maj", "", new int[] { 
-                (int)IntervalType.i01_1_Prime, 
-                (int)IntervalType.i05_3_MajorThird_DiminishedFourth, 
-                (int)IntervalType.i08_5_PerfectFifth 
+            ChordDefinitions.Add(new ChordDefinition(ChordGroup.Major, "Major", "Maj", "", new int[] {
+                (int)IntervalType.i01_1_Prime,
+                (int)IntervalType.i05_3_MajorThird_DiminishedFourth,
+                (int)IntervalType.i08_5_PerfectFifth
             }));
 
-            ChordDefinitions.Add(new ChordDefinition(ChordGroup.Minor, "Minor", "Min", "m", new int[] { 
+            ChordDefinitions.Add(new ChordDefinition(ChordGroup.Minor, "Minor", "Min", "m", new int[] {
                 (int)IntervalType.i01_1_Prime, (int)IntervalType.i04_b3_MinorThird, (int)IntervalType.i08_5_PerfectFifth
             }));
 
-            ChordDefinitions.Add(new ChordDefinition(ChordGroup.Augmented, "Augmented", "Aug", "aug", new int[] { 
-                (int)IntervalType.i01_1_Prime, 
-                (int)IntervalType.i05_3_MajorThird_DiminishedFourth, 
-                (int)IntervalType.i09_b6_AugmentedFifth_MinorSixth 
+            ChordDefinitions.Add(new ChordDefinition(ChordGroup.Augmented, "Augmented", "Aug", "aug", new int[] {
+                (int)IntervalType.i01_1_Prime,
+                (int)IntervalType.i05_3_MajorThird_DiminishedFourth,
+                (int)IntervalType.i09_b6_AugmentedFifth_MinorSixth
             }));
 
             ChordDefinitions.Add(new ChordDefinition(ChordGroup.Diminished, "Diminished", "Dim", "dim", new int[] { 1, 4, 7 }));
@@ -145,21 +145,21 @@ namespace Webprofusion.Scalex.Music
             ChordDefinitions.Add(new ChordDefinition(ChordGroup.Minor, "Minor Major Seventh", "mM7", "m(M7)", new int[] { 1, 4, 8, 12 }));
             ChordDefinitions.Add(new ChordDefinition(ChordGroup.Augmented, "Augmented Seventh", "Aug7", "aug7", new int[] { 1, 5, 9, 11 }));
             ChordDefinitions.Add(new ChordDefinition(ChordGroup.Augmented, "Augmented Ninth", "Aug9", "aug9", new int[] {
-                (int)IntervalType.i01_1_Prime, 
-                (int)IntervalType.i05_3_MajorThird_DiminishedFourth, 
-                (int)IntervalType.i09_b6_AugmentedFifth_MinorSixth, 
-                (int)IntervalType.i11_b7_AugmentedSixth_MinorSeventh, 
-                (int)IntervalType.i02_b2_MinorSecond 
+                (int)IntervalType.i01_1_Prime,
+                (int)IntervalType.i05_3_MajorThird_DiminishedFourth,
+                (int)IntervalType.i09_b6_AugmentedFifth_MinorSixth,
+                (int)IntervalType.i11_b7_AugmentedSixth_MinorSeventh,
+                (int)IntervalType.i02_b2_MinorSecond
         }));
 
             //TODO: special cases: C7 in open position drops 5th interval (8) in 1,5,8,11
             var dom7 = new ChordDefinition(ChordGroup.Dominant7th, "Dominant Seventh", "Dom7", "7", new int[] { 1, 5, 8, 11 });
-         
+
             //var dom7Variation = new ChordDefinitionVariation { VariationNote = Note.C, RemovedIntervals = new int[] { (int)IntervalType.i08_5_PerfectFifth }.ToList() };
             //hack because sharpkit not allowing int .ToList on safari
             var dom7Variation = new ChordDefinitionVariation { VariationNote = Note.C };
             var removedIntervals = new int[] { (int)IntervalType.i08_5_PerfectFifth };
-            dom7Variation.RemovedIntervals = new List<int>(); 
+            dom7Variation.RemovedIntervals = new List<int>();
             for (int i = 0; i < removedIntervals.Length; i++)
             {
                 dom7Variation.RemovedIntervals.Add(removedIntervals[i]);

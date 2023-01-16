@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 #if WINDOWS_UWP
 using Windows.Storage;
@@ -28,7 +26,7 @@ namespace Scalex.Utils
         public async Task<string> LoadCachedFileText(string filename)
         {
             return null;
-            #if __ANDROID__ || __IOS__ || __MACOS__
+#if __ANDROID__ || __IOS__ || __MACOS__
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var filePath = System.IO.Path.Combine(documentsPath, filename);
@@ -59,7 +57,7 @@ namespace Scalex.Utils
 
         public async void StoreCachedFileBytes(string filename, byte[] value)
         {
-            #if __ANDROID__ || __IOS__ || __MACOS__
+#if __ANDROID__ || __IOS__ || __MACOS__
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var filePath = System.IO.Path.Combine(documentsPath, filename);
             System.IO.File.WriteAllBytes(filePath, value);
@@ -74,7 +72,7 @@ namespace Scalex.Utils
         public async Task<byte[]> LoadCachedFileBytes(string filename)
         {
             return null;
-            #if __ANDROID__ || __IOS__ || __MACOS__
+#if __ANDROID__ || __IOS__ || __MACOS__
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var filePath = System.IO.Path.Combine(documentsPath, filename);

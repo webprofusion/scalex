@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Webprofusion.Scalex.Music;
 
@@ -137,8 +136,8 @@ namespace Webprofusion.Scalex.Guitar
 
         public string GetDiagramTitle()
         {
-            var title = $"{ GuitarModelSettings.ScaleManager.GetKeyName(GuitarModelSettings.EnableDiagramNoteNamesSharp).Trim()} {GuitarModelSettings.ScaleManager.CurrentScale.Name.Trim() } scale on {GuitarModelSettings.CurrentTuning.Name.Trim()}";
-            return title;            
+            var title = $"{GuitarModelSettings.ScaleManager.GetKeyName(GuitarModelSettings.EnableDiagramNoteNamesSharp).Trim()} {GuitarModelSettings.ScaleManager.CurrentScale.Name.Trim()} scale on {GuitarModelSettings.CurrentTuning.Name.Trim()}";
+            return title;
         }
 
         /// <summary>
@@ -297,7 +296,7 @@ namespace Webprofusion.Scalex.Guitar
 
         public ScaleItem GetScaleById(int id)
         {
-            
+
             return AllScales.FirstOrDefault(t => t.ID == id);
         }
 

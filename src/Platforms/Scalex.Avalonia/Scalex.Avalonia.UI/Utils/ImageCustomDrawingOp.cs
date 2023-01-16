@@ -54,7 +54,8 @@ namespace Scalex.UI.Utils
                             starty += img.Height;
                         }
                     }
-                    catch { 
+                    catch
+                    {
                         // failed to render, collection may be modified
                     }
                 }

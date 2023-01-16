@@ -2,18 +2,16 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using Avalonia.Threading;
 using Scalex.UI.Utils;
-using System;
-using Webprofusion.Scalex.Music;
 
 namespace Scalex.UI.Controls
 {
     public partial class ScaleDiagram : UserControl
     {
-        private Webprofusion.Scalex.Rendering.ScaleDiagramRenderer _diagramRenderer;
+        private Webprofusion.Scalex.Rendering.ScaleDiagramRenderer? _diagramRenderer;
 
-        private DigramRenderingDrawOp _customDrawingOp;
+        private DigramRenderingDrawOp? _customDrawingOp;
+
         public ScaleDiagram()
         {
             InitializeComponent();
@@ -27,11 +25,6 @@ namespace Scalex.UI.Controls
 
             _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 3);
 
-            /*  AddHandler(PointerPressedEvent, (object sender, Avalonia.Input.PointerPressedEventArgs e) =>
-              {
-
-              }, Avalonia.Interactivity.RoutingStrategies.Tunnel, handledEventsToo: true);
-            */
         }
 
         protected override void OnPointerPressed(Avalonia.Input.PointerPressedEventArgs e)
@@ -39,7 +32,6 @@ namespace Scalex.UI.Controls
             base.OnPointerPressed(e);
             var point = e.GetCurrentPoint(this);
             var pos = e.GetPosition(this);
-
 
             float scaling = 3;
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Webprofusion.Scalex.Guitar;
+﻿using Webprofusion.Scalex.Guitar;
 
 namespace Scalex.UI.ViewModels
 {
@@ -19,8 +16,9 @@ namespace Scalex.UI.ViewModels
             GuitarModel.FretMarkerStyle = FretMarkerStyle.Dots;
             GuitarModel.EnableNoteNames = false;
             GuitarModel.GuitarModelSettings.EnableDiagramNoteSequence = true;
-           // GuitarModel.GuitarModelSettings.EnableFretboardBackgroundFill = true;
+            // GuitarModel.GuitarModelSettings.EnableFretboardBackgroundFill = true;
 
         }
+
     }
 }

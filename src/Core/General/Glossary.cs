@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Webprofusion.Scalex.General
 {
     public class GlossaryItem
     {
-        public string Keyword { get;  set; }
+        public string Keyword { get; set; }
         public string Description { get; set; }
     }
 
@@ -19,9 +16,11 @@ namespace Webprofusion.Scalex.General
             GlossaryItems = new List<GlossaryItem>();
 
             //http://www.music.vt.edu/musicdictionary/textt/Tonic.html
-            GlossaryItems.Add(new GlossaryItem { 
+            GlossaryItems.Add(new GlossaryItem
+            {
                 Keyword = "Tonic",
-                Description="The first, root or key note of a scale or chord."}
+                Description = "The first, root or key note of a scale or chord."
+            }
                 );
 
         }

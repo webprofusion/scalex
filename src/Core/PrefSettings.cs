@@ -9,7 +9,7 @@ namespace Webprofusion.Scalex
     /// </summary>
     public class PrefSettings
     {
-   
+
         public int StringSpacing { get; set; }
         public int NumberFrets { get; set; }
         public static int MaxNumberFrets = 26;

@@ -1,5 +1,3 @@
-using AlphaTab;
-using AlphaTab.Rendering;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -61,19 +59,19 @@ namespace Scalex.UI.Controls
         bool isFirstPass = true;
         public override void Render(Avalonia.Media.DrawingContext context)
         {
-          
+
 
             base.Render(context);
 
-   
+
 
             //if (!_isRenderInProgress && !isFirstPass)
             // {
             if (partialImages?.Any() == true)
-                {
-                    context.Custom(new ImageCustomDrawingOp(new Rect(0, 0, Bounds.Width, Bounds.Height), partialImages));
-                }
-           // }
+            {
+                context.Custom(new ImageCustomDrawingOp(new Rect(0, 0, Bounds.Width, Bounds.Height), partialImages));
+            }
+            // }
 
             if (isFirstPass)
             {
@@ -139,11 +137,11 @@ namespace Scalex.UI.Controls
                 var totalWidth = 0;
                 var totalHeight = 0;
 
-             
+
 
                 renderer.PreRender.On(isResize =>
                 {
-                   
+
                     totalWidth = 0;
                     totalHeight = 0;
                 });

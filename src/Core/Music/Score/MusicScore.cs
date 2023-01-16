@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Xml;
 //using System.Data;
 
 namespace Webprofusion.Scalex.Music.Score
