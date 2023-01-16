@@ -8,9 +8,25 @@ namespace Scalex.UI
 {
     public partial class App : Application
     {
+        private IAppSettingsPprovider? _appSettingsProvider;
+
+        public App() : base()
+        {
+
+        }
+
+        public App(IAppSettingsPprovider settingsProvider) : base()
+        {
+            _appSettingsProvider = settingsProvider;
+        }
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
+        }
+
+        public IAppSettingsPprovider GetSettingsProvider()
+        {
+            return _appSettingsProvider;
         }
 
         public override void OnFrameworkInitializationCompleted()
@@ -29,7 +45,7 @@ namespace Scalex.UI
                     DataContext = new MainViewModel()
                 };
             }
-      
+
             base.OnFrameworkInitializationCompleted();
         }
     }

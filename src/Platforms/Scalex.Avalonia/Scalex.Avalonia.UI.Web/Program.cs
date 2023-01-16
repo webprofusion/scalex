@@ -1,30 +1,34 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Avalonia;
+using Avalonia.ReactiveUI;
+using Avalonia.Web;
+using Scalex.UI;
 using Scalex.UI.Web;
+using System.Runtime.InteropServices.JavaScript;
+using System.Runtime.Versioning;
+using System.Threading.Tasks;
 
+[assembly: SupportedOSPlatform("browser")]
 
-public class Program
+internal partial class Program
 {
-    public static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
-        await CreateHostBuilder(args).Build().RunAsync();
+        var appBuilder = await BuildAvaloniaApp();
+
+        appBuilder
+            .UseReactiveUI()
+            .SetupBrowserApp("out");
     }
 
-    public static WebAssemblyHostBuilder CreateHostBuilder(string[] args)
+    public static async Task<AppBuilder> BuildAvaloniaApp()
     {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            
-        builder.RootComponents.Add<App>("#app");
-        
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+        await JSHost.ImportAsync("./store.js", "./store.js");
 
-        return builder;
+        return AppBuilder.Configure<App>(() =>
+        {
+            var app = new App(new SettingsProvider());
+            return app;
+        });
     }
+
 }
-
-
-
-

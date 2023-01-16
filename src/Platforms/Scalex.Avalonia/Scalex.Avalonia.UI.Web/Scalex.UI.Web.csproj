@@ -1,37 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
-		<WasmMainJSPath>main.js</WasmMainJSPath>
-		<OutputType>Exe</OutputType>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<MSBuildEnableWorkloadResolver>true</MSBuildEnableWorkloadResolver>
-		<WasmBuildNative>true</WasmBuildNative>
-		<EmccFlags>-sVERBOSE -sERROR_ON_UNDEFINED_SYMBOLS=0</EmccFlags>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<RunAOTCompilation>true</RunAOTCompilation>
-		<PublishTrimmed>true</PublishTrimmed>
-		<TrimMode>full</TrimMode>
-		<WasmBuildNative>true</WasmBuildNative>
-		<InvariantGlobalization>true</InvariantGlobalization>
-		<WasmEnableSIMD>true</WasmEnableSIMD>
-		<EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
-		<EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
-	</PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <WasmMainJSPath>AppBundle\main.js</WasmMainJSPath>
+    <OutputType>Exe</OutputType>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Skia" Version="11.0.0-preview3" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0" PrivateAssets="all" />
-    <PackageReference Include="Avalonia.Web.Blazor" Version="11.0.0-preview3" />
-    <PackageReference Include="SkiaSharp" Version="2.88.3" />
-    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="2.88.3" />
+    <WasmExtraFilesToDeploy Include="AppBundle\**" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Web" Version="11.0.0-preview4" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
   </ItemGroup>
-
 </Project>
