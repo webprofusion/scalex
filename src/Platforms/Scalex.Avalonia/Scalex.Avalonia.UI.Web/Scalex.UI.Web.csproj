@@ -1,21 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
-    <WasmMainJSPath>AppBundle\main.js</WasmMainJSPath>
-    <OutputType>Exe</OutputType>
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+		<WasmMainJSPath>AppBundle\main.js</WasmMainJSPath>
+		<OutputType>Exe</OutputType>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<MSBuildEnableWorkloadResolver>true</MSBuildEnableWorkloadResolver>
+		<WasmBuildNative>true</WasmBuildNative>
+		<EmccFlags>-sVERBOSE -sERROR_ON_UNDEFINED_SYMBOLS=0</EmccFlags>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <WasmExtraFilesToDeploy Include="AppBundle\**" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<RunAOTCompilation>true</RunAOTCompilation>
+		<PublishTrimmed>true</PublishTrimmed>
+		<TrimMode>full</TrimMode>
+		<WasmBuildNative>true</WasmBuildNative>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<EmccCompileOptimizationFlag>-O2</EmccCompileOptimizationFlag>
+		<EmccLinkOptimizationFlag>-O2</EmccLinkOptimizationFlag>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia.Web" Version="11.0.0-preview4" />
-  </ItemGroup>
+	<ItemGroup>
+		<WasmExtraFilesToDeploy Include="AppBundle\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia.Web" Version="11.0.0-preview4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
+	</ItemGroup>
 </Project>
