@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
-    <AvaloniaVersion>0.10.12</AvaloniaVersion>
+    <AvaloniaVersion>11.0.0-preview6</AvaloniaVersion>
   </PropertyGroup>
   <ItemGroup>    
     <AvaloniaResource Include="Assets\**" />
@@ -14,14 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.0-preview4" />    
+    <PackageReference Include="Avalonia" Version="11.0.0-preview6" />    
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Skia" Version="11.0.0-preview4" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview4" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview6" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview6" />
+    <PackageReference Include="Avalonia.Skia" Version="11.0.0-preview6" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview6" />
     <PackageReference Include="SkiaSharp" Version="2.88.3" />
-	<PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Scalex.Core.csproj" />

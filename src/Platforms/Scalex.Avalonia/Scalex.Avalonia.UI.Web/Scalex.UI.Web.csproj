@@ -18,6 +18,7 @@
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<EmccCompileOptimizationFlag>-O2</EmccCompileOptimizationFlag>
 		<EmccLinkOptimizationFlag>-O2</EmccLinkOptimizationFlag>
+		<SuppressTrimAnalysisWarnings>false</SuppressTrimAnalysisWarnings>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,7 +26,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia.Web" Version="11.0.0-preview4" />
+		<PackageReference Include="Avalonia.Browser" Version="11.0.0-preview6" />
 	</ItemGroup>
 
 	<ItemGroup>

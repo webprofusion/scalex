@@ -1,11 +1,11 @@
-﻿using Avalonia;
+﻿using System.Runtime.Versioning;
+using Avalonia;
+using Avalonia.Browser;
 using Avalonia.ReactiveUI;
-using Avalonia.Web;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices.JavaScript;
 using Scalex.UI;
 using Scalex.UI.Web;
-using System.Runtime.InteropServices.JavaScript;
-using System.Runtime.Versioning;
-using System.Threading.Tasks;
 
 [assembly: SupportedOSPlatform("browser")]
 
@@ -15,11 +15,9 @@ internal partial class Program
     {
         var appBuilder = await BuildAvaloniaApp();
 
-        appBuilder
-            .UseReactiveUI()
-            .SetupBrowserApp("out");
+        await appBuilder.UseReactiveUI()
+                .StartBrowserAppAsync("out");
     }
-
     public static async Task<AppBuilder> BuildAvaloniaApp()
     {
         await JSHost.ImportAsync("./store.js", "./store.js");

@@ -7,8 +7,15 @@ namespace Scalex.UI
 {
     public class ViewLocator : IDataTemplate
     {
-        public IControl Build(object data)
+#if (AvaloniaStableChosen)
+    public IControl Build(object data)
+#else
+        public Control Build(object data)
+#endif
         {
+            if (data is null)
+                return null;
+
             var name = data.GetType().FullName!.Replace("ViewModel", "View");
             var type = Type.GetType(name);
 
@@ -16,13 +23,11 @@ namespace Scalex.UI
             {
                 return (Control)Activator.CreateInstance(type)!;
             }
-            else
-            {
-                return new TextBlock { Text = "Not Found: " + name };
-            }
+
+            return new TextBlock { Text = name };
         }
 
-        public bool Match(object data)
+        public bool Match(object? data)
         {
             return data is ViewModelBase;
         }
