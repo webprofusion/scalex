@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows10.0.22621.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <RootNamespace>Scalex.UI.Windows</RootNamespace>
-    <AvaloniaVersion>0.10.12</AvaloniaVersion>
+
 	<!--Avalonia doesen't support TrimMode=link currently,but we are working on that https://github.com/AvaloniaUI/Avalonia/issues/6892 -->
 	<TrimMode>copyused</TrimMode>
 	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
@@ -17,13 +17,13 @@
 	<TrimmableAssembly Include="Avalonia.Themes.Default" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview6" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-rc1.1" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview6" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview6" />
-    <PackageReference Include="Avalonia.Skia" Version="11.0.0-preview6" />
-    <PackageReference Include="SkiaSharp" Version="2.88.3" />
-    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="2.88.3" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-rc1.1" />
+    <PackageReference Include="Avalonia.Skia" Version="11.0.0-rc1.1" />
+    <PackageReference Include="SkiaSharp" Version="2.88.4-preview.70" />
+    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="2.88.4-preview.70" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />

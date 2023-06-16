@@ -95,7 +95,7 @@ namespace Scalex.UI.Controls
 
         private async Task<AlphaTab.Model.Score> GetTestScore()
         {
-            var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+            /*var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
             var stream = assets.Open(new Uri("avares://Scalex.UI/Assets/TestFiles/bends.gp4"));
             byte[] scoreBytes;
             using (var memoryStream = new MemoryStream())
@@ -104,7 +104,8 @@ namespace Scalex.UI.Controls
                 scoreBytes = memoryStream.ToArray();
             }
             var score = AlphaTab.Importer.ScoreLoader.LoadScoreFromBytes(scoreBytes);
-            return score;
+            return score;*/
+            return null;
         }
 
         private async Task LoadScore()

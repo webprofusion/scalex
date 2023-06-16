@@ -1,6 +1,5 @@
 ﻿using Avalonia;
 using Avalonia.Browser;
-using Avalonia.ReactiveUI;
 using Scalex.UI;
 using Scalex.UI.Web;
 using System.Runtime.InteropServices.JavaScript;
@@ -15,7 +14,7 @@ internal partial class Program
     {
         var appBuilder = await BuildAvaloniaApp();
 
-        await appBuilder.UseReactiveUI()
+        await appBuilder
                 .StartBrowserAppAsync("out");
     }
     public static async Task<AppBuilder> BuildAvaloniaApp()

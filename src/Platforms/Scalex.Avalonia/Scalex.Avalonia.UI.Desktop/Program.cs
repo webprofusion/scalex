@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.ReactiveUI;
+using Scalex.UI.Windows;
 using System;
 
 namespace Scalex.UI.Desktop
@@ -15,7 +16,9 @@ namespace Scalex.UI.Desktop
 
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>()
+            => AppBuilder.Configure<App>(() => {
+                return new App(new SettingsProvider());
+            })
                 .UsePlatformDetect()
 
                 .LogToTrace()

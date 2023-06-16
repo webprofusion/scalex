@@ -14,16 +14,16 @@ namespace Scalex.UI.Views
             InitializeComponent();
 
             _suspendSettingsChanges = true;
-            scaleList.Items = MainViewModel.GuitarModel.AllScales;
+            scaleList.ItemsSource = MainViewModel.GuitarModel.AllScales;
             scaleList.SelectedIndex = 0;
 
-            tuningList.Items = MainViewModel.GuitarModel.AllTunings;
+            tuningList.ItemsSource = MainViewModel.GuitarModel.AllTunings;
             tuningList.SelectedIndex = 0;
 
-            keyList.Items = MainViewModel.GuitarModel.AllKeys;
+            keyList.ItemsSource = MainViewModel.GuitarModel.AllKeys;
             keyList.SelectedIndex = 0;
 
-            chordGroups.Items = MainViewModel.GuitarModel.GetAllChordDefinitions();
+            chordGroups.ItemsSource = MainViewModel.GuitarModel.GetAllChordDefinitions();
             chordGroups.SelectedIndex = 0;
 
             LoadSettings();

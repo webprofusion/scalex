@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Skia;
@@ -26,9 +27,9 @@ namespace Scalex.UI.Utils
         public Rect Bounds { get; }
         public bool HitTest(Point p) => false;
         public bool Equals(ICustomDrawOperation other) => false;
-        public void Render(IDrawingContextImpl context)
+        public void Render(ImmediateDrawingContext context)
         {
-            var leaseFeature = context.GetFeature<ISkiaSharpApiLeaseFeature>();
+            var leaseFeature = context.TryGetFeature<ISkiaSharpApiLeaseFeature>();
             if (leaseFeature == null)
                 return;
             using var lease = leaseFeature.Lease();

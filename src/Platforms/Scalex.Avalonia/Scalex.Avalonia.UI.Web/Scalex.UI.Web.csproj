@@ -5,20 +5,6 @@
 		<WasmMainJSPath>AppBundle\main.js</WasmMainJSPath>
 		<OutputType>Exe</OutputType>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<MSBuildEnableWorkloadResolver>true</MSBuildEnableWorkloadResolver>
-		<WasmBuildNative>true</WasmBuildNative>
-		<EmccFlags>-sVERBOSE -sERROR_ON_UNDEFINED_SYMBOLS=0</EmccFlags>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<RunAOTCompilation>true</RunAOTCompilation>
-		<PublishTrimmed>true</PublishTrimmed>
-		<TrimMode>full</TrimMode>
-		<WasmBuildNative>true</WasmBuildNative>
-		<InvariantGlobalization>true</InvariantGlobalization>
-		<EmccCompileOptimizationFlag>-O2</EmccCompileOptimizationFlag>
-		<EmccLinkOptimizationFlag>-O2</EmccLinkOptimizationFlag>
-		<SuppressTrimAnalysisWarnings>false</SuppressTrimAnalysisWarnings>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,7 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia.Browser" Version="11.0.0-preview6" />
+		<PackageReference Include="Avalonia.Browser" Version="11.0.0-rc1.1" />
 	</ItemGroup>
 
 	<ItemGroup>

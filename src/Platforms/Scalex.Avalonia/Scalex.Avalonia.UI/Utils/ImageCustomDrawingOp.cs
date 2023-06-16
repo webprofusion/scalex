@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Skia;
@@ -30,7 +31,12 @@ namespace Scalex.UI.Utils
         public bool Equals(ICustomDrawOperation other) => false;
         public void Render(IDrawingContextImpl context)
         {
-            var leaseFeature = context.GetFeature<ISkiaSharpApiLeaseFeature>();
+            
+        }
+
+        public void Render(ImmediateDrawingContext context)
+        {
+            var leaseFeature = context.TryGetFeature<ISkiaSharpApiLeaseFeature>();
             if (leaseFeature == null)
                 return;
             using var lease = leaseFeature.Lease();
