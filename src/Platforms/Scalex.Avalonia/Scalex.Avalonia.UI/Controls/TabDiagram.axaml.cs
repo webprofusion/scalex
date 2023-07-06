@@ -22,7 +22,7 @@ namespace Scalex.UI.Controls
         bool _isRenderInProgress = false;
 
         Rect _currentBounds;
-        AlphaTab.Model.Score _score;
+        AlphaTab.Model.Score? _score;
 
         public TabDiagram()
         {
@@ -60,18 +60,12 @@ namespace Scalex.UI.Controls
         public override void Render(Avalonia.Media.DrawingContext context)
         {
 
-
             base.Render(context);
 
-
-
-            //if (!_isRenderInProgress && !isFirstPass)
-            // {
             if (partialImages?.Any() == true)
             {
                 context.Custom(new ImageCustomDrawingOp(new Rect(0, 0, Bounds.Width, Bounds.Height), partialImages));
             }
-            // }
 
             if (isFirstPass)
             {
@@ -95,24 +89,24 @@ namespace Scalex.UI.Controls
 
         private async Task<AlphaTab.Model.Score> GetTestScore()
         {
-            /*var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-            var stream = assets.Open(new Uri("avares://Scalex.UI/Assets/TestFiles/bends.gp4"));
+            var a = AssetLoader.OpenAndGetAssembly(new Uri("avares://Scalex.UI/Assets/TestFiles/bends.gp4"));
+        
             byte[] scoreBytes;
             using (var memoryStream = new MemoryStream())
             {
-                stream.CopyTo(memoryStream);
+                await a.stream.CopyToAsync(memoryStream);
                 scoreBytes = memoryStream.ToArray();
             }
             var score = AlphaTab.Importer.ScoreLoader.LoadScoreFromBytes(scoreBytes);
-            return score;*/
-            return null;
+            return score;
+ 
         }
 
         private async Task LoadScore()
         {
             _isRenderInProgress = true;
             var trackIndex = 0;
-
+            
             if (!_isScoreLoaded)
             {
                 _isScoreLoaded = true;
@@ -127,6 +121,8 @@ namespace Scalex.UI.Controls
                 // render score with svg engine and desired rendering width
                 var settings = new AlphaTab.Settings();
                 settings.Core.Engine = "skia";
+                settings.Core.EnableLazyLoading = false;
+
                 settings.Display.Scale = 1;
 
                 var renderer = new AlphaTab.Rendering.ScoreRenderer(settings)
@@ -134,30 +130,23 @@ namespace Scalex.UI.Controls
                     Width = 970// this.Bounds.Width
                 };
 
-
                 var totalWidth = 0;
                 var totalHeight = 0;
 
-
-
                 renderer.PreRender.On(isResize =>
-                {
-
+                { 
                     totalWidth = 0;
                     totalHeight = 0;
                 });
-
+         
                 renderer.Error.On(e =>
                 {
-
                     System.Diagnostics.Debug.WriteLine(e);
-
                 });
                 renderer.PartialRenderFinished.On(e =>
                 {
                     System.Diagnostics.Debug.WriteLine(e);
-                    // request this render result when finished.
-                    //renderer.RenderResult(e.Id);
+
                 });
                 renderer.PartialRenderFinished.On(r =>
                 {
@@ -166,15 +155,24 @@ namespace Scalex.UI.Controls
                         partialImages.Add((SKImage)r.RenderResult);
                     }
                 });
+                
+        
                 renderer.RenderFinished.On(r =>
                 {
+                    
                     totalWidth = (int)r.TotalWidth;
                     totalHeight = (int)r.TotalHeight;
 
                     this.Height = totalHeight;
                     this.Width = totalWidth;
                     _isRenderInProgress = false;
+    
+                    if (r.RenderResult is SKImage skImg) {
+                        this.partialImages.Add(skImg);
+                    }
+                    
                 });
+
                 renderer.RenderScore(_score, new double[] { track.Index });
             }
 

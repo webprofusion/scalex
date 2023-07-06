@@ -6,12 +6,12 @@ using Avalonia.Skia;
 
 namespace Scalex.UI.Utils
 {
-    class DigramRenderingDrawOp : ICustomDrawOperation
+    class DiagramRenderingDrawOp : ICustomDrawOperation
     {
         private Webprofusion.Scalex.Rendering.Generic2DRenderer _diagramRenderer;
         private float _scale = 3;
 
-        public DigramRenderingDrawOp(Rect bounds, Webprofusion.Scalex.Rendering.Generic2DRenderer diagramRenderer, float scale = 3)
+        public DiagramRenderingDrawOp(Rect bounds, Webprofusion.Scalex.Rendering.Generic2DRenderer diagramRenderer, float scale = 3)
         {
             Bounds = bounds;
             _diagramRenderer = diagramRenderer;

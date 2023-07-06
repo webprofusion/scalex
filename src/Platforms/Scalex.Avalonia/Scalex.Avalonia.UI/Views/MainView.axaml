@@ -1,82 +1,101 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="clr-namespace:Scalex.UI.ViewModels"
-			 xmlns:controls="clr-namespace:Scalex.UI.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Scalex.UI.Views.MainView"
-             Foreground="White"
-             Background="Transparent">
-	<Design.DataContext>
-		<viewModels:MainViewModel />
-	</Design.DataContext>
+<UserControl
+    x:Class="Scalex.UI.Views.MainView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Scalex.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Scalex.UI.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="Transparent"
+    Foreground="White"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <viewModels:MainViewModel />
+    </Design.DataContext>
 
-	<StackPanel Margin="8">
-		<StackPanel Orientation="Horizontal">
-			<ComboBox x:Name="tuningList"   SelectedIndex="0" SelectionChanged="TuningList_SelectionChanged">
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding Name}"/>
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
-			</ComboBox>
+    <StackPanel Margin="8">
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="{Binding AppTitle}" />
 
-		</StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <ComboBox
+                x:Name="tuningList"
+                SelectedIndex="0"
+                SelectionChanged="TuningList_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-		<TextBlock Text="{Binding AppTitle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-		<TabControl>
-
-			<TabItem>
-				<TabItem.Header>
-					<TextBlock VerticalAlignment="Center">Scales</TextBlock>
-				</TabItem.Header>
-				<StackPanel>
-					<StackPanel Orientation="Horizontal">
+        </StackPanel>
 
 
-						<ComboBox x:Name="keyList"   SelectedIndex="0" SelectionChanged="KeyList_SelectionChanged">
-							<ComboBox.ItemTemplate>
-								<DataTemplate>
-									<TextBlock Text="{Binding}"/>
-								</DataTemplate>
-							</ComboBox.ItemTemplate>
-						</ComboBox>
-						<ComboBox x:Name="scaleList"   SelectedIndex="0" SelectionChanged="ScaleList_SelectionChanged">
-							<ComboBox.ItemTemplate>
-								<DataTemplate>
-									<TextBlock Text="{Binding Name}"/>
-								</DataTemplate>
-							</ComboBox.ItemTemplate>
-						</ComboBox>
-					</StackPanel>
-					<ScrollViewer HorizontalScrollBarVisibility="Auto" >
-						<controls:ScaleDiagram x:Name="scaleDiagram"></controls:ScaleDiagram>
-					</ScrollViewer>
-				</StackPanel>
-			</TabItem>
-			<TabItem>
-				<TabItem.Header>
-					<TextBlock VerticalAlignment="Center">Chords</TextBlock>
-				</TabItem.Header>
-				<StackPanel >
-					<StackPanel>
-						<ComboBox x:Name="chordGroups"   SelectedIndex="0" SelectionChanged="ChordGroup_SelectionChanged">
-							<ComboBox.ItemTemplate>
-								<DataTemplate>
-									<TextBlock Text="{Binding ShortName}"/>
-								</DataTemplate>
-							</ComboBox.ItemTemplate>
-						</ComboBox>
-					</StackPanel>
-					<ScrollViewer HorizontalScrollBarVisibility="Auto">
-						<controls:ChordDiagram x:Name="chordDiagram"></controls:ChordDiagram>
-					</ScrollViewer>
-				</StackPanel>
-			</TabItem>
-			<!--
-			<TabItem>
+        <TabControl>
+
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock VerticalAlignment="Center">Scales</TextBlock>
+                </TabItem.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+
+
+                        <ComboBox
+                            x:Name="keyList"
+                            SelectedIndex="0"
+                            SelectionChanged="KeyList_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox
+                            x:Name="scaleList"
+                            SelectedIndex="0"
+                            SelectionChanged="ScaleList_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <controls:ScaleDiagram x:Name="scaleDiagram" />
+                    </ScrollViewer>
+                </StackPanel>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock VerticalAlignment="Center">Chords</TextBlock>
+                </TabItem.Header>
+                <StackPanel>
+                    <StackPanel>
+                        <ComboBox
+                            x:Name="chordGroups"
+                            SelectedIndex="0"
+                            SelectionChanged="ChordGroup_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ShortName}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <controls:ChordDiagram x:Name="chordDiagram" />
+                    </ScrollViewer>
+                </StackPanel>
+            </TabItem>
+
+            <!--<TabItem>
 				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Tablature</TextBlock>
 				</TabItem.Header>
@@ -88,7 +107,8 @@
 				
 			</TabItem>
 			-->
-			<!--
+
+            <!--
 			<TabItem>
 				<TabItem.Header>
 					<TextBlock VerticalAlignment="Center">Settings</TextBlock>
@@ -98,8 +118,8 @@
 				
 			</TabItem>
 			-->
-		</TabControl>
+        </TabControl>
 
 
-	</StackPanel>
+    </StackPanel>
 </UserControl>

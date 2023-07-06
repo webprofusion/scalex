@@ -13,7 +13,7 @@ namespace Scalex.UI.Controls
 
         private Webprofusion.Scalex.Rendering.ChordDiagramRenderer _diagramRenderer;
 
-        private DigramRenderingDrawOp _customDrawingOp;
+        private DiagramRenderingDrawOp _customDrawingOp;
 
         public ChordDiagram()
         {
@@ -25,7 +25,7 @@ namespace Scalex.UI.Controls
             AvaloniaXamlLoader.Load(this);
 
             _diagramRenderer = new Webprofusion.Scalex.Rendering.ChordDiagramRenderer(ViewModels.MainViewModel.GuitarModel);
-            _customDrawingOp = new DigramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 1.5f);
+            _customDrawingOp = new DiagramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 1.5f);
 
         }
 
