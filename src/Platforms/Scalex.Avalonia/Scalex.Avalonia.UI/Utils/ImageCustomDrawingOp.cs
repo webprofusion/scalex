@@ -31,7 +31,7 @@ namespace Scalex.UI.Utils
         public bool Equals(ICustomDrawOperation other) => false;
         public void Render(IDrawingContextImpl context)
         {
-            
+
         }
 
         public void Render(ImmediateDrawingContext context)

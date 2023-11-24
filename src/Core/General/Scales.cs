@@ -254,6 +254,11 @@ namespace Webprofusion.Scalex.Music
             }
         }
 
+        public void SetScale(ScaleItem scaleItem)
+        {
+            CurrentScale = scaleItem;
+        }
+
         public void SetKey(String myKey)
         {
             CurrentKey = NoteManager.GetNoteByName(myKey);

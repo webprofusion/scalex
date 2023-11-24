@@ -179,12 +179,6 @@ namespace Webprofusion.Scalex.Guitar
             set { SetKey(value); }
         }
 
-        public bool EnableNoteNames
-        {
-            get { return GuitarModelSettings.EnableDiagramNoteNames; }
-            set { GuitarModelSettings.EnableDiagramNoteNames = value; }
-        }
-
         /// <summary>
         /// Reapplies guitar string settings from current GuitarModelSettings values 
         /// </summary>
@@ -269,6 +263,18 @@ namespace Webprofusion.Scalex.Guitar
         public void SetScale(string scale)
         {
             GuitarModelSettings.ScaleManager.SetScale(scale);
+            RefreshStringSettings();
+        }
+
+        /// <summary>
+        /// Set scale from chord definition (arpeggio)
+        /// </summary>
+        /// <param name="arp"></param>
+        public void SetScale(ChordDefinition arp)
+        {
+
+            var selectedScale = new ScaleItem(arp.Name, arp.IntervalList.ToArray());
+            GuitarModelSettings.ScaleManager.SetScale(selectedScale);
             RefreshStringSettings();
         }
 

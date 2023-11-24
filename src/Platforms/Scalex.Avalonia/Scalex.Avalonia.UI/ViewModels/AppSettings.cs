@@ -7,6 +7,9 @@
         public int? SelectedTuning { get; set; }
 
         public string? SelectedKey { get; set; }
+
+        public int? SelectedArpeggio { get; set; }
+        public string? SelectedArpeggioKey { get; set; }
     }
 
     public interface IAppSettingsPprovider

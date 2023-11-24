@@ -58,9 +58,6 @@
     <AOTMode>None</AOTMode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AlphaTab, Version=0.9.7.354, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaTab.0.9.7.354\lib\netstandard2.0\AlphaTab.dll</HintPath>
-    </Reference>
     <Reference Include="FFImageLoading, Version=2.4.11.982, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.FFImageLoading.2.4.11.982\lib\Xamarin.Mac20\FFImageLoading.dll</HintPath>
     </Reference>

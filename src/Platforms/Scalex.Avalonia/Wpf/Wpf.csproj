@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject>Wpf.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AlphaTab.Windows" Version="1.3.0-alpha.670" />
+    <PackageReference Include="AlphaTab.Windows" Version="1.3.0-alpha.784" />
   </ItemGroup>
 
 </Project>

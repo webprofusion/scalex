@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Scalex.UI.ViewModels;
+using System.Linq;
+using Webprofusion.Scalex;
 using Webprofusion.Scalex.Music;
 
 namespace Scalex.UI.Views
@@ -17,14 +19,27 @@ namespace Scalex.UI.Views
             scaleList.ItemsSource = MainViewModel.GuitarModel.AllScales;
             scaleList.SelectedIndex = 0;
 
+            arpScaleList.ItemsSource = MainViewModel.GuitarModel.GetAllChordDefinitions();
+            arpScaleList.SelectedIndex = 0;
+
+
             tuningList.ItemsSource = MainViewModel.GuitarModel.AllTunings;
             tuningList.SelectedIndex = 0;
 
             keyList.ItemsSource = MainViewModel.GuitarModel.AllKeys;
             keyList.SelectedIndex = 0;
 
+            arpKeyList.ItemsSource = MainViewModel.GuitarModel.AllKeys;
+            arpKeyList.SelectedIndex = 0;
+
             chordGroups.ItemsSource = MainViewModel.GuitarModel.GetAllChordDefinitions();
             chordGroups.SelectedIndex = 0;
+
+            markerModeList.ItemsSource = System.Enum.GetValues(typeof(NoteMarkerDisplayMode));
+            markerModeList.SelectedIndex = 0;
+
+            numberOfFrets.ItemsSource = new int[] { 12, 22, 24, 26 };
+            markerModeList.SelectedIndex = 0;
 
             LoadSettings();
             _suspendSettingsChanges = false;
@@ -44,6 +59,11 @@ namespace Scalex.UI.Views
         {
             if (_appSettings != null)
             {
+
+                MainViewModel.GuitarModel.GuitarModelSettings.NoteMarkerDisplayMode = Webprofusion.Scalex.NoteMarkerDisplayMode.NoteName;
+
+                MainViewModel.GuitarModel.SetNumberOfFrets(12);
+
                 if (_appSettings.SelectedScale != null)
                 {
                     MainViewModel.GuitarModel.SetScale((int)_appSettings.SelectedScale);
@@ -59,6 +79,15 @@ namespace Scalex.UI.Views
                     MainViewModel.GuitarModel.SetKey(_appSettings.SelectedKey);
                     keyList.SelectedItem = MainViewModel.GuitarModel.SelectedKey;
                 }
+
+                if (_appSettings.SelectedArpeggioKey != null)
+                {
+                    arpKeyList.SelectedItem = arpKeyList.Items.FirstOrDefault(x => (string)x == _appSettings.SelectedArpeggioKey);
+                }
+                if (_appSettings.SelectedArpeggio != null)
+                {
+                    arpScaleList.SelectedItem = arpScaleList.Items.FirstOrDefault(x => ((ChordDefinition)x).ID == _appSettings.SelectedArpeggio);
+                }
             }
         }
 
@@ -71,18 +100,81 @@ namespace Scalex.UI.Views
             }
         }
 
+        private void MainTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (mainTabControl?.SelectedIndex == null) return;
+
+            if (mainTabControl.SelectedIndex == 0)
+            {
+                var scale = scaleList.SelectedItem as Webprofusion.Scalex.Music.ScaleItem;
+                MainViewModel.GuitarModel.SetScale(scale.ID);
+                var key = keyList.SelectedItem as string;
+                MainViewModel.GuitarModel.SetKey(key);
+                this.scaleDiagram.InvalidateVisual();
+            }
+            else if (mainTabControl.SelectedIndex == 1)
+            {
+                var arpeggio = arpScaleList.SelectedItem as Webprofusion.Scalex.Music.ChordDefinition;
+                MainViewModel.GuitarModel.SetScale(arpeggio);
+                var key = arpKeyList.SelectedItem as string;
+                MainViewModel.GuitarModel.SetKey(key);
+                this.arpeggioDiagram.InvalidateVisual();
+            }
+            else if (mainTabControl.SelectedIndex == 2)
+            { }
+        }
+
+        private void MarkerMode_SelectionChange(object sender, SelectionChangedEventArgs e)
+        {
+            var markerMode = (NoteMarkerDisplayMode)markerModeList.SelectedItem;
+
+            MainViewModel.GuitarModel.GuitarModelSettings.NoteMarkerDisplayMode = markerMode;
+        }
+
+        private void Frets_SelectionChange(object sender, SelectionChangedEventArgs e)
+        {
+            var frets = numberOfFrets.SelectedItem as int?;
+
+            if (frets != null)
+            {
+                MainViewModel.GuitarModel.SetNumberOfFrets((int)frets);
+
+            }
+        }
 
         private void ScaleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var cb = e.Source as ComboBox;
-            var scale = cb.SelectedItem as Webprofusion.Scalex.Music.ScaleItem;
-            MainViewModel.GuitarModel.SetScale(scale.ID);
-            this.scaleDiagram.InvalidateVisual();
 
-            if (!_suspendSettingsChanges)
+            if (mainTabControl.SelectedIndex == 0)
             {
-                _appSettings.SelectedScale = scale.ID;
-                this.SaveSettings();
+                var cb = e.Source as ComboBox;
+                var scale = cb.SelectedItem as Webprofusion.Scalex.Music.ScaleItem;
+                MainViewModel.GuitarModel.SetScale(scale.ID);
+                this.scaleDiagram.InvalidateVisual();
+
+                if (!_suspendSettingsChanges)
+                {
+                    _appSettings.SelectedScale = scale.ID;
+                    this.SaveSettings();
+                }
+            }
+        }
+
+        private void ArpeggioScaleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (mainTabControl.SelectedIndex == 1)
+            {
+                var cb = e.Source as ComboBox;
+                var arpeggio = cb.SelectedItem as Webprofusion.Scalex.Music.ChordDefinition;
+
+                MainViewModel.GuitarModel.SetScale(arpeggio);
+                this.arpeggioDiagram.InvalidateVisual();
+
+                if (!_suspendSettingsChanges)
+                {
+                    _appSettings.SelectedArpeggio = arpeggio.ID;
+                    this.SaveSettings();
+                }
             }
         }
 
@@ -112,6 +204,20 @@ namespace Scalex.UI.Views
             if (!_suspendSettingsChanges)
             {
                 _appSettings.SelectedKey = key;
+                this.SaveSettings();
+            }
+        }
+
+        private void ArpeggioKeyList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cb = e.Source as ComboBox;
+            var key = cb.SelectedItem as string;
+            MainViewModel.GuitarModel.SetKey(key);
+            this.arpeggioDiagram.InvalidateVisual();
+
+            if (!_suspendSettingsChanges)
+            {
+                _appSettings.SelectedArpeggioKey = key;
                 this.SaveSettings();
             }
         }

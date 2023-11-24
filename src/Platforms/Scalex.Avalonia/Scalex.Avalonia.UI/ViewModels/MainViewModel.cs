@@ -14,10 +14,6 @@ namespace Scalex.UI.ViewModels
             GuitarModel.IsMultiScale = false;
             GuitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers = true;
             GuitarModel.FretMarkerStyle = FretMarkerStyle.Dots;
-            GuitarModel.EnableNoteNames = false;
-            GuitarModel.GuitarModelSettings.EnableDiagramNoteSequence = true;
-            // GuitarModel.GuitarModelSettings.EnableFretboardBackgroundFill = true;
-
         }
 
     }

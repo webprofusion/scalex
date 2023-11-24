@@ -22,10 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ResourceLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SkiaDrawingSurface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseDataObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\FileCache.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SongsterrModels.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\SongScores\ScoreServiceManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\SongScores\TrackMetadataManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -61,17 +57,8 @@
       <DependentUpon>ScalesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\TabBrowser.xaml.cs">
-      <DependentUpon>TabBrowser.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\TablaturePage.xaml.cs">
-      <DependentUpon>TablaturePage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Services\SongScores\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
   </ItemGroup>
   <ItemGroup>
@@ -82,12 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChordsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TablaturePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -123,12 +104,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Images\background.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\Lessons\lesson-goulding-lickofdoom.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Content\Lessons\mediaview.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TabBrowser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\PlaybackControl.xaml">

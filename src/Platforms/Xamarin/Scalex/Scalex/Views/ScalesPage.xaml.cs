@@ -1,6 +1,7 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
+using Webprofusion.Scalex.Guitar;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,14 +11,16 @@ namespace Scalex.Views
     public partial class ScalesPage : ContentPage
     {
         private Webprofusion.Scalex.Rendering.ScaleDiagramRenderer scaleDiagramRenderer;
+        private GuitarModel guitarModel = new GuitarModel();
 
         public ScalesPage()
         {
             InitializeComponent();
-            scaleDiagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer();
-            scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableDiagramTitle = false;
+            scaleDiagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(guitarModel);
+            /*scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableDiagramTitle = false;
             scaleDiagramRenderer.GuitarModel.IsMultiScale = false;
             scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableDisplacedFingeringMarkers = false;
+            */
             //scaleDiagramRenderer.GuitarModel.GuitarModelSettings.EnableFretboardBackgroundFill = true;
 
             //theme
@@ -39,7 +42,6 @@ namespace Scalex.Views
             SkiaDrawingSurface.ApplyThemeColours(scaleDiagramRenderer);
 
             //setup list of tunings
-            var guitarModel = scaleDiagramRenderer.GuitarModel;
 
             this.tuningPicker.ItemsSource = guitarModel.AllTunings;
             this.tuningPicker.SelectedIndex = 0;
@@ -55,7 +57,6 @@ namespace Scalex.Views
 
         private void SetPageTitle()
         {
-            var guitarModel = this.scaleDiagramRenderer.GuitarModel;
             this.Title = $"Scales - {guitarModel.SelectedKey} {guitarModel.SelectedScale.Name}";
         }
 
@@ -84,7 +85,7 @@ namespace Scalex.Views
             if (tuningPicker.SelectedIndex > -1)
             {
                 var tuning = (Webprofusion.Scalex.Guitar.GuitarTuning)tuningPicker.SelectedItem;
-                this.scaleDiagramRenderer.GuitarModel.SetTuning(tuning.ID);
+                guitarModel.SetTuning(tuning.ID);
                 SkiaCanvas.InvalidateSurface();
                 SetPageTitle();
             }
@@ -95,7 +96,7 @@ namespace Scalex.Views
             if (scalePicker.SelectedIndex > -1)
             {
                 var scale = (Webprofusion.Scalex.Music.ScaleItem)scalePicker.SelectedItem;
-                this.scaleDiagramRenderer.GuitarModel.SetScale(scale.ID);
+                guitarModel.SetScale(scale.ID);
                 SkiaCanvas.InvalidateSurface();
                 SetPageTitle();
             }
@@ -105,7 +106,7 @@ namespace Scalex.Views
         {
             if (keyPicker.SelectedIndex > -1)
             {
-                this.scaleDiagramRenderer.GuitarModel.SetKey(keyPicker.SelectedItem.ToString());
+                guitarModel.SetKey(keyPicker.SelectedItem.ToString());
                 SkiaCanvas.InvalidateSurface();
                 SetPageTitle();
             }

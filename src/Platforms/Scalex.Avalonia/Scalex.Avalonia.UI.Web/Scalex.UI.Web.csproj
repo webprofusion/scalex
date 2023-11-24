@@ -13,29 +13,16 @@
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<RunAOTCompilation>true</RunAOTCompilation>
-		<PublishTrimmed>true</PublishTrimmed>
+		<!--<PublishTrimmed>true</PublishTrimmed>
+		<TrimMode>full</TrimMode>-->
 		<WasmBuildNative>true</WasmBuildNative>
-		<TrimMode>full</TrimMode>
 		<InvariantGlobalization>true</InvariantGlobalization>
-		<EmccCompileOptimizationFlag>-Oz</EmccCompileOptimizationFlag>
-		<EmccLinkOptimizationFlag>-Oz</EmccLinkOptimizationFlag>
-		<WasmEmitSymbolMap>false</WasmEmitSymbolMap>
-		<WasmNativeDebugSymbols>false</WasmNativeDebugSymbols>
-		<WasmDebugLevel>0</WasmDebugLevel>
-		<WasmEnableExceptionHandling>false</WasmEnableExceptionHandling>
-		<TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
-		<DebuggerSupport>false</DebuggerSupport>
-		<EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
-		<EnableUnsafeUTF7Encoding>false</EnableUnsafeUTF7Encoding>
-		<EventSourceSupport>false</EventSourceSupport>
-		<HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
-		<MetadataUpdaterSupport>false</MetadataUpdaterSupport>
-		<UseNativeHttpHandler>true</UseNativeHttpHandler>
-		<UseSystemResourceKeys>true</UseSystemResourceKeys>
-		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-		<IncludeSatelliteDllsProjectOutputGroup>false</IncludeSatelliteDllsProjectOutputGroup>
+		<EmccCompileOptimizationFlag>-O2</EmccCompileOptimizationFlag>
+		<EmccLinkOptimizationFlag>-O2</EmccLinkOptimizationFlag>
+		<EmccFlags>-sERROR_ON_UNDEFINED_SYMBOLS=0</EmccFlags>
 
 	</PropertyGroup>
+
 
 
 	<ItemGroup>
@@ -43,7 +30,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia.Browser" Version="11.0.0" />
+		<PackageReference Include="Avalonia.Browser" Version="11.0.5" />
+
 	</ItemGroup>
 
 	<ItemGroup>

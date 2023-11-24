@@ -25,6 +25,7 @@ namespace Scalex.UI.Controls
 
             _customDrawingOp = new DiagramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 3);
 
+
         }
 
         protected override void OnPointerPressed(Avalonia.Input.PointerPressedEventArgs e)
@@ -44,7 +45,6 @@ namespace Scalex.UI.Controls
                 _diagramRenderer.HighlightNote(note.Value);
 
                 System.Diagnostics.Debug.WriteLine($"Fret:{note.Value.FretNumber} String:{note.Value.StringNumber + 1} Note:{note.Value.Note.ToString()}");
-                this.Width -= 0.0001;
             }
 
         }

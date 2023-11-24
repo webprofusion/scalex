@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34004.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scalex.Maui.UI", "Scalex.Maui.UI\Scalex.Maui.UI.csproj", "{48F1B1BF-4E04-4D88-8C27-B09E1DA13F0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Core", "..\..\..\Core\Scalex.Core.csproj", "{4E8F4001-F493-487D-8D5B-3F95EA0B8ABC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Rendering", "..\..\..\Rendering\Scalex.Rendering.csproj", "{52626B29-9E88-4420-990A-AFF17806C2FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scalex.Utils", "..\..\..\Utils\Scalex.Utils.csproj", "{CD5F6FD5-9CDB-4F4E-86A5-ABD25C1CAEBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48F1B1BF-4E04-4D88-8C27-B09E1DA13F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F1B1BF-4E04-4D88-8C27-B09E1DA13F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F1B1BF-4E04-4D88-8C27-B09E1DA13F0A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{48F1B1BF-4E04-4D88-8C27-B09E1DA13F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F1B1BF-4E04-4D88-8C27-B09E1DA13F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48F1B1BF-4E04-4D88-8C27-B09E1DA13F0A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4E8F4001-F493-487D-8D5B-3F95EA0B8ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8F4001-F493-487D-8D5B-3F95EA0B8ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8F4001-F493-487D-8D5B-3F95EA0B8ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8F4001-F493-487D-8D5B-3F95EA0B8ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52626B29-9E88-4420-990A-AFF17806C2FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52626B29-9E88-4420-990A-AFF17806C2FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52626B29-9E88-4420-990A-AFF17806C2FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52626B29-9E88-4420-990A-AFF17806C2FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD5F6FD5-9CDB-4F4E-86A5-ABD25C1CAEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD5F6FD5-9CDB-4F4E-86A5-ABD25C1CAEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD5F6FD5-9CDB-4F4E-86A5-ABD25C1CAEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD5F6FD5-9CDB-4F4E-86A5-ABD25C1CAEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74B52E33-1ACD-4352-AFCB-2355264E1D4C}
+	EndGlobalSection
+EndGlobal

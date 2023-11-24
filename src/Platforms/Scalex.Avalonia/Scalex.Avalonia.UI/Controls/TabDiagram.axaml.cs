@@ -90,7 +90,7 @@ namespace Scalex.UI.Controls
         private async Task<AlphaTab.Model.Score> GetTestScore()
         {
             var a = AssetLoader.OpenAndGetAssembly(new Uri("avares://Scalex.UI/Assets/TestFiles/bends.gp4"));
-        
+
             byte[] scoreBytes;
             using (var memoryStream = new MemoryStream())
             {
@@ -99,14 +99,14 @@ namespace Scalex.UI.Controls
             }
             var score = AlphaTab.Importer.ScoreLoader.LoadScoreFromBytes(scoreBytes);
             return score;
- 
+
         }
 
         private async Task LoadScore()
         {
             _isRenderInProgress = true;
             var trackIndex = 0;
-            
+
             if (!_isScoreLoaded)
             {
                 _isScoreLoaded = true;
@@ -134,11 +134,11 @@ namespace Scalex.UI.Controls
                 var totalHeight = 0;
 
                 renderer.PreRender.On(isResize =>
-                { 
+                {
                     totalWidth = 0;
                     totalHeight = 0;
                 });
-         
+
                 renderer.Error.On(e =>
                 {
                     System.Diagnostics.Debug.WriteLine(e);
@@ -155,22 +155,23 @@ namespace Scalex.UI.Controls
                         partialImages.Add((SKImage)r.RenderResult);
                     }
                 });
-                
-        
+
+
                 renderer.RenderFinished.On(r =>
                 {
-                    
+
                     totalWidth = (int)r.TotalWidth;
                     totalHeight = (int)r.TotalHeight;
 
                     this.Height = totalHeight;
                     this.Width = totalWidth;
                     _isRenderInProgress = false;
-    
-                    if (r.RenderResult is SKImage skImg) {
+
+                    if (r.RenderResult is SKImage skImg)
+                    {
                         this.partialImages.Add(skImg);
                     }
-                    
+
                 });
 
                 renderer.RenderScore(_score, new double[] { track.Index });

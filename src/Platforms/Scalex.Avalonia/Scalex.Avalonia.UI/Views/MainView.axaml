@@ -33,10 +33,34 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
+
+            <ComboBox
+                x:Name="markerModeList"
+                SelectedIndex="0"
+                SelectionChanged="MarkerMode_SelectionChange">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox
+                x:Name="numberOfFrets"
+                SelectedIndex="0"
+                SelectionChanged="Frets_SelectionChange">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+            </ComboBox>
+
+
         </StackPanel>
 
 
-        <TabControl>
+        <TabControl x:Name="mainTabControl" SelectionChanged="MainTab_SelectionChanged">
 
             <TabItem>
                 <TabItem.Header>
@@ -69,6 +93,40 @@
                     </StackPanel>
                     <ScrollViewer HorizontalScrollBarVisibility="Auto">
                         <controls:ScaleDiagram x:Name="scaleDiagram" />
+                    </ScrollViewer>
+                </StackPanel>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock VerticalAlignment="Center">Arpeggios</TextBlock>
+                </TabItem.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+
+
+                        <ComboBox
+                            x:Name="arpKeyList"
+                            SelectedIndex="0"
+                            SelectionChanged="ArpeggioKeyList_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox
+                            x:Name="arpScaleList"
+                            SelectedIndex="0"
+                            SelectionChanged="ArpeggioScaleList_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <controls:ScaleDiagram x:Name="arpeggioDiagram" />
                     </ScrollViewer>
                 </StackPanel>
             </TabItem>

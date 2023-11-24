@@ -390,11 +390,20 @@ namespace Webprofusion.Scalex.Rendering
                         }
 
                         //if enabled, draw note name/sequence number
-                        if (_guitarModel.GuitarModelSettings.EnableDiagramNoteNames || _guitarModel.GuitarModelSettings.EnableDiagramNoteSequence || _guitarModel.GuitarModelSettings.EnableDiagramScaleIntervals)
+                        if (_guitarModel.GuitarModelSettings.NoteMarkerDisplayMode != NoteMarkerDisplayMode.NoLabel)
                         {
-                            if (_guitarModel.GuitarModelSettings.EnableDiagramNoteNames) strNote = NoteManager.GetNoteName((Note)tmpVal, _guitarModel.GuitarModelSettings.EnableDiagramNoteNamesSharp);
-                            if (_guitarModel.GuitarModelSettings.EnableDiagramNoteSequence) strNote = "" + _guitarModel.GuitarModelSettings.ScaleManager.CurrentScale.GetSequenceNumberInScale(sclVal);
-                            if (_guitarModel.GuitarModelSettings.EnableDiagramScaleIntervals) strNote = "" + _guitarModel.GuitarModelSettings.ScaleManager.CurrentScale.GetIntervalNameInScale(sclVal);
+                            if (_guitarModel.GuitarModelSettings.NoteMarkerDisplayMode == NoteMarkerDisplayMode.NoteName)
+                            {
+                                strNote = NoteManager.GetNoteName((Note)tmpVal, _guitarModel.GuitarModelSettings.EnableDiagramNoteNamesSharp);
+                            }
+                            else if (_guitarModel.GuitarModelSettings.NoteMarkerDisplayMode == NoteMarkerDisplayMode.NoteSequence)
+                            {
+                                strNote = "" + _guitarModel.GuitarModelSettings.ScaleManager.CurrentScale.GetSequenceNumberInScale(sclVal);
+                            }
+                            else if (_guitarModel.GuitarModelSettings.NoteMarkerDisplayMode == NoteMarkerDisplayMode.ScaleInterval)
+                            {
+                                strNote = "" + _guitarModel.GuitarModelSettings.ScaleManager.CurrentScale.GetIntervalNameInScale(sclVal);
+                            }
 
                             double markerFontSize = BasicFontSizePt;
                             double labelX = startX - (_guitarModel.GuitarModelSettings.MarkerSize * 0.45);

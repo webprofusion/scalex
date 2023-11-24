@@ -4,6 +4,14 @@ using Webprofusion.Scalex.Music;
 
 namespace Webprofusion.Scalex
 {
+    public enum NoteMarkerDisplayMode
+    {
+        NoLabel,
+        NoteName,
+        NoteSequence,
+        ScaleInterval,
+        Fingering
+    }
     /// <summary>
     /// Summary description for CurrentAppSettings. 
     /// </summary>
@@ -24,14 +32,12 @@ namespace Webprofusion.Scalex
 
         public bool EnableDiagramFingering { get; set; }
         public bool EnableDiagramStrings { get; set; }
-        public bool EnableDiagramNoteNames { get; set; }
-        public bool EnableDiagramNoteSequence { get; set; }
-        public bool EnableDiagramScaleIntervals { get; set; }
         public bool EnableDiagramNoteNamesSharp { get; set; }
         public bool EnableDiagramHighQuality { get; set; }
         public bool EnableDisplacedFingeringMarkers { get; set; }
         public bool EnableNoteColours { get; set; }
         public bool EnableDiagramTitle { get; set; }
+        public NoteMarkerDisplayMode NoteMarkerDisplayMode { get; set; }
         public TuningManager TuningManager { get; set; }
         public GuitarTuning CurrentTuning { get; set; }
         public ScaleManager ScaleManager { get; set; }
@@ -50,10 +56,7 @@ namespace Webprofusion.Scalex
             EnableFretNumbers = true;
             EnableDiagramFingering = false;
             EnableDiagramStrings = true;
-            EnableDiagramNoteNames = true;
-            EnableDiagramNoteSequence = false;
-            EnableDiagramScaleIntervals = false;
-            EnableDiagramNoteNamesSharp = true;
+            NoteMarkerDisplayMode = NoteMarkerDisplayMode.NoteName;
             EnableDiagramHighQuality = true;
             EnableNoteColours = true;
             EnableDisplacedFingeringMarkers = true;

@@ -34,9 +34,7 @@
 
             <Label  Style="{DynamicResource Header}"  Grid.Row="1" Grid.Column="1" Text="Play" />
 
-            <ffimageloadingsvg:SvgCachedImage x:Name="TablatureImage" Grid.Row="2" Grid.Column="1"  WidthRequest="200" HeightRequest="200" />
-            <Button Style="{DynamicResource PrimaryButton}" Grid.Row="3" StyleClass="Primary" Grid.Column="1" x:Name="Tablature" Text="Tablature" Clicked="Tablature_Clicked"></Button>
-
+   
             <ffimageloadingsvg:SvgCachedImage x:Name="LessonsImage" Grid.Row="4" Grid.Column="1"  WidthRequest="200" HeightRequest="200" />
             <Button Style="{DynamicResource PrimaryButton}" Grid.Row="5" StyleClass="Primary" Grid.Column="1" x:Name="Lessons" Text="Lessons" Clicked="Lessons_Clicked"></Button>
 

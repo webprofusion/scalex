@@ -23,7 +23,7 @@ namespace Scalex.Views
         }
 
         private Lesson _lesson = null;
-        private AlphaTab.Model.Score _score = null;
+
 
         private string _serviceBaseUri = "https://api.soundshed.com";
 
@@ -200,7 +200,7 @@ namespace Scalex.Views
                 {
                     tabUrl = _serviceBaseUri + "/assets/tablature/" + tabUrl;
 
-                    await LoadTablature(tabUrl, itemIndex);
+                //    await LoadTablature(tabUrl, itemIndex);
                 }
             }
 
@@ -237,27 +237,6 @@ namespace Scalex.Views
             catch (Exception) { }
         }
 
-        private async Task LoadTablature(string url, int itemIndex)
-        {
-            try
-            {
-                _score = await new ScoreServiceManager().LoadScoreFromUrl(url);
-            }
-            catch (Exception)
-            {
-                await DisplayAlert("Check connection", "Tablature score could not be loaded", "OK", "Cancel");
-                return;
-            }
-
-            if (_score != null)
-            {
-                var track = _score.Tracks[itemIndex];
-
-                /*TablatureControl.Tracks = new[] {
-                    track
-                };*/
-            }
-        }
 
         private async void Button_Clicked_1(object sender, EventArgs e)
         {

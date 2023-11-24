@@ -15,7 +15,7 @@ namespace Scalex.Views
             ResourceLoader res = new ResourceLoader();
             this.ScalesImage.Source = res.GetSVGImageResource("icon-scales.svg");
             this.ChordsImage.Source = res.GetSVGImageResource("icon-chords.svg");
-            this.TablatureImage.Source = res.GetSVGImageResource("icon-tablature.svg");
+
             this.LessonsImage.Source = res.GetSVGImageResource("icon-lessons.svg");
 
             this.PerformImage.Source = res.GetSVGImageResource("icon-perform.svg");
@@ -36,13 +36,6 @@ namespace Scalex.Views
             };
             ChordsImage.GestureRecognizers.Add(tapChordGestureRecognizer);
 
-            // tab image tap
-            var tapTabGestureRecognizer = new TapGestureRecognizer();
-            tapTabGestureRecognizer.Tapped += (s, e) =>
-            {
-                Tablature_Clicked(s, e);
-            };
-            TablatureImage.GestureRecognizers.Add(tapTabGestureRecognizer);
 
             // perform image tap
             var tapPerformGestureRecognizer = new TapGestureRecognizer();
@@ -61,11 +54,6 @@ namespace Scalex.Views
         private async void Chords_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ChordsPage());
-        }
-
-        private async void Tablature_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new TabBrowser());
         }
 
         private async void Lessons_Clicked(object sender, EventArgs e)
