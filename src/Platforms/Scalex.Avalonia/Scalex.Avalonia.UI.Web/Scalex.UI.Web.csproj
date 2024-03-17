@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
 		<WasmMainJSPath>AppBundle\main.js</WasmMainJSPath>
 		<OutputType>Exe</OutputType>
@@ -13,8 +13,8 @@
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<RunAOTCompilation>true</RunAOTCompilation>
-		<!--<PublishTrimmed>true</PublishTrimmed>
-		<TrimMode>full</TrimMode>-->
+		<PublishTrimmed>true</PublishTrimmed>
+		<TrimMode>full</TrimMode>
 		<WasmBuildNative>true</WasmBuildNative>
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<EmccCompileOptimizationFlag>-O2</EmccCompileOptimizationFlag>
@@ -30,7 +30,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia.Browser" Version="11.0.5" />
+		<PackageReference Include="Avalonia.Browser" Version="11.0.10" />
 
 	</ItemGroup>
 

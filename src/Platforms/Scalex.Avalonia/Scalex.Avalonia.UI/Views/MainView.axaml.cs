@@ -35,11 +35,11 @@ namespace Scalex.UI.Views
             chordGroups.ItemsSource = MainViewModel.GuitarModel.GetAllChordDefinitions();
             chordGroups.SelectedIndex = 0;
 
-            markerModeList.ItemsSource = System.Enum.GetValues(typeof(NoteMarkerDisplayMode));
+            markerModeList.ItemsSource = MainViewModel.MarkerLabelStyles;
             markerModeList.SelectedIndex = 0;
 
             numberOfFrets.ItemsSource = new int[] { 12, 22, 24, 26 };
-            markerModeList.SelectedIndex = 0;
+            numberOfFrets.SelectedIndex = 0;
 
             LoadSettings();
             _suspendSettingsChanges = false;
@@ -126,9 +126,12 @@ namespace Scalex.UI.Views
 
         private void MarkerMode_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
-            var markerMode = (NoteMarkerDisplayMode)markerModeList.SelectedItem;
+            if (markerModeList.SelectedValue != null)
+            {
+                var markerMode = (MarkerLabelStyle)markerModeList.SelectedValue;
 
-            MainViewModel.GuitarModel.GuitarModelSettings.NoteMarkerDisplayMode = markerMode;
+                MainViewModel.GuitarModel.GuitarModelSettings.NoteMarkerDisplayMode = markerMode.Value;
+            }
         }
 
         private void Frets_SelectionChange(object sender, SelectionChangedEventArgs e)

@@ -16,12 +16,10 @@
     </Design.DataContext>
 
     <StackPanel Margin="8">
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="{Binding AppTitle}" />
+
 
         <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="0,4,4,4">Tuning</TextBlock>
             <ComboBox
                 x:Name="tuningList"
                 SelectedIndex="0"
@@ -32,18 +30,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-
-
-            <ComboBox
-                x:Name="markerModeList"
-                SelectedIndex="0"
-                SelectionChanged="MarkerMode_SelectionChange">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <TextBlock Margin="4,4,4,4">Frets</TextBlock>
             <ComboBox
                 x:Name="numberOfFrets"
                 SelectedIndex="0"
@@ -55,10 +42,19 @@
                 </ComboBox.ItemTemplate>
 
             </ComboBox>
-
+            <TextBlock Margin="4,4,4,4">Markers</TextBlock>
+            <ComboBox
+                x:Name="markerModeList"
+                SelectedIndex="0"
+                SelectionChanged="MarkerMode_SelectionChange">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
         </StackPanel>
-
 
         <TabControl x:Name="mainTabControl" SelectionChanged="MainTab_SelectionChanged">
 

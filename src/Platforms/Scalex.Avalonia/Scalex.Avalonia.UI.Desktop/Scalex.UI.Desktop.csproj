@@ -5,13 +5,17 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Scalex.UI.Windows</RootNamespace>
 	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+	<ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
+    <Content Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
-    <PackageReference Include="Avalonia.Skia" Version="11.0.5" />
-    <PackageReference Include="SkiaSharp" Version="2.88.6" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Skia" Version="11.0.10" />
+    <PackageReference Include="SkiaSharp" Version="2.88.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
