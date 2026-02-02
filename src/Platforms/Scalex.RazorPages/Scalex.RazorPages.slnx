@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../../Core/Scalex.Core.csproj" />
+  <Project Path="../../Rendering/Scalex.Rendering.csproj" />
+  <Project Path="../../Utils/Scalex.Utils.csproj" />
+  <Project Path="Scalex.RazorPages.csproj" />
+</Solution>
