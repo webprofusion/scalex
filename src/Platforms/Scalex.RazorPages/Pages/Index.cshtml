@@ -109,6 +109,12 @@
         padding: 10px;
     }
 
+    .relative-scale {
+        margin: 0;
+        color: var(--metal-muted);
+        font-size: 0.95rem;
+    }
+
     .link-lists {
         width: 100%;
         display: grid;
@@ -192,7 +198,7 @@
 <div class="metal-page">
     <div class="metal-hero">
         <h1>Guitar Scale Diagrams</h1>
-        <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length of the fretboard at the next octav. Fret 0 (the open string), fret 12 and fret 24 start with the same notes, just the next octave higher. If you want to change key or mode, you move the pattern up or down the fretboard in your head. Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor if G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes.' </p>
+        <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length of the fretboard at the next octave. Fret 0 (the open string), fret 12 and fret 24 start with the same notes, the next octave higher. If you want to change key or mode, you move the same pattern up or down the fretboard in your head. Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor is G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes.' </p>
        
     </div>
 
@@ -252,6 +258,10 @@
     {
         <div class="diagram-section metal-panel">
             <h2>@Model.DiagramName</h2>
+            @if (!string.IsNullOrWhiteSpace(Model.RelativeScaleInfo))
+            {
+                <p class="relative-scale">@Model.RelativeScaleInfo</p>
+            }
             <img src="@Model.DiagramUrl" alt="Scale diagram" class="diagram-image" />
 
             <div class="link-lists">

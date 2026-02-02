@@ -27,6 +27,7 @@ public sealed class IndexModel : PageModel
 
     public string DiagramUrl { get; private set; } = string.Empty;
     public string DiagramName { get; private set; } = string.Empty;
+    public string? RelativeScaleInfo { get; private set; }
 
     public void OnGet()
     {
@@ -60,6 +61,7 @@ public sealed class IndexModel : PageModel
         }
 
         DiagramName = model.GetDiagramTitle();
+        RelativeScaleInfo = ScaleUtilities.GetRelativeScaleInfo(model.SelectedScale, model.SelectedKey, model.GuitarModelSettings.EnableDiagramNoteNamesSharp);
 
         var encodedKey = Uri.EscapeDataString(Key ?? string.Empty);
         DiagramUrl = $"/scale-diagram?scaleId={ScaleId}&key={encodedKey}&tuningId={TuningId}&frets={Frets}";

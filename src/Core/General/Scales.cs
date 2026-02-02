@@ -269,4 +269,52 @@ namespace Webprofusion.Scalex.Music
             return NoteManager.GetNoteName(CurrentKey, boolShowSharps);
         }
     }
+
+    public static class ScaleUtilities
+    {
+        public static string? GetRelativeScaleInfo(ScaleItem? scale, string? keyName, bool showSharps)
+        {
+            if (scale == null || string.IsNullOrWhiteSpace(keyName))
+            {
+                return null;
+            }
+
+            var isMajor = scale.Name.Equals("Major", StringComparison.OrdinalIgnoreCase);
+            var isMinor = scale.Name.Equals("Minor", StringComparison.OrdinalIgnoreCase);
+
+            if (!isMajor && !isMinor)
+            {
+                return null;
+            }
+
+            var rootNote = NoteManager.GetNoteByName(keyName);
+            var relativeNote = Transpose(rootNote, isMajor ? -3 : 3);
+            var relativeKeyName = GetEnhancedNoteName(relativeNote, showSharps);
+            var relativeScaleName = isMajor ? "Minor" : "Major";
+            var relationship = isMajor ? "Relative Minor" : "Relative Major";
+
+            return $"{relationship}: {relativeKeyName} {relativeScaleName}";
+        }
+
+        private static Note Transpose(Note note, int semitoneOffset)
+        {
+            var value = ((int)note + semitoneOffset) % 12;
+            if (value < 0)
+            {
+                value += 12;
+            }
+
+            return (Note)value;
+        }
+
+        public static string GetEnhancedNoteName(Note note, bool showSharps)
+        {
+            var primary = NoteManager.GetNoteName(note, showSharps);
+            var alternate = NoteManager.GetNoteName(note, !showSharps);
+
+            return string.Equals(primary, alternate, StringComparison.OrdinalIgnoreCase)
+                ? primary
+                : $"{primary}/{alternate}";
+        }
+    }
 }

@@ -136,7 +136,7 @@ namespace Webprofusion.Scalex.Guitar
 
         public string GetDiagramTitle()
         {
-            var keyName = GuitarModelSettings.ScaleManager.GetKeyName(GuitarModelSettings.EnableDiagramNoteNamesSharp).Trim();
+            var keyName = ScaleUtilities.GetEnhancedNoteName(GuitarModelSettings.ScaleManager.CurrentKey, true);
             var scaleName = GuitarModelSettings.ScaleManager.CurrentScale?.Name?.Trim() ?? "";
             var tuningName = GuitarModelSettings.CurrentTuning?.Name?.Trim() ?? "";
             return $"{keyName} {scaleName.Replace("(Arpeggio)", "")} {(scaleName.Contains("Arpeggio") ? "Arpeggio" : "Scale")} - {tuningName}";
