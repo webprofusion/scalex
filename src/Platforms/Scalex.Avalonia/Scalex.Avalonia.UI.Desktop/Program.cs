@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.ReactiveUI;
 using Scalex.UI.Windows;
 using System;
 
@@ -20,7 +21,7 @@ namespace Scalex.UI.Desktop
                 return new App(new SettingsProvider());
             })
                 .UsePlatformDetect()
-
+                .UseReactiveUI()
                 .LogToTrace();
     }
 }

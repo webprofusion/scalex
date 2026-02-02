@@ -23,8 +23,6 @@ namespace Scalex.UI.Controls
 
             _diagramRenderer = new Webprofusion.Scalex.Rendering.ScaleDiagramRenderer(ViewModels.MainViewModel.GuitarModel);
 
-            _customDrawingOp = new DiagramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 3);
-
 
         }
 
@@ -54,6 +52,11 @@ namespace Scalex.UI.Controls
             base.Render(context);
 
             _diagramRenderer.SetGuitarModel(ViewModels.MainViewModel.GuitarModel);
+
+            if (_customDrawingOp == null)
+            {
+                _customDrawingOp = new DiagramRenderingDrawOp(new Rect(0, 0, Bounds.Width, Bounds.Height), _diagramRenderer, 3);
+            }
 
             context.Custom(_customDrawingOp);
         }

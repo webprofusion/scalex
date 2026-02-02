@@ -1,0 +1,275 @@
+@page
+@model Scalex.RazorPages.Pages.IndexModel
+
+
+@{
+    var currentScaleId = Model.ScaleId;
+    var currentKey = Model.Key ?? string.Empty;
+    var encodedCurrentKey = Uri.EscapeDataString(currentKey);
+    var currentTuningId = Model.TuningId;
+    var currentFrets = Model.Frets;
+
+    ViewBag.Title = $"{Model.DiagramName} : Sounshed Guitar Scale Diagrams";
+    
+}
+
+<style>
+    :root {
+        --metal-bg: #0a0b0f;
+        --metal-panel: #14161b;
+        --metal-accent: #e30613;
+        --metal-accent-soft: rgba(227, 6, 19, 0.15);
+        --metal-text: #f4f4f5;
+        --metal-muted: #a8a8b3;
+    }
+
+    body {
+        background: radial-gradient(circle at top, #1b1e26, var(--metal-bg));
+        color: var(--metal-text);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .metal-page {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 40px 20px 60px;
+        display: grid;
+        gap: 28px;
+    }
+
+    .metal-hero {
+        display: grid;
+        gap: 8px;
+    }
+
+    .metal-hero h1 {
+        font-size: 2.6rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .metal-hero p {
+        margin: 0;
+        color: var(--metal-muted);
+        font-size: 1.05rem;
+    }
+
+    .metal-panel {
+        background: var(--metal-panel);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .metal-form {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        align-items: end;
+    }
+
+    .metal-form label {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--metal-muted);
+    }
+
+    .metal-input,
+    .metal-select {
+        margin-top: 8px;
+        width: 100%;
+        background: #0f1116;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--metal-text);
+        padding: 10px 12px;
+        border-radius: 10px;
+    }
+
+    .metal-button {
+        background: linear-gradient(135deg, var(--metal-accent), #ff3c41);
+        color: #fff;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    .diagram-section {
+        display: grid;
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .diagram-image {
+        max-width: 100%;
+        background: #000;
+        padding: 10px;
+    }
+
+    .link-lists {
+        width: 100%;
+        display: grid;
+        gap: 20px;
+    }
+
+    .link-list {
+        display: grid;
+        gap: 12px;
+    }
+
+    .link-list h2 {
+        margin: 0;
+        font-size: 1.05rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .link-list ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .link-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 14px;
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--metal-text);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid transparent;
+        font-size: 0.9rem;
+    }
+
+    .link-pill.active {
+        background: var(--metal-accent-soft);
+        border-color: var(--metal-accent);
+        color: #fff;
+    }
+
+    .link-pill:hover {
+        border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .branding-banner {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--metal-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        width: fit-content;
+    }
+
+    .branding-banner span {
+        color: var(--metal-text);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+    }
+</style>
+
+<div class="metal-page">
+    <div class="metal-hero">
+        <h1>Guitar Scale Diagrams</h1>
+        <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length og the fretboard at the next octav. Fret 0 (the open string), fret 12 and fret 24 start with the same notes, just the next octave higher. If you want to change key or mode, you move the pattern up or down the fretboard in your head. Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor if G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes.' </p>
+        <a class="branding-banner" href="https://soundshed.com" target="_blank" rel="noopener noreferrer">
+            Scalex Guitar Toolkit Powered by <span>Soundshed</span>
+        </a>
+    </div>
+
+    <div class="metal-panel">
+        <form method="get" class="metal-form">
+            <div>
+                <label for="scaleId">Scale</label>
+                <select id="scaleId" name="scaleId" class="metal-select" onchange="this.form.submit()">
+                    @foreach (var scale in Model.Scales)
+                    {
+                        <option value="@scale.ID" selected="@(scale.ID == Model.ScaleId)">@scale.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <label for="key">Key</label>
+                <select id="key" name="key" class="metal-select" onchange="this.form.submit()">
+                    @foreach (var key in Model.Keys)
+                    {
+                        <option value="@key" selected="@(key == Model.Key)">@key</option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <label for="tuningId">Tuning</label>
+                <select id="tuningId" name="tuningId" class="metal-select" onchange="this.form.submit()">
+                    @foreach (var tuning in Model.Tunings)
+                    {
+                        <option value="@tuning.ID" selected="@(tuning.ID == Model.TuningId)">@tuning.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <label for="frets">Frets</label>
+                <select id="frets" name="frets" class="metal-select" onchange="this.form.submit()">
+                    @foreach (var fretCount in new[] { 12, 22, 24 })
+                    {
+                        <option value="@fretCount" selected="@(fretCount == Model.Frets)">@fretCount</option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <button type="submit" class="metal-button">GO</button>
+            </div>
+        </form>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.DiagramUrl))
+    {
+        <div class="diagram-section metal-panel">
+            <h2>@Model.DiagramName</h2>
+            <img src="@Model.DiagramUrl" alt="Scale diagram" class="diagram-image" />
+
+            <div class="link-lists">
+                <div class="link-list">
+                    <h2>Scales and Arpeggios</h2>
+                    <ul>
+                        @foreach (var scale in Model.Scales)
+                        {
+                            <li>
+                                <a class="link-pill @(scale.ID == currentScaleId ? "active" : string.Empty)" href="@($"/?scaleId={scale.ID}&key={encodedCurrentKey}&tuningId={currentTuningId}&frets={currentFrets}")">@scale.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="link-list">
+                    <h2>Keys</h2>
+                    <ul>
+                        @foreach (var key in Model.Keys)
+                        {
+                            <li>
+                                <a class="link-pill @(key == currentKey ? "active" : string.Empty)" href="@($"/?scaleId={currentScaleId}&key={Uri.EscapeDataString(key)}&tuningId={currentTuningId}&frets={currentFrets}")">@key</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+           
+            </div>
+        </div>
+    }
+</div>

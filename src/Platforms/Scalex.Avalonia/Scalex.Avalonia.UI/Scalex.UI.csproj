@@ -1,39 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
-    <Nullable>enable</Nullable>
-    <LangVersion>latest</LangVersion>
+	<PropertyGroup>
+		<TargetFrameworks>net10.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
 
-  </PropertyGroup>
-  <ItemGroup>    
-    <AvaloniaResource Include="Assets\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Assets\TestFiles\bends.gp4" />
-    <None Remove="Assets\TestFiles\Tab.gp4" />
-  </ItemGroup>
+	</PropertyGroup>
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Assets\TestFiles\bends.gp4" />
+		<None Remove="Assets\TestFiles\Tab.gp4" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.10" />    
-    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
-    <PackageReference Include="Avalonia.Skia" Version="11.0.10" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
-    <PackageReference Include="SkiaSharp" Version="2.88.7" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Scalex.Core.csproj" />
-    <ProjectReference Include="..\..\..\Rendering\Scalex.Rendering.csproj" />
-    <ProjectReference Include="..\..\..\Utils\Scalex.Utils.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.3.11" />
+		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.11" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="11.3.9" />
+		<PackageReference Include="Avalonia.Skia" Version="11.3.11" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.11" />
+		<PackageReference Include="SkiaSharp" Version="3.119.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Scalex.Core.csproj" />
+		<ProjectReference Include="..\..\..\Rendering\Scalex.Rendering.csproj" />
+		<ProjectReference Include="..\..\..\Utils\Scalex.Utils.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Controls\ChordDiagram.axaml.cs">
-      <DependentUpon>ChordDiagram.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="Controls\ScaleDiagram.axaml.cs">
-      <DependentUpon>ScaleDiagram.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Controls\ChordDiagram.axaml.cs">
+			<DependentUpon>ChordDiagram.axaml</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\ScaleDiagram.axaml.cs">
+			<DependentUpon>ScaleDiagram.axaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
 </Project>

@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Scalex.UI.ViewModels;
 using System.Linq;
-using Webprofusion.Scalex;
 using Webprofusion.Scalex.Music;
 
 namespace Scalex.UI.Views
@@ -126,7 +125,7 @@ namespace Scalex.UI.Views
 
         private void MarkerMode_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
-            if (markerModeList.SelectedValue != null)
+            if (markerModeList?.SelectedValue != null)
             {
                 var markerMode = (MarkerLabelStyle)markerModeList.SelectedValue;
 
@@ -136,7 +135,7 @@ namespace Scalex.UI.Views
 
         private void Frets_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
-            var frets = numberOfFrets.SelectedItem as int?;
+            var frets = numberOfFrets?.SelectedItem as int?;
 
             if (frets != null)
             {
@@ -148,7 +147,7 @@ namespace Scalex.UI.Views
         private void ScaleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (mainTabControl.SelectedIndex == 0)
+            if (mainTabControl?.SelectedIndex == 0)
             {
                 var cb = e.Source as ComboBox;
                 var scale = cb.SelectedItem as Webprofusion.Scalex.Music.ScaleItem;
@@ -165,7 +164,7 @@ namespace Scalex.UI.Views
 
         private void ArpeggioScaleList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (mainTabControl.SelectedIndex == 1)
+            if (mainTabControl?.SelectedIndex == 1)
             {
                 var cb = e.Source as ComboBox;
                 var arpeggio = cb.SelectedItem as Webprofusion.Scalex.Music.ChordDefinition;
@@ -184,15 +183,18 @@ namespace Scalex.UI.Views
         private void TuningList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var cb = e.Source as ComboBox;
-            var tuning = cb.SelectedItem as Webprofusion.Scalex.Guitar.GuitarTuning;
-            MainViewModel.GuitarModel.SetTuning(tuning.ID);
-            this.scaleDiagram.InvalidateVisual();
-
-
-            if (!_suspendSettingsChanges)
+            if (cb?.SelectedItem != null)
             {
-                _appSettings.SelectedTuning = tuning.ID;
-                this.SaveSettings();
+                var tuning = cb.SelectedItem as Webprofusion.Scalex.Guitar.GuitarTuning;
+                MainViewModel.GuitarModel.SetTuning(tuning.ID);
+                this.scaleDiagram.InvalidateVisual();
+
+
+                if (!_suspendSettingsChanges)
+                {
+                    _appSettings.SelectedTuning = tuning.ID;
+                    this.SaveSettings();
+                }
             }
         }
 
@@ -200,41 +202,50 @@ namespace Scalex.UI.Views
         {
             var cb = e.Source as ComboBox;
             var key = cb.SelectedItem as string;
-            MainViewModel.GuitarModel.SetKey(key);
-            this.scaleDiagram.InvalidateVisual();
-
-
-            if (!_suspendSettingsChanges)
+            if (cb?.SelectedItem != null)
             {
-                _appSettings.SelectedKey = key;
-                this.SaveSettings();
+                MainViewModel.GuitarModel.SetKey(key);
+                this.scaleDiagram.InvalidateVisual();
+
+
+                if (!_suspendSettingsChanges)
+                {
+                    _appSettings.SelectedKey = key;
+                    this.SaveSettings();
+                }
             }
         }
 
         private void ArpeggioKeyList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var cb = e.Source as ComboBox;
-            var key = cb.SelectedItem as string;
-            MainViewModel.GuitarModel.SetKey(key);
-            this.arpeggioDiagram.InvalidateVisual();
-
-            if (!_suspendSettingsChanges)
+            if (cb?.SelectedItem != null)
             {
-                _appSettings.SelectedArpeggioKey = key;
-                this.SaveSettings();
+                var key = cb.SelectedItem as string;
+                MainViewModel.GuitarModel.SetKey(key);
+                this.arpeggioDiagram.InvalidateVisual();
+
+                if (!_suspendSettingsChanges)
+                {
+                    _appSettings.SelectedArpeggioKey = key;
+                    this.SaveSettings();
+                }
             }
         }
 
         private void ChordGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var cb = e.Source as ComboBox;
-            ChordDefinition def = cb.SelectedItem as ChordDefinition;
-            chordDiagram.ChordDefinition = def;
-            this.chordDiagram.InvalidateVisual();
-
-            if (!_suspendSettingsChanges)
+            if (cb?.SelectedItem != null)
             {
-                this.SaveSettings();
+                ChordDefinition def = cb.SelectedItem as ChordDefinition;
+                chordDiagram.ChordDefinition = def;
+                this.chordDiagram.InvalidateVisual();
+
+                if (!_suspendSettingsChanges)
+                {
+                    this.SaveSettings();
+                }
             }
 
         }

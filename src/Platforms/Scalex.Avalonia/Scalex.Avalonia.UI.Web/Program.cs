@@ -19,13 +19,15 @@ internal partial class Program
     }
     public static async Task<AppBuilder> BuildAvaloniaApp()
     {
-        await JSHost.ImportAsync("./store.js", "./store.js");
+        await JSHost.ImportAsync("./store.js", "../store.js");
 
         return AppBuilder.Configure<App>(() =>
         {
             var app = new App(new SettingsProvider());
             return app;
-        });
+        })
+            //  .With(new FontManagerOptions { DefaultFamilyName = "Roboto-Regular", FontFallbacks = [new FontFallback { FontFamily = new FontFamily("Roboto") }] })
+            .LogToTrace();
     }
 
 }

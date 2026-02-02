@@ -3,7 +3,7 @@
     "perHostConfig": [
       {
         "name": "browser",
-        "html-path": "index.html",
+        "html-path": "AppBundle/index.html",
         "Host": "browser"
       }
     ]

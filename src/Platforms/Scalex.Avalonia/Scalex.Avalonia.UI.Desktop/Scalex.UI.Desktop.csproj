@@ -1,23 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <RootNamespace>Scalex.UI.Windows</RootNamespace>
-	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-	<ApplicationIcon>icon.ico</ApplicationIcon>
-  </PropertyGroup>
-  <ItemGroup>
-    <Content Include="icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
-    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
-    <PackageReference Include="Avalonia.Skia" Version="11.0.10" />
-    <PackageReference Include="SkiaSharp" Version="2.88.7" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
-  </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<RootNamespace>Scalex.UI.Windows</RootNamespace>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+	</PropertyGroup>
+	<ItemGroup>
+		<Content Include="icon.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia.Desktop" Version="11.3.11" />
+		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.11" />
+		<PackageReference Include="Avalonia.Skia" Version="11.3.11" />
+		<PackageReference Include="SkiaSharp" Version="3.119.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Scalex.Avalonia.UI\Scalex.UI.csproj" />
+	</ItemGroup>
 </Project>
