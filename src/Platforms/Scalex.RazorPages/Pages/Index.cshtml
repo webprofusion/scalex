@@ -1,6 +1,5 @@
-@page
+@page 
 @model Scalex.RazorPages.Pages.IndexModel
-
 
 @{
     var currentScaleId = Model.ScaleId;
@@ -9,10 +8,9 @@
     var currentTuningId = Model.TuningId;
     var currentFrets = Model.Frets;
 
-    ViewBag.Title = $"{Model.DiagramName} : Sounshed Guitar Scale Diagrams";
     
+    ViewData["Title"] = Model.DiagramName;
 }
-
 <style>
     :root {
         --metal-bg: #0a0b0f;
@@ -264,6 +262,17 @@
                         {
                             <li>
                                 <a class="link-pill @(key == currentKey ? "active" : string.Empty)" href="@($"/?scaleId={currentScaleId}&key={Uri.EscapeDataString(key)}&tuningId={currentTuningId}&frets={currentFrets}")">@key</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="link-list">
+                    <h2>Tunings</h2>
+                    <ul>
+                        @foreach (var tuning in Model.Tunings)
+                        {
+                            <li>
+                                <a class="link-pill @(tuning.ID == currentTuningId ? "active" : string.Empty)" href="@($"/?scaleId={currentScaleId}&key={encodedCurrentKey}&tuningId={tuning.ID}&frets={currentFrets}")">@tuning.Name</a>
                             </li>
                         }
                     </ul>

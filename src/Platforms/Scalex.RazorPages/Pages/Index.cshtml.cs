@@ -35,7 +35,7 @@ public sealed class IndexModel : PageModel
         Keys = model.AllKeys;
         Tunings = model.AllTunings;
 
-        ScaleId = model.SelectedScale?.ID ?? 2; // default to minor
+        ScaleId = ScaleId ?? model.SelectedScale?.ID ?? 2; // default to minor
         Key ??= model.SelectedKey;
         TuningId ??= model.SelectedTuning?.ID;
         Frets ??= model.GuitarModelSettings.NumberFrets;
@@ -61,6 +61,7 @@ public sealed class IndexModel : PageModel
 
         DiagramName = model.GetDiagramTitle();
 
-        DiagramUrl = $"/scale-diagram?scaleId={ScaleId}&key={Key}&tuningId={TuningId}&frets={Frets}";
+        var encodedKey = Uri.EscapeDataString(Key ?? string.Empty);
+        DiagramUrl = $"/scale-diagram?scaleId={ScaleId}&key={encodedKey}&tuningId={TuningId}&frets={Frets}";
     }
 }
