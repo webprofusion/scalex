@@ -100,7 +100,6 @@
 
     .diagram-section {
         display: grid;
-        gap: 20px;
         justify-items: center;
     }
 
@@ -178,16 +177,28 @@
         font-weight: 600;
         letter-spacing: 0.04em;
     }
+
+    body.embedded .metal-hero {
+        display: none;
+    }
+    body.embedded .metal-page {
+        padding: 0;
+    }
+    body.embedded .metal-panel {
+        padding: 0;
+    }
 </style>
 
 <div class="metal-page">
     <div class="metal-hero">
         <h1>Guitar Scale Diagrams</h1>
-        <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length og the fretboard at the next octav. Fret 0 (the open string), fret 12 and fret 24 start with the same notes, just the next octave higher. If you want to change key or mode, you move the pattern up or down the fretboard in your head. Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor if G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes.' </p>
-        <a class="branding-banner" href="https://soundshed.com" target="_blank" rel="noopener noreferrer">
+        <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length of the fretboard at the next octav. Fret 0 (the open string), fret 12 and fret 24 start with the same notes, just the next octave higher. If you want to change key or mode, you move the pattern up or down the fretboard in your head. Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor if G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes.' </p>
+       
+    </div>
+
+     <a class="branding-banner" href="https://soundshed.com" target="_blank" rel="noopener noreferrer">
             Scalex Guitar Toolkit Powered by <span>Soundshed</span>
         </a>
-    </div>
 
     <div class="metal-panel">
         <form method="get" class="metal-form">
@@ -282,3 +293,9 @@
         </div>
     }
 </div>
+
+<script>
+    if (window.self !== window.top) {
+        document.body.classList.add("embedded");
+    }
+</script>
