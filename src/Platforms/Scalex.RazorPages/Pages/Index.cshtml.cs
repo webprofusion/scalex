@@ -36,9 +36,13 @@ public sealed class IndexModel : PageModel
     public string DiagramUrl { get; private set; } = string.Empty;
     public string DiagramName { get; private set; } = string.Empty;
     public string? RelativeScaleInfo { get; private set; }
+    public bool IsUsingDefaults { get; private set; }
 
     public void OnGet()
     {
+        // Check if using defaults (no route parameters provided)
+        IsUsingDefaults = string.IsNullOrWhiteSpace(Key) && string.IsNullOrWhiteSpace(ScaleSlug) && string.IsNullOrWhiteSpace(TuningSlug) && !Frets.HasValue;
+
         var model = new GuitarModel();
         Scales = model.AllScales;
         Keys = model.AllKeys;
@@ -65,8 +69,9 @@ public sealed class IndexModel : PageModel
             TuningId = tuningMatch?.ID ?? TuningId;
         }
 
-        ScaleId = ScaleId ?? model.SelectedScale?.ID ?? 2; // default to minor
-        Key ??= model.SelectedKey;
+        // Default to E Minor scale when no parameters provided
+        ScaleId ??= 2; // Minor scale
+        Key ??= "E";
         TuningId ??= model.SelectedTuning?.ID;
         Frets ??= model.GuitarModelSettings.NumberFrets;
         if (ScaleId.HasValue)

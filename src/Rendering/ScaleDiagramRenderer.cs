@@ -291,7 +291,11 @@ namespace Webprofusion.Scalex.Rendering
             {
                 var stringThickness = 0.3 + ((_guitarModel.NumberOfStrings - s.StringNumber) * 0.1);
 
-                g.DrawLine(startX, startY - 0.5, startX + fretboardWidth, startY - 0.5, stringThickness, ColorPalette[ThemeColorPreset.Foreground]);
+                if (_guitarModel.EnableThickStrings)
+                {
+                    g.DrawLine(startX, startY - 0.5, startX + fretboardWidth, startY - 0.5, stringThickness, ColorPalette[ThemeColorPreset.Foreground]);
+                }
+
                 g.DrawLine(startX, startY, startX + fretboardWidth, startY, stringThickness, ColorPalette[ThemeColorPreset.MutedForeground]);
             }
 

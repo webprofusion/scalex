@@ -1,0 +1,348 @@
+:root {
+    --metal-bg: #0a0b0f;
+    --metal-panel: #14161b;
+    --metal-accent: #e30613;
+    --metal-accent-soft: rgba(227, 6, 19, 0.15);
+    --metal-text: #f4f4f5;
+    --metal-muted: #a8a8b3;
+}
+
+body {
+    background: radial-gradient(circle at top, #1b1e26, var(--metal-bg));
+    color: var(--metal-text);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.metal-page {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+    display: grid;
+    gap: 28px;
+}
+
+.metal-hero {
+    display: grid;
+    gap: 8px;
+}
+
+.metal-hero h1 {
+    font-size: 2.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.metal-hero p {
+    margin: 0;
+    color: var(--metal-muted);
+    font-size: 1.05rem;
+}
+
+.metal-panel {
+    background: var(--metal-panel);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.metal-form {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    align-items: end;
+}
+
+.metal-form label {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--metal-muted);
+}
+
+.metal-input,
+.metal-select {
+    margin-top: 8px;
+    width: 100%;
+    background: #0f1116;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--metal-text);
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+
+.metal-button {
+    background: linear-gradient(135deg, var(--metal-accent), #ff3c41);
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.diagram-section {
+    display: grid;
+    justify-items: center;
+}
+
+.diagram-image {
+    max-width: 100%;
+    background: #000;
+    padding: 10px;
+}
+
+.relative-scale {
+    margin: 0;
+    color: var(--metal-muted);
+    font-size: 0.95rem;
+}
+
+.link-lists {
+    width: 100%;
+    display: grid;
+    gap: 20px;
+}
+
+.link-list {
+    display: grid;
+    gap: 12px;
+}
+
+.link-list h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.link-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.link-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--metal-text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+}
+
+.link-pill.active {
+    background: var(--metal-accent-soft);
+    border-color: var(--metal-accent);
+    color: #fff;
+}
+
+.link-pill:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.branding-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--metal-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    width: fit-content;
+}
+
+.branding-banner span {
+    color: var(--metal-text);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+body.embedded .metal-hero {
+    display: none;
+}
+body.embedded .metal-page {
+    padding: 0;
+}
+body.embedded .metal-panel {
+    padding: 0;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .metal-page {
+        padding: 20px 12px 40px;
+        gap: 16px;
+    }
+
+    .metal-hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .metal-hero p {
+        font-size: 0.9rem;
+    }
+
+    .metal-panel {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .metal-form {
+        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .metal-form > div:last-child {
+        grid-column: span 2;
+    }
+
+    .metal-button {
+        width: 100%;
+    }
+
+    .link-pill {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .link-list h2 {
+        font-size: 0.95rem;
+    }
+
+    .branding-banner {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+}
+
+/* Mobile landscape specific */
+@media (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    .metal-page {
+        padding: 0;
+        gap: 10px;
+    }
+
+    .metal-hero {
+        display: none;
+    }
+
+    .branding-banner {
+        display: none;
+    }
+
+    .metal-panel {
+        padding: 0;
+        border-radius: 8px;
+    }
+
+    .metal-form {
+        gap: 8px;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: end;
+    }
+
+    .metal-form > div:last-child {
+        grid-column: auto;
+    }
+
+    .metal-form label {
+        font-size: 0.7rem;
+        margin-bottom: 2px;
+    }
+
+    .metal-input,
+    .metal-select {
+        margin-top: 4px;
+        padding: 6px 8px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+
+    .metal-button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .diagram-section h2 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .relative-scale {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+    }
+
+    .diagram-image {
+        padding: 6px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .link-lists {
+        gap: 10px;
+    }
+
+    .link-list {
+        gap: 6px;
+    }
+
+    .link-list h2 {
+        font-size: 0.85rem;
+    }
+
+    .link-list ul {
+        gap: 6px;
+    }
+
+    .link-pill {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 480px) {
+    .metal-page {
+        padding: 12px 8px 30px;
+    }
+
+    .metal-hero h1 {
+        font-size: 1.3rem;
+    }
+
+    .metal-hero p {
+        font-size: 0.85rem;
+        display: none;
+    }
+
+    .metal-panel {
+        padding: 12px;
+    }
+
+    .metal-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .link-list ul {
+        gap: 6px;
+    }
+
+    .link-pill {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+    }
+}

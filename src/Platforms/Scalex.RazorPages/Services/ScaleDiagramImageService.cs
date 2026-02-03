@@ -54,10 +54,13 @@ public sealed class ScaleDiagramImageService
         }
 
         var renderer = new ScaleDiagramRenderer(guitarModel);
+        renderer.IsExportMode = true;
+        renderer.PaddingTop = 0;
+
         SkiaThemeHelper.ApplyDarkThemeColours(renderer);
 
         var diagramWidth = Math.Max(renderer.GetDiagramWidth(), 1);
-        var diagramHeight = Math.Max(renderer.GetFretboardHeight() + renderer.PaddingTop + 60, 1);
+        var diagramHeight = Math.Max(renderer.GetFretboardHeight() + renderer.PaddingTop, 1);
 
         var scaledWidth = (int)Math.Ceiling((diagramWidth + 20) * scaleFactor);
         var scaledHeight = (int)Math.Ceiling((diagramHeight + 20) * scaleFactor);

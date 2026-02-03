@@ -181,6 +181,8 @@ namespace Webprofusion.Scalex.Guitar
             set { SetKey(value); }
         }
 
+        public bool EnableThickStrings { get; set; }
+
         /// <summary>
         /// Reapplies guitar string settings from current GuitarModelSettings values 
         /// </summary>
