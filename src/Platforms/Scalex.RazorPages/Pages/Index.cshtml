@@ -1,5 +1,8 @@
-@page 
+@page "{key?}/{scale?}/{tuning?}/{frets?}"
 @model Scalex.RazorPages.Pages.IndexModel
+
+@using System.Linq
+@using Webprofusion.Scalex.Util
 
 @{
     var currentScaleId = Model.ScaleId;
@@ -7,6 +10,11 @@
     var encodedCurrentKey = Uri.EscapeDataString(currentKey);
     var currentTuningId = Model.TuningId;
     var currentFrets = Model.Frets;
+    var currentScaleName = Model.Scales.FirstOrDefault(scale => scale.ID == currentScaleId)?.Name ?? string.Empty;
+    var currentTuningName = Model.Tunings.FirstOrDefault(tuning => tuning.ID == currentTuningId)?.Name ?? string.Empty;
+    var currentKeySlug = SlugUtility.CreateSlug(currentKey);
+    var currentScaleSlug = SlugUtility.CreateSlug(currentScaleName);
+    var currentTuningSlug = SlugUtility.CreateSlug(currentTuningName);
 
     
     ViewData["Title"] = Model.DiagramName;
@@ -198,7 +206,10 @@
 <div class="metal-page">
     <div class="metal-hero">
         <h1>Guitar Scale Diagrams</h1>
-        <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length of the fretboard at the next octave. Fret 0 (the open string), fret 12 and fret 24 start with the same notes, the next octave higher. If you want to change key or mode, you move the same pattern up or down the fretboard in your head. Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor is G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes.' </p>
+        <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length of the fretboard at the next octave. 
+            Fret 0 (the open string), fret 12 and fret 24 start with the same notes, the next octave higher. 
+            If you want to change key or mode, you move the same pattern up or down the fretboard in your head. 
+            Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor is G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes. </p>
        
     </div>
 
@@ -210,37 +221,40 @@
         <form method="get" class="metal-form">
             <div>
                 <label for="scaleId">Scale</label>
-                <select id="scaleId" name="scaleId" class="metal-select" onchange="this.form.submit()">
+                <select id="scaleId" name="scaleId" class="metal-select" onchange="navigateSelection()">
                     @foreach (var scale in Model.Scales)
                     {
-                        <option value="@scale.ID" selected="@(scale.ID == Model.ScaleId)">@scale.Name</option>
+                        var scaleSlug = SlugUtility.CreateSlug(scale.Name);
+                        <option value="@scaleSlug" selected="@(scaleSlug == currentScaleSlug)">@scale.Name</option>
                     }
                 </select>
             </div>
 
             <div>
                 <label for="key">Key</label>
-                <select id="key" name="key" class="metal-select" onchange="this.form.submit()">
+                <select id="key" name="key" class="metal-select" onchange="navigateSelection()">
                     @foreach (var key in Model.Keys)
                     {
-                        <option value="@key" selected="@(key == Model.Key)">@key</option>
+                        var keySlug = SlugUtility.CreateSlug(key);
+                        <option value="@keySlug" selected="@(keySlug == currentKeySlug)">@key</option>
                     }
                 </select>
             </div>
 
             <div>
                 <label for="tuningId">Tuning</label>
-                <select id="tuningId" name="tuningId" class="metal-select" onchange="this.form.submit()">
+                <select id="tuningId" name="tuningId" class="metal-select" onchange="navigateSelection()">
                     @foreach (var tuning in Model.Tunings)
                     {
-                        <option value="@tuning.ID" selected="@(tuning.ID == Model.TuningId)">@tuning.Name</option>
+                        var tuningSlug = SlugUtility.CreateSlug(tuning.Name);
+                        <option value="@tuningSlug" selected="@(tuningSlug == currentTuningSlug)">@tuning.Name</option>
                     }
                 </select>
             </div>
 
             <div>
                 <label for="frets">Frets</label>
-                <select id="frets" name="frets" class="metal-select" onchange="this.form.submit()">
+                <select id="frets" name="frets" class="metal-select" onchange="navigateSelection()">
                     @foreach (var fretCount in new[] { 12, 22, 24 })
                     {
                         <option value="@fretCount" selected="@(fretCount == Model.Frets)">@fretCount</option>
@@ -271,7 +285,7 @@
                         @foreach (var scale in Model.Scales)
                         {
                             <li>
-                                <a class="link-pill @(scale.ID == currentScaleId ? "active" : string.Empty)" href="@($"/?scaleId={scale.ID}&key={encodedCurrentKey}&tuningId={currentTuningId}&frets={currentFrets}")">@scale.Name</a>
+                                <a class="link-pill @(scale.ID == currentScaleId ? "active" : string.Empty)" href="@($"/{currentKeySlug}/{SlugUtility.CreateSlug(scale.Name)}/{currentTuningSlug}/{currentFrets}")">@scale.Name</a>
                             </li>
                         }
                     </ul>
@@ -282,7 +296,7 @@
                         @foreach (var key in Model.Keys)
                         {
                             <li>
-                                <a class="link-pill @(key == currentKey ? "active" : string.Empty)" href="@($"/?scaleId={currentScaleId}&key={Uri.EscapeDataString(key)}&tuningId={currentTuningId}&frets={currentFrets}")">@key</a>
+                                <a class="link-pill @(key == currentKey ? "active" : string.Empty)" href="@($"/{SlugUtility.CreateSlug(key)}/{currentScaleSlug}/{currentTuningSlug}/{currentFrets}")">@key</a>
                             </li>
                         }
                     </ul>
@@ -293,7 +307,7 @@
                         @foreach (var tuning in Model.Tunings)
                         {
                             <li>
-                                <a class="link-pill @(tuning.ID == currentTuningId ? "active" : string.Empty)" href="@($"/?scaleId={currentScaleId}&key={encodedCurrentKey}&tuningId={tuning.ID}&frets={currentFrets}")">@tuning.Name</a>
+                                <a class="link-pill @(tuning.ID == currentTuningId ? "active" : string.Empty)" href="@($"/{currentKeySlug}/{currentScaleSlug}/{SlugUtility.CreateSlug(tuning.Name)}/{currentFrets}")">@tuning.Name</a>
                             </li>
                         }
                     </ul>
@@ -307,5 +321,14 @@
 <script>
     if (window.self !== window.top) {
         document.body.classList.add("embedded");
+    }
+
+    function navigateSelection() {
+        const key = document.getElementById("key").value;
+        const scale = document.getElementById("scaleId").value;
+        const tuning = document.getElementById("tuningId").value;
+        const frets = document.getElementById("frets").value;
+        const path = `/${key}/${scale}/${tuning}/${frets}`;
+        window.location.assign(path);
     }
 </script>
