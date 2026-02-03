@@ -1,7 +1,8 @@
-@page "{key:regex(^[^.]*$)?}/{scale:regex(^[^.]*$)?}/{tuning:regex(^[^.]*$)?}/{frets:int?}"
+@page "{key:regex(^[^.]*$)?}/{scale:regex(^[^.]*$)?}/{tuning:regex(^[^.]*$)?}/{frets:int?}/{mode:regex(^[^.]*$)?}"
 @model Scalex.RazorPages.Pages.IndexModel
 
 @using System.Linq
+@using Webprofusion.Scalex.Music
 @using Webprofusion.Scalex.Util
 
 @section Styles {
@@ -10,15 +11,18 @@
 
 @{
     var currentScaleId = Model.ScaleId;
+    var currentModeId = Model.ModeId;
     var currentKey = Model.Key ?? string.Empty;
     var encodedCurrentKey = Uri.EscapeDataString(currentKey);
     var currentTuningId = Model.TuningId;
     var currentFrets = Model.Frets;
     var currentScaleName = Model.Scales.FirstOrDefault(scale => scale.ID == currentScaleId)?.Name ?? string.Empty;
     var currentTuningName = Model.Tunings.FirstOrDefault(tuning => tuning.ID == currentTuningId)?.Name ?? string.Empty;
+    var currentModeName = Model.Modes.FirstOrDefault(mode => mode.ID == currentModeId)?.Name ?? string.Empty;
     var currentKeySlug = SlugUtility.CreateSlug(currentKey);
     var currentScaleSlug = SlugUtility.CreateSlug(currentScaleName);
     var currentTuningSlug = SlugUtility.CreateSlug(currentTuningName);
+    var currentModeSlug = SlugUtility.CreateSlug(currentModeName);
 
 
     ViewData["Title"] = (Model.IsUsingDefaults ? "Guitar Scales " : "Learn the " + Model.DiagramName) + " - Powered by Soundshed";
@@ -84,6 +88,21 @@
                 </select>
             </div>
 
+            @if (Model.Modes.Any())
+            {
+                <div>
+                    <label for="modeId">Mode</label>
+                    <select id="modeId" name="modeId" class="metal-select" onchange="navigateSelection()">
+                        <option value="">-- None --</option>
+                        @foreach (var mode in Model.Modes)
+                        {
+                            var modeSlug = SlugUtility.CreateSlug(mode.Name);
+                            <option value="@modeSlug" selected="@(modeSlug == currentModeSlug)" title="@mode.Character">@mode.Name</option>
+                        }
+                    </select>
+                </div>
+            }
+
             <div>
                 <button type="submit" class="metal-button">GO</button>
             </div>
@@ -98,9 +117,31 @@
             {
                 <p class="relative-scale">@Model.RelativeScaleInfo</p>
             }
-            <img src="@Model.DiagramUrl" alt="Scale diagram" class="diagram-image" />
+            @if (!string.IsNullOrWhiteSpace(Model.ModeInfo))
+            {
+                <p class="mode-info">@Model.ModeInfo</p>
+            }
+            <div class="diagram-image-container">
+                <img src="@Model.DiagramUrl" alt="Scale diagram" class="diagram-image" />
+            </div>
 
             <div class="link-lists">
+                @if (Model.Modes.Any())
+                {
+                    <div class="link-list">
+                        <h2>Modes</h2>
+                        <ul>
+                            @foreach (var mode in Model.Modes)
+                            {
+                                <li>
+                                    <a class="link-pill @(mode.ID == currentModeId ? "active" : string.Empty)" 
+                                       href="@($"/{currentKeySlug}/{currentScaleSlug}/{currentTuningSlug}/{currentFrets}/{SlugUtility.CreateSlug(mode.Name)}")"
+                                       title="@mode.Character">@mode.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
                 <div class="link-list">
                     <h2>Scales and Arpeggios</h2>
                     <ul>
@@ -118,7 +159,7 @@
                         @foreach (var key in Model.Keys)
                         {
                             <li>
-                                <a class="link-pill @(key == currentKey ? "active" : string.Empty)" href="@($"/{SlugUtility.CreateSlug(key)}/{currentScaleSlug}/{currentTuningSlug}/{currentFrets}")">@key</a>
+                                <a class="link-pill @(key == currentKey ? "active" : string.Empty)" href="@($"/{SlugUtility.CreateSlug(key)}/{currentScaleSlug}/{currentTuningSlug}/{currentFrets}/{currentModeSlug}")">@key</a>
                             </li>
                         }
                     </ul>
@@ -129,12 +170,12 @@
                         @foreach (var tuning in Model.Tunings)
                         {
                             <li>
-                                <a class="link-pill @(tuning.ID == currentTuningId ? "active" : string.Empty)" href="@($"/{currentKeySlug}/{currentScaleSlug}/{SlugUtility.CreateSlug(tuning.Name)}/{currentFrets}")">@tuning.Name</a>
+                                <a class="link-pill @(tuning.ID == currentTuningId ? "active" : string.Empty)" href="@($"/{currentKeySlug}/{currentScaleSlug}/{SlugUtility.CreateSlug(tuning.Name)}/{currentFrets}/{currentModeSlug}")">@tuning.Name</a>
                             </li>
                         }
                     </ul>
                 </div>
-           
+
             </div>
         </div>
     }
@@ -150,7 +191,12 @@
         const scale = document.getElementById("scaleId").value;
         const tuning = document.getElementById("tuningId").value;
         const frets = document.getElementById("frets").value;
-        const path = `/${key}/${scale}/${tuning}/${frets}`;
+        const modeElement = document.getElementById("modeId");
+        const mode = modeElement ? modeElement.value : "";
+        let path = `/${key}/${scale}/${tuning}/${frets}`;
+        if (mode) {
+            path += `/${mode}`;
+        }
         window.location.assign(path);
     }
 </script>

@@ -1,3 +1,3 @@
 namespace Scalex.RazorPages.Services;
 
-public sealed record ScaleDiagramRequest(int? ScaleId, string? Key, int? TuningId, int? Frets);
+public sealed record ScaleDiagramRequest(int? ScaleId, string? Key, int? TuningId, int? Frets, int? ModeId);

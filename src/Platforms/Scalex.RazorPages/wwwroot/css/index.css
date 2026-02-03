@@ -101,13 +101,20 @@ body {
     font-size: 0.95rem;
 }
 
+.mode-info {
+    margin: 0;
+    color: var(--metal-accent);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
 .link-lists {
     width: 100%;
     display: grid;
     gap: 20px;
 }
 
-.link-list {
+.link-list
     display: grid;
     gap: 12px;
 }

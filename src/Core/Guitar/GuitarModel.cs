@@ -113,6 +113,7 @@ namespace Webprofusion.Scalex.Guitar
             MaximumChordPositionStretch = 5;
             FretsWithMarkers = new List<int> { 3, 5, 7, 9, 12, 15, 17, 19, 21, 24 };
             GuitarModelSettings = appSettings;
+            ModeManager = new ModeManager(GuitarModelSettings.ScaleManager);
             RefreshStringSettings();
 
             //populate additional scales based on defined chord arpeggios
@@ -153,6 +154,25 @@ namespace Webprofusion.Scalex.Guitar
         public List<ScaleItem> AllScales
         {
             get { return GuitarModelSettings.ScaleManager.scaleList; }
+        }
+
+        /// <summary>
+        /// Mode manager for handling musical modes
+        /// </summary>
+        public ModeManager ModeManager { get; private set; }
+
+        /// <summary>
+        /// All available modes
+        /// </summary>
+        public List<ModeItem> AllModes => ModeManager.ModeList;
+
+        /// <summary>
+        /// Currently selected mode (if any)
+        /// </summary>
+        public ModeItem? SelectedMode
+        {
+            get => ModeManager.CurrentMode;
+            set => ModeManager.CurrentMode = value;
         }
 
         public List<string> AllKeys
@@ -286,6 +306,54 @@ namespace Webprofusion.Scalex.Guitar
         {
             GuitarModelSettings.ScaleManager.SetKey(noteName);
             RefreshStringSettings();
+        }
+
+        /// <summary>
+        /// Set the current mode by ID
+        /// </summary>
+        public void SetMode(int modeId)
+        {
+            var mode = ModeManager.GetModeById(modeId);
+            if (mode != null)
+            {
+                SelectedMode = mode;
+                // Apply the mode's intervals to the scale manager
+                var modeScale = ModeManager.GetModeAsScale(mode);
+                if (modeScale != null)
+                {
+                    GuitarModelSettings.ScaleManager.SetScale(modeScale);
+                }
+            }
+            RefreshStringSettings();
+        }
+
+        /// <summary>
+        /// Set the current mode by name
+        /// </summary>
+        public void SetMode(string modeName)
+        {
+            var mode = ModeManager.GetModeByName(modeName);
+            if (mode != null)
+            {
+                SetMode(mode.ID);
+            }
+        }
+
+        /// <summary>
+        /// Clear the current mode selection
+        /// </summary>
+        public void ClearMode()
+        {
+            SelectedMode = null;
+        }
+
+        /// <summary>
+        /// Get modes available for the currently selected scale
+        /// </summary>
+        public List<ModeItem> GetModesForCurrentScale()
+        {
+            if (SelectedScale == null) return new List<ModeItem>();
+            return ModeManager.GetModesForScale(SelectedScale.ID);
         }
 
         public Note GetKey()

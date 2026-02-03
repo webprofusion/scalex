@@ -18,7 +18,7 @@ public sealed class ScaleDiagramImageService
 
     public byte[] GetScaleDiagram(ScaleDiagramRequest request)
     {
-        var cacheKey = $"scale:{request.ScaleId}:{request.Key}:{request.TuningId}:{request.Frets}";
+        var cacheKey = $"scale:{request.ScaleId}:{request.Key}:{request.TuningId}:{request.Frets}:{request.ModeId}";
 
         return _cache.GetOrCreate(cacheKey, entry =>
         {
@@ -33,7 +33,13 @@ public sealed class ScaleDiagramImageService
         var guitarModel = new GuitarModel();
 
         guitarModel.GuitarModelSettings.EnableDiagramTitle = false;
-        if (request.ScaleId.HasValue)
+
+        // Apply mode if specified (takes precedence over scale)
+        if (request.ModeId.HasValue)
+        {
+            guitarModel.SetMode(request.ModeId.Value);
+        }
+        else if (request.ScaleId.HasValue)
         {
             guitarModel.SetScale(request.ScaleId.Value);
         }

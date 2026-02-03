@@ -14,9 +14,12 @@ var app = builder.Build();
 app.UseStaticFiles();
 app.MapRazorPages();
 
-app.MapGet("/scale-diagram", (ScaleDiagramImageService service, int? scaleId, string? key, int? tuningId, int? frets, HttpResponse response) =>
+app.MapGet("/scale-diagram", (ScaleDiagramImageService service, int? scaleId, string? key, int? tuningId, int? frets, string? modeId, HttpResponse response) =>
 {
-    var request = new ScaleDiagramRequest(scaleId, key, tuningId, frets);
+    // Parse modeId manually to handle empty strings gracefully
+    int? parsedModeId = int.TryParse(modeId, out var m) ? m : null;
+
+    var request = new ScaleDiagramRequest(scaleId, key, tuningId, frets, parsedModeId);
     var pngBytes = service.GetScaleDiagram(request);
     response.Headers.CacheControl = "public, max-age=3600, s-maxage=86400";
     return Results.File(pngBytes, "image/png");
