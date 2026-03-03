@@ -26,18 +26,18 @@ body {
     gap: 8px;
 }
 
-.metal-hero h1 {
-    font-size: 2.6rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin: 0;
-}
+    .metal-hero h1 {
+        font-size: 2.6rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 0;
+    }
 
-.metal-hero p {
-    margin: 0;
-    color: var(--metal-muted);
-    font-size: 1.05rem;
-}
+    .metal-hero p {
+        margin: 0;
+        color: var(--metal-muted);
+        font-size: 1.05rem;
+    }
 
 .metal-panel {
     background: var(--metal-panel);
@@ -54,12 +54,12 @@ body {
     align-items: end;
 }
 
-.metal-form label {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--metal-muted);
-}
+    .metal-form label {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--metal-muted);
+    }
 
 .metal-input,
 .metal-select {
@@ -98,10 +98,10 @@ body {
     margin-bottom: 10px;
 }
 
-.play-controls .play-btn {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-}
+    .play-controls .play-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
 
 .diagram-image-container {
     position: relative;
@@ -129,15 +129,14 @@ body {
     padding: 0;
 }
 
-.note-hotspot:hover {
-    background: rgba(227, 6, 19, 0.35);
-}
+    .note-hotspot:hover {
+        background: rgba(227, 6, 19, 0.35);
+    }
 
-.note-hotspot.playing {
-    background: rgba(227, 6, 19, 0.6);
-    border-color: rgba(255, 90, 90, 0.95);
-    box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.25);
-}
+    .note-hotspot.playing {
+        border-color: rgba(255, 90, 90, 0.95);
+        box-shadow: 0px 0px 6px 6px rgba(255, 72, 72, 0.69);
+    }
 
 .diagram-image {
     display: block;
@@ -154,7 +153,6 @@ body {
 
 .mode-info {
     margin: 0;
-    padding-bottom:1em;
     color: var(--metal-accent);
     font-size: 0.9rem;
     font-style: italic;
@@ -171,21 +169,21 @@ body {
     gap: 12px;
 }
 
-.link-list h2 {
-    margin: 0;
-    font-size: 1.05rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
+    .link-list h2 {
+        margin: 0;
+        font-size: 1.05rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
 
-.link-list ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
+    .link-list ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
 .link-pill {
     display: inline-flex;
@@ -199,15 +197,15 @@ body {
     font-size: 0.9rem;
 }
 
-.link-pill.active {
-    background: var(--metal-accent-soft);
-    border-color: var(--metal-accent);
-    color: #fff;
-}
+    .link-pill.active {
+        background: var(--metal-accent-soft);
+        border-color: var(--metal-accent);
+        color: #fff;
+    }
 
-.link-pill:hover {
-    border-color: rgba(255, 255, 255, 0.25);
-}
+    .link-pill:hover {
+        border-color: rgba(255, 255, 255, 0.25);
+    }
 
 .branding-banner {
     display: inline-flex;
@@ -223,18 +221,20 @@ body {
     width: fit-content;
 }
 
-.branding-banner span {
-    color: var(--metal-text);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-}
+    .branding-banner span {
+        color: var(--metal-text);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+    }
 
 body.embedded .metal-hero {
     display: none;
 }
+
 body.embedded .metal-page {
     padding: 0;
 }
+
 body.embedded .metal-panel {
     padding: 0;
 }
@@ -264,9 +264,9 @@ body.embedded .metal-panel {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .metal-form > div:last-child {
-        grid-column: span 2;
-    }
+        .metal-form > div:last-child {
+            grid-column: span 2;
+        }
 
     .metal-button {
         width: 100%;
@@ -313,14 +313,14 @@ body.embedded .metal-panel {
         align-items: end;
     }
 
-    .metal-form > div:last-child {
-        grid-column: auto;
-    }
+        .metal-form > div:last-child {
+            grid-column: auto;
+        }
 
-    .metal-form label {
-        font-size: 0.7rem;
-        margin-bottom: 2px;
-    }
+        .metal-form label {
+            font-size: 0.7rem;
+            margin-bottom: 2px;
+        }
 
     .metal-input,
     .metal-select {
@@ -359,13 +359,13 @@ body.embedded .metal-panel {
         gap: 6px;
     }
 
-    .link-list h2 {
-        font-size: 0.85rem;
-    }
+        .link-list h2 {
+            font-size: 0.85rem;
+        }
 
-    .link-list ul {
-        gap: 6px;
-    }
+        .link-list ul {
+            gap: 6px;
+        }
 
     .link-pill {
         padding: 4px 8px;
