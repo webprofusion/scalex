@@ -72,6 +72,36 @@ namespace Webprofusion.Scalex.Guitar
             AllTunings.Add(t);
             id++;
 
+            t = new GuitarTuning();
+            t.ID = id;
+            t.Name = "6 String Guitar - D Standard";
+            t.Description = "D,G,C,F,A,D";
+            t.NumberStrings = 6;
+            t.TuningNotes = new NoteInstance[t.NumberStrings];
+            t.TuningNotes[0] = new NoteInstance(Note.D, 2);
+            t.TuningNotes[1] = new NoteInstance(Note.G, 2);
+            t.TuningNotes[2] = new NoteInstance(Note.C, 3);
+            t.TuningNotes[3] = new NoteInstance(Note.F, 3);
+            t.TuningNotes[4] = new NoteInstance(Note.A, 3);
+            t.TuningNotes[5] = new NoteInstance(Note.D, 4);
+            AllTunings.Add(t);
+            id++;
+
+            t = new GuitarTuning();
+            t.ID = id;
+            t.Name = "6 String Guitar - C Standard";
+            t.Description = "C,F,A#,D#,G,C";
+            t.NumberStrings = 6;
+            t.TuningNotes = new NoteInstance[t.NumberStrings];
+            t.TuningNotes[0] = new NoteInstance(Note.C, 2);
+            t.TuningNotes[1] = new NoteInstance(Note.F, 2);
+            t.TuningNotes[2] = new NoteInstance(Note.Bb, 2);
+            t.TuningNotes[3] = new NoteInstance(Note.Eb, 3);
+            t.TuningNotes[4] = new NoteInstance(Note.G, 3);
+            t.TuningNotes[5] = new NoteInstance(Note.C, 4);
+            AllTunings.Add(t);
+            id++;
+
             //Open C: c1	g1	c2	g2	c3	e3
             t = new GuitarTuning();
             t.ID = id;
