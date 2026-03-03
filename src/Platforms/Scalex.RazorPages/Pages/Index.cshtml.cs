@@ -41,6 +41,8 @@ public sealed class IndexModel : PageModel
     public string? ModeSlug { get; set; }
 
     public string DiagramUrl { get; private set; } = string.Empty;
+    public string DiagramMapUrl { get; private set; } = string.Empty;
+    public string PlayDataUrl { get; private set; } = string.Empty;
     public string DiagramName { get; private set; } = string.Empty;
     public string? RelativeScaleInfo { get; private set; }
     public string? ModeInfo { get; private set; }
@@ -154,5 +156,7 @@ public sealed class IndexModel : PageModel
 
         var encodedKey = Uri.EscapeDataString(Key ?? string.Empty);
         DiagramUrl = $"/scale-diagram?scaleId={ScaleId}&key={encodedKey}&tuningId={TuningId}&frets={Frets}&modeId={ModeId}";
+        DiagramMapUrl = $"/scale-diagram-map?scaleId={ScaleId}&key={encodedKey}&tuningId={TuningId}&frets={Frets}&modeId={ModeId}";
+        PlayDataUrl = $"/scale-play-data?scaleId={ScaleId}&key={encodedKey}&tuningId={TuningId}&frets={Frets}&modeId={ModeId}";
     }
 }

@@ -25,4 +25,18 @@ app.MapGet("/scale-diagram", (ScaleDiagramImageService service, int? scaleId, st
     return Results.File(pngBytes, "image/png");
 });
 
+app.MapGet("/scale-play-data", (ScaleDiagramImageService service, int? scaleId, string? key, int? tuningId, int? frets, string? modeId) =>
+{
+    int? parsedModeId = int.TryParse(modeId, out var m) ? m : null;
+    var request = new ScaleDiagramRequest(scaleId, key, tuningId, frets, parsedModeId);
+    return Results.Json(service.GetPlaybackData(request));
+});
+
+app.MapGet("/scale-diagram-map", (ScaleDiagramImageService service, int? scaleId, string? key, int? tuningId, int? frets, string? modeId) =>
+{
+    int? parsedModeId = int.TryParse(modeId, out var m) ? m : null;
+    var request = new ScaleDiagramRequest(scaleId, key, tuningId, frets, parsedModeId);
+    return Results.Json(service.GetDiagramMap(request));
+});
+
 app.Run();

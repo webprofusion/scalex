@@ -34,7 +34,9 @@
         <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length of the fretboard at the next octave. 
             Fret 0 (the open string), fret 12 and fret 24 start with the same notes, the next octave higher. 
             If you want to change key or mode, you move the same pattern up or down the fretboard in your head. 
-            Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor is G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes. </p>
+            Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor is G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes. 
+        
+        Click and/or drag to play the scale notes.</p>
        
     </div>
 
@@ -121,8 +123,15 @@
             {
                 <p class="mode-info">@Model.ModeInfo</p>
             }
-            <div class="diagram-image-container">
-                <img src="@Model.DiagramUrl" alt="Scale diagram" class="diagram-image" />
+            <div class="play-controls">
+                <button type="button" class="metal-button play-btn" data-play="asc">Play Scale ↑</button>
+                <button type="button" class="metal-button play-btn" data-play="desc">Play Scale ↓</button>
+                <button type="button" class="metal-button play-btn" data-play="updown">Play Scale ↑↓</button>
+                <button type="button" class="metal-button play-btn" data-play="melody">Play Melody</button>
+            </div>
+            <div class="diagram-image-container" data-map-url="@Model.DiagramMapUrl" data-play-url="@Model.PlayDataUrl">
+                <img id="diagramImage" src="@Model.DiagramUrl" alt="Scale diagram" class="diagram-image" />
+                <div id="diagramHotspots" class="diagram-hotspots"></div>
             </div>
 
             <div class="link-lists">
@@ -142,7 +151,7 @@
                         </ul>
                     </div>
                 }
-                <div class="link-list">
+                <div class="link-list" style="margin-top:1em;">
                     <h2>Scales and Arpeggios</h2>
                     <ul>
                         @foreach (var scale in Model.Scales)
@@ -185,6 +194,258 @@
     if (window.self !== window.top) {
         document.body.classList.add("embedded");
     }
+
+    let audioContext;
+    let playbackData;
+    let diagramMapData;
+    let isPointerDownOnMap = false;
+    let activeSustainOscillator = null;
+    let activeSustainGain = null;
+    let activeSustainFrequency = null;
+
+    async function ensureAudioContext() {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        if (audioContext.state === "suspended") {
+            await audioContext.resume();
+        }
+    }
+
+    async function playFrequency(frequency, durationMs) {
+        await ensureAudioContext();
+
+        const now = audioContext.currentTime;
+        const duration = durationMs / 1000;
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.value = frequency;
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start(now);
+        oscillator.stop(now + duration + 0.02);
+    }
+
+    async function playSequence(sequence) {
+        if (!sequence || !sequence.length) {
+            return;
+        }
+
+        for (const note of sequence) {
+            setActiveHotspot(note.markerKey);
+            await playFrequency(note.frequency, note.durationMs);
+            await new Promise(resolve => setTimeout(resolve, note.durationMs));
+        }
+
+        setActiveHotspot(null);
+    }
+
+    function setActiveHotspot(markerKey) {
+        document.querySelectorAll(".note-hotspot.playing").forEach(el => el.classList.remove("playing"));
+
+        if (!markerKey) {
+            return;
+        }
+
+        const active = document.querySelector(`.note-hotspot[data-marker-key="${markerKey}"]`);
+        if (active) {
+            active.classList.add("playing");
+        }
+    }
+
+    async function startSustainFrequency(frequency) {
+        await ensureAudioContext();
+
+        if (activeSustainFrequency === frequency && activeSustainOscillator) {
+            return;
+        }
+
+        stopSustainFrequency();
+
+        const now = audioContext.currentTime;
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.value = frequency;
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+        oscillator.start(now);
+
+        activeSustainOscillator = oscillator;
+        activeSustainGain = gain;
+        activeSustainFrequency = frequency;
+    }
+
+    function stopSustainFrequency() {
+        if (!audioContext || !activeSustainOscillator || !activeSustainGain) {
+            activeSustainOscillator = null;
+            activeSustainGain = null;
+            activeSustainFrequency = null;
+            return;
+        }
+
+        const now = audioContext.currentTime;
+        activeSustainGain.gain.cancelScheduledValues(now);
+        activeSustainGain.gain.setValueAtTime(Math.max(activeSustainGain.gain.value, 0.0001), now);
+        activeSustainGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+        activeSustainOscillator.stop(now + 0.05);
+
+        activeSustainOscillator = null;
+        activeSustainGain = null;
+        activeSustainFrequency = null;
+    }
+
+    async function loadPlaybackData() {
+        if (playbackData) {
+            return playbackData;
+        }
+
+        const container = document.querySelector(".diagram-image-container");
+        if (!container?.dataset.playUrl) {
+            return null;
+        }
+
+        const response = await fetch(container.dataset.playUrl, { credentials: "same-origin" });
+        if (!response.ok) {
+            return null;
+        }
+
+        playbackData = await response.json();
+        return playbackData;
+    }
+
+    async function wirePlaybackButtons() {
+        const data = await loadPlaybackData();
+        if (!data) {
+            return;
+        }
+
+        document.querySelectorAll(".play-btn").forEach(btn => {
+            btn.addEventListener("click", async () => {
+                const mode = btn.dataset.play;
+                if (mode === "asc") {
+                    await playSequence(data.scaleAscending);
+                } else if (mode === "desc") {
+                    await playSequence(data.scaleDescending);
+                } else if (mode === "updown") {
+                    await playSequence([...(data.scaleAscending ?? []), ...(data.scaleDescending ?? [])]);
+                } else if (mode === "melody") {
+                    await playSequence(data.melody);
+                }
+            });
+        });
+    }
+
+    function renderDiagramHotspots() {
+        const container = document.querySelector(".diagram-image-container");
+        const hotspots = document.getElementById("diagramHotspots");
+        const image = document.getElementById("diagramImage");
+
+        if (!container || !hotspots || !image || !diagramMapData) {
+            return;
+        }
+
+        const width = image.clientWidth;
+        const height = image.clientHeight;
+
+        hotspots.style.width = `${width}px`;
+        hotspots.style.height = `${height}px`;
+        hotspots.style.left = `${image.offsetLeft}px`;
+        hotspots.style.top = `${image.offsetTop}px`;
+
+        hotspots.innerHTML = "";
+
+        for (const marker of diagramMapData.markers ?? []) {
+            const el = document.createElement("button");
+            el.type = "button";
+            el.className = "note-hotspot";
+            el.title = `${marker.noteName} (String ${marker.stringNumber + 1}, Fret ${marker.fretNumber})`;
+
+            const sizePx = Math.max(10, marker.radiusRatio * width * 2);
+            el.style.left = `${marker.xRatio * width}px`;
+            el.style.top = `${marker.yRatio * height}px`;
+            el.style.width = `${sizePx}px`;
+            el.style.height = `${sizePx}px`;
+            el.dataset.markerKey = `${marker.stringNumber}-${marker.fretNumber}`;
+
+            el.addEventListener("pointerdown", async (event) => {
+                event.preventDefault();
+                isPointerDownOnMap = true;
+                setActiveHotspot(el.dataset.markerKey);
+                await startSustainFrequency(marker.frequency);
+            });
+
+            el.addEventListener("pointerenter", async () => {
+                if (!isPointerDownOnMap) {
+                    return;
+                }
+
+                setActiveHotspot(el.dataset.markerKey);
+                await startSustainFrequency(marker.frequency);
+            });
+
+            el.addEventListener("pointerup", () => {
+                isPointerDownOnMap = false;
+                stopSustainFrequency();
+                setActiveHotspot(null);
+            });
+
+            el.addEventListener("pointercancel", () => {
+                isPointerDownOnMap = false;
+                stopSustainFrequency();
+                setActiveHotspot(null);
+            });
+
+            hotspots.appendChild(el);
+        }
+    }
+
+    async function loadDiagramMap() {
+        const container = document.querySelector(".diagram-image-container");
+        const image = document.getElementById("diagramImage");
+
+        if (!container?.dataset.mapUrl || !image) {
+            return;
+        }
+
+        const response = await fetch(container.dataset.mapUrl, { credentials: "same-origin" });
+        if (!response.ok) {
+            return;
+        }
+
+        diagramMapData = await response.json();
+
+        if (image.complete) {
+            renderDiagramHotspots();
+        } else {
+            image.addEventListener("load", renderDiagramHotspots, { once: true });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        wirePlaybackButtons();
+        loadDiagramMap();
+        window.addEventListener("resize", renderDiagramHotspots);
+        window.addEventListener("pointerup", () => {
+            isPointerDownOnMap = false;
+            stopSustainFrequency();
+            setActiveHotspot(null);
+        });
+    });
 
     function navigateSelection() {
         const key = document.getElementById("key").value;

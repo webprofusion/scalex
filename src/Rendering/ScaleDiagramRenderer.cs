@@ -35,6 +35,10 @@ namespace Webprofusion.Scalex.Rendering
         private List<NoteItem> _noteList = new List<NoteItem>();
         private List<NoteItem> _hightlightedNotes = new List<NoteItem>();
 
+        public IReadOnlyList<NoteItem> RenderedNotes => _noteList;
+
+        public int MarkerSize => _guitarModel?.GuitarModelSettings?.MarkerSize ?? 0;
+
         public ScaleDiagramRenderer(GuitarModel guitarModel)
         {
             _guitarModel = guitarModel;
