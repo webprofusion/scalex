@@ -167,67 +167,44 @@ namespace Webprofusion.Scalex.Music
             //http://en.wikipedia.org/wiki/Jazz_scale
 
 
-            //  1     ♭2    2nd   ♭3     3      4    ♭5     5     ♭6     6    ♭7     7
-            scaleList.Add(new ScaleItem(1, "Major",
-                true, false, true, false, true, true, false, true, false, true, false, true,
-                null));
-            scaleList.Add(new ScaleItem(2, "Minor",
-                true, false, true, true, false, true, false, true, true, false, true, false,
-                "Natural Minor"));
-            scaleList.Add(new ScaleItem(3, "Harmonic Minor",
-                true, false, true, true, false, true, false, true, true, false, false, true,
-                ""));
-            scaleList.Add(new ScaleItem(4, "Pentatonic Minor",
-                true, false, false, true, false, true, false, true, false, false, true, false,
-                ""));
-            scaleList.Add(new ScaleItem(5, "Pentatonic Minor (Blues)",
-                true, false, false, true, false, true, true, true, false, false, true, false,
-                ""));
-            scaleList.Add(new ScaleItem(6, "Melodic Minor",
-                true, false, true, true, false, true, false, true, false, true, false, true,
-                    "The melodic minor scale is based on the natural minor with the sixth and seventh tones raised by a semitone (half step) when the scale is ascending. When the scale is descending, the melodic minor is the same as the natural minor"));
-            scaleList.Add(new ScaleItem(8, "Whole Tone",
-                true, false, true, false, true, false, true, false, true, false, true, false,
-                ""));
-            scaleList.Add(new ScaleItem(9, "Iwato",
-                true, true, false, false, false, true, true, false, false, false, true, false,
-                ""));
-            scaleList.Add(new ScaleItem(10, "Algerian",
-                true, false, true, true, false, true, true, true, true, false, false, true,
-                ""));
-            scaleList.Add(new ScaleItem(11, "Double Harmonic Major",
-                true, false, true, true, false, true, true, false, true, true, false, true,
-                ""));
-            scaleList.Add(new ScaleItem(12, "Persian",
-                true, true, false, false, true, true, true, false, true, false, false, true,
-                ""));
-            scaleList.Add(new ScaleItem(13, "Byzantine",
-                true, true, false, false, true, true, false, true, true, false, false, true,
-               ""));
+            scaleList.Add(new ScaleItem("Major", new[] { 1, 3, 5, 6, 8, 10, 12 }) { ID = 1, Description = "Seven-note diatonic major scale (Ionian mode)." });
+            scaleList.Add(new ScaleItem("Minor", new[] { 1, 3, 4, 6, 8, 9, 11 }) { ID = 2, Description = "Natural Minor (Aeolian) scale." });
+            scaleList.Add(new ScaleItem("Harmonic Minor", new[] { 1, 3, 4, 6, 8, 9, 12 }) { ID = 3, Description = "Natural minor with a raised seventh degree." });
+            scaleList.Add(new ScaleItem("Pentatonic Minor", new[] { 1, 4, 6, 8, 11 }) { ID = 4, Description = "Five-note minor pentatonic scale used in rock and blues." });
+            scaleList.Add(new ScaleItem("Pentatonic Minor (Blues)", new[] { 1, 4, 6, 7, 8, 11 }) { ID = 5, Description = "Minor pentatonic with an added flat fifth blue note." });
+            scaleList.Add(new ScaleItem("Melodic Minor", new[] { 1, 3, 4, 6, 8, 10, 12 })
+            {
+                ID = 6,
+                Description = "The melodic minor scale is based on the natural minor with the sixth and seventh tones raised by a semitone (half step) when the scale is ascending. When the scale is descending, the melodic minor is the same as the natural minor"
+            });
+            scaleList.Add(new ScaleItem("Whole Tone", new[] { 1, 3, 5, 7, 9, 11 }) { ID = 8, Description = "Symmetrical six-note scale built entirely from whole steps." });
+            scaleList.Add(new ScaleItem("Iwato", new[] { 1, 2, 6, 7, 11 }) { ID = 9, Description = "Japanese pentatonic scale with a tense, exotic colour." });
+            scaleList.Add(new ScaleItem("Algerian", new[] { 1, 3, 4, 6, 7, 8, 9, 12 }) { ID = 10, Description = "North African scale with dramatic augmented-step character." });
+            scaleList.Add(new ScaleItem("Double Harmonic Major", new[] { 1, 3, 4, 6, 7, 9, 10, 12 }) { ID = 11, Description = "Major scale with flat second and flat sixth; also called Byzantine major." });
+            scaleList.Add(new ScaleItem("Persian", new[] { 1, 2, 5, 6, 7, 9, 12 }) { ID = 12, Description = "Middle Eastern-flavoured scale with strong altered tensions." });
+            scaleList.Add(new ScaleItem("Byzantine", new[] { 1, 2, 5, 6, 8, 9, 12 }) { ID = 13, Description = "Double-harmonic minor flavour common in Mediterranean music." });
 
-            scaleList.Add(new ScaleItem(14, "Phrygian Dominant", true, true, false, false, true, true, false, true, true, false, true, false, "5th Mode of the Harmonic Minor Scale"));
+            scaleList.Add(new ScaleItem("Phrygian Dominant", new[] { 1, 2, 5, 6, 8, 9, 11 }) { ID = 14, Description = "Fifth mode of harmonic minor with major third and flat second." });
 
-            scaleList.Add(new ScaleItem("Major Pentatonic", new[] { 1, 3, 5, 8, 10 }) { ID = 15, Description = "" });
-            scaleList.Add(new ScaleItem("Major Blues", new[] { 1, 3, 4, 5, 8, 10 }) { ID = 16, Description = "" });
-            scaleList.Add(new ScaleItem("Diminished (Whole-Half)", new[] { 1, 3, 4, 6, 7, 9, 10, 12 }) { ID = 17, Description = "" });
-            scaleList.Add(new ScaleItem("Diminished (Half-Whole)", new[] { 1, 2, 4, 5, 7, 8, 10, 11 }) { ID = 18, Description = "" });
-            scaleList.Add(new ScaleItem("Augmented", new[] { 1, 4, 5, 8, 9, 12 }) { ID = 19, Description = "" });
-            scaleList.Add(new ScaleItem("Hungarian Minor", new[] { 1, 3, 4, 7, 8, 9, 12 }) { ID = 20, Description = "" });
-            scaleList.Add(new ScaleItem("Neapolitan Minor", new[] { 1, 2, 4, 6, 8, 9, 12 }) { ID = 21, Description = "" });
-            scaleList.Add(new ScaleItem("Neapolitan Major", new[] { 1, 2, 4, 6, 8, 10, 12 }) { ID = 22, Description = "" });
-            scaleList.Add(new ScaleItem("Enigmatic", new[] { 1, 2, 5, 7, 9, 11, 12 }) { ID = 23, Description = "" });
-            scaleList.Add(new ScaleItem("Bebop Major", new[] { 1, 3, 5, 6, 8, 9, 10, 12 }) { ID = 24, Description = "" });
-            scaleList.Add(new ScaleItem("Bebop Dominant", new[] { 1, 3, 5, 6, 8, 10, 11, 12 }) { ID = 25, Description = "" });
-            scaleList.Add(new ScaleItem("Bebop Minor", new[] { 1, 3, 4, 5, 6, 8, 10, 11 }) { ID = 26, Description = "" });
-            scaleList.Add(new ScaleItem("Lydian Dominant", new[] { 1, 3, 5, 7, 8, 10, 11 }) { ID = 27, Description = "" });
-            scaleList.Add(new ScaleItem("Altered", new[] { 1, 2, 4, 5, 7, 9, 11 }) { ID = 28, Description = "" });
-            scaleList.Add(new ScaleItem("Egyptian Pentatonic", new[] { 1, 3, 6, 8, 11 }) { ID = 29, Description = "" });
-            scaleList.Add(new ScaleItem("Hirajoshi", new[] { 1, 3, 4, 8, 9 }) { ID = 30, Description = "" });
-            scaleList.Add(new ScaleItem("Kumoi", new[] { 1, 3, 4, 8, 10 }) { ID = 31, Description = "" });
+            scaleList.Add(new ScaleItem("Major Pentatonic", new[] { 1, 3, 5, 8, 10 }) { ID = 15, Description = "Five-note major pentatonic (major without 4th and 7th)." });
+            scaleList.Add(new ScaleItem("Major Blues", new[] { 1, 3, 4, 5, 8, 10 }) { ID = 16, Description = "Major pentatonic with a blues passing tone." });
+            scaleList.Add(new ScaleItem("Diminished (Whole-Half)", new[] { 1, 3, 4, 6, 7, 9, 10, 12 }) { ID = 17, Description = "Octatonic diminished scale starting with a whole step." });
+            scaleList.Add(new ScaleItem("Diminished (Half-Whole)", new[] { 1, 2, 4, 5, 7, 8, 10, 11 }) { ID = 18, Description = "Octatonic diminished scale starting with a half step." });
+            scaleList.Add(new ScaleItem("Augmented", new[] { 1, 4, 5, 8, 9, 12 }) { ID = 19, Description = "Symmetrical hexatonic scale based on augmented triad movement." });
+            scaleList.Add(new ScaleItem("Hungarian Minor", new[] { 1, 3, 4, 7, 8, 9, 12 }) { ID = 20, Description = "Minor scale with raised 4th and raised 7th." });
+            scaleList.Add(new ScaleItem("Neapolitan Minor", new[] { 1, 2, 4, 6, 8, 9, 12 }) { ID = 21, Description = "Minor scale with flattened 2nd and major 7th." });
+            scaleList.Add(new ScaleItem("Neapolitan Major", new[] { 1, 2, 4, 6, 8, 10, 12 }) { ID = 22, Description = "Major-type scale featuring a flattened 2nd." });
+            scaleList.Add(new ScaleItem("Enigmatic", new[] { 1, 2, 5, 7, 9, 11, 12 }) { ID = 23, Description = "Rare seven-note scale known for strong altered tensions." });
+            scaleList.Add(new ScaleItem("Bebop Major", new[] { 1, 3, 5, 6, 8, 9, 10, 12 }) { ID = 24, Description = "Major scale with added passing tone for bebop phrasing." });
+            scaleList.Add(new ScaleItem("Bebop Dominant", new[] { 1, 3, 5, 6, 8, 10, 11, 12 }) { ID = 25, Description = "Mixolydian with added major 7 passing tone." });
+            scaleList.Add(new ScaleItem("Bebop Minor", new[] { 1, 3, 4, 5, 6, 8, 10, 11 }) { ID = 26, Description = "Minor bebop scale with chromatic passing tone." });
+            scaleList.Add(new ScaleItem("Lydian Dominant", new[] { 1, 3, 5, 7, 8, 10, 11 }) { ID = 27, Description = "Lydian mode with flat seventh (melodic minor mode)." });
+            scaleList.Add(new ScaleItem("Altered", new[] { 1, 2, 4, 5, 7, 9, 11 }) { ID = 28, Description = "Super Locrian altered dominant scale." });
+            scaleList.Add(new ScaleItem("Egyptian Pentatonic", new[] { 1, 3, 6, 8, 11 }) { ID = 29, Description = "Suspended pentatonic common in folk and modal riffs." });
+            scaleList.Add(new ScaleItem("Hirajoshi", new[] { 1, 3, 4, 8, 9 }) { ID = 30, Description = "Japanese pentatonic with a dark, tense character." });
+            scaleList.Add(new ScaleItem("Kumoi", new[] { 1, 3, 4, 8, 10 }) { ID = 31, Description = "Japanese pentatonic related to Hirajoshi with brighter colour." });
 
-            scaleList.Add(new ScaleItem(0, "Chromatic",
-                true, true, true, true, true, true, true, true, true, true, true, true,
-                ""));
+            scaleList.Add(new ScaleItem("Chromatic", new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }) { ID = 0, Description = "All twelve semitones in equal steps." });
 
             CurrentScale = scaleList[0];
 
