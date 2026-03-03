@@ -31,19 +31,24 @@
 <div class="metal-page">
     <div class="metal-hero">
         <h1>Guitar Scale Diagrams</h1>
-        <p>Learn scales the easy way. If you look at any guitar scale pattern you will see that the patterns repeats along the length of the fretboard at the next octave. 
-            Fret 0 (the open string), fret 12 and fret 24 start with the same notes, the next octave higher. 
-            If you want to change key or mode, you move the same pattern up or down the fretboard in your head. 
-            Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor is G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes. 
+        <h2>Learn scales the easy way.</h2>
+        <p>
+            If you look at any guitar scale pattern you will see that the patterns repeats along the length of the fretboard at the next octave.
+            Fret 0 (the open string), fret 12 and fret 24 start with the same notes, the next octave higher.  If you want to change key or mode, you move the same pattern up or down the fretboard in your head.
+        </p>
+        <p>
+           
+            Try viewing E Minor, then F Minor, you'll see that the whole pattern moves up one fret. The "Relative Major" of E Minor is G Major, and you will see they have the exact same layout on the fretboard. The major and natural minor scales share the same notes.
         
-        Click and/or drag to play the scale notes.</p>
+            Click and/or drag to play the scale notes.
+        </p>
        
     </div>
 
 
-     <a class="branding-banner" href="https://soundshed.com" target="_blank" rel="noopener noreferrer">
-            Scalex Guitar Toolkit Powered by <span>Soundshed</span>
-        </a>
+    <a class="branding-banner" href="https://soundshed.com" target="_blank" rel="noopener noreferrer">
+        Scalex Guitar Toolkit Powered by <span>Soundshed</span>
+    </a>
 
     <div class="metal-panel">
         <form method="get" class="metal-form">
@@ -143,7 +148,7 @@
                             @foreach (var mode in Model.Modes)
                             {
                                 <li>
-                                    <a class="link-pill @(mode.ID == currentModeId ? "active" : string.Empty)" 
+                                    <a class="link-pill @(mode.ID == currentModeId ? "active" : string.Empty)"
                                        href="@($"/{currentKeySlug}/{currentScaleSlug}/{currentTuningSlug}/{currentFrets}/{SlugUtility.CreateSlug(mode.Name)}")"
                                        title="@mode.Character">@mode.Name</a>
                                 </li>
@@ -199,8 +204,7 @@
     let playbackData;
     let diagramMapData;
     let isPointerDownOnMap = false;
-    let activeSustainOscillator = null;
-    let activeSustainGain = null;
+    let activeSustainVoice = null;
     let activeSustainFrequency = null;
 
     async function ensureAudioContext() {
@@ -213,26 +217,69 @@
         }
     }
 
+    function createGuitarVoice(frequency, startTime, durationMs, isSustain = false) {
+        const filter = audioContext.createBiquadFilter();
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(4200, startTime);
+        filter.Q.setValueAtTime(0.8, startTime);
+
+        const voiceGain = audioContext.createGain();
+        voiceGain.gain.setValueAtTime(0.0001, startTime);
+        voiceGain.gain.exponentialRampToValueAtTime(0.22, startTime + 0.01);
+
+        if (isSustain) {
+            voiceGain.gain.exponentialRampToValueAtTime(0.08, startTime + 0.12);
+        } else {
+            const end = startTime + (durationMs / 1000);
+            voiceGain.gain.exponentialRampToValueAtTime(0.07, startTime + 0.08);
+            voiceGain.gain.exponentialRampToValueAtTime(0.0001, end);
+        }
+
+        const osc1 = audioContext.createOscillator();
+        osc1.type = "triangle";
+        osc1.frequency.setValueAtTime(frequency, startTime);
+
+        const osc2 = audioContext.createOscillator();
+        osc2.type = "sawtooth";
+        osc2.frequency.setValueAtTime(frequency * 2, startTime);
+
+        const osc3 = audioContext.createOscillator();
+        osc3.type = "sine";
+        osc3.frequency.setValueAtTime(frequency * 3, startTime);
+
+        const g1 = audioContext.createGain();
+        g1.gain.setValueAtTime(0.8, startTime);
+        const g2 = audioContext.createGain();
+        g2.gain.setValueAtTime(0.22, startTime);
+        const g3 = audioContext.createGain();
+        g3.gain.setValueAtTime(0.08, startTime);
+
+        osc1.connect(g1);
+        osc2.connect(g2);
+        osc3.connect(g3);
+
+        g1.connect(filter);
+        g2.connect(filter);
+        g3.connect(filter);
+        filter.connect(voiceGain);
+        voiceGain.connect(audioContext.destination);
+
+        osc1.start(startTime);
+        osc2.start(startTime);
+        osc3.start(startTime);
+
+        return { osc1, osc2, osc3, voiceGain };
+    }
+
     async function playFrequency(frequency, durationMs) {
         await ensureAudioContext();
 
         const now = audioContext.currentTime;
-        const duration = durationMs / 1000;
-        const oscillator = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-
-        oscillator.type = "sine";
-        oscillator.frequency.value = frequency;
-
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-
-        oscillator.start(now);
-        oscillator.stop(now + duration + 0.02);
+        const voice = createGuitarVoice(frequency, now, durationMs, false);
+        const stopAt = now + (durationMs / 1000) + 0.06;
+        voice.osc1.stop(stopAt);
+        voice.osc2.stop(stopAt);
+        voice.osc3.stop(stopAt);
     }
 
     async function playSequence(sequence) {
@@ -265,47 +312,33 @@
     async function startSustainFrequency(frequency) {
         await ensureAudioContext();
 
-        if (activeSustainFrequency === frequency && activeSustainOscillator) {
+        if (activeSustainFrequency === frequency && activeSustainVoice) {
             return;
         }
 
         stopSustainFrequency();
 
         const now = audioContext.currentTime;
-        const oscillator = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-
-        oscillator.type = "sine";
-        oscillator.frequency.value = frequency;
-
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
-
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-        oscillator.start(now);
-
-        activeSustainOscillator = oscillator;
-        activeSustainGain = gain;
+        activeSustainVoice = createGuitarVoice(frequency, now, 1000, true);
         activeSustainFrequency = frequency;
     }
 
     function stopSustainFrequency() {
-        if (!audioContext || !activeSustainOscillator || !activeSustainGain) {
-            activeSustainOscillator = null;
-            activeSustainGain = null;
+        if (!audioContext || !activeSustainVoice) {
+            activeSustainVoice = null;
             activeSustainFrequency = null;
             return;
         }
 
         const now = audioContext.currentTime;
-        activeSustainGain.gain.cancelScheduledValues(now);
-        activeSustainGain.gain.setValueAtTime(Math.max(activeSustainGain.gain.value, 0.0001), now);
-        activeSustainGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
-        activeSustainOscillator.stop(now + 0.05);
+        activeSustainVoice.voiceGain.gain.cancelScheduledValues(now);
+        activeSustainVoice.voiceGain.gain.setValueAtTime(Math.max(activeSustainVoice.voiceGain.gain.value, 0.0001), now);
+        activeSustainVoice.voiceGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+        activeSustainVoice.osc1.stop(now + 0.06);
+        activeSustainVoice.osc2.stop(now + 0.06);
+        activeSustainVoice.osc3.stop(now + 0.06);
 
-        activeSustainOscillator = null;
-        activeSustainGain = null;
+        activeSustainVoice = null;
         activeSustainFrequency = null;
     }
 

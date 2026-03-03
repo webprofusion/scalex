@@ -154,6 +154,7 @@ body {
 
 .mode-info {
     margin: 0;
+    padding-bottom:1em;
     color: var(--metal-accent);
     font-size: 0.9rem;
     font-style: italic;
