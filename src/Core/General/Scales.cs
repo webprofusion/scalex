@@ -207,6 +207,24 @@ namespace Webprofusion.Scalex.Music
 
             scaleList.Add(new ScaleItem(14, "Phrygian Dominant", true, true, false, false, true, true, false, true, true, false, true, false, "5th Mode of the Harmonic Minor Scale"));
 
+            scaleList.Add(new ScaleItem("Major Pentatonic", new[] { 1, 3, 5, 8, 10 }) { ID = 15, Description = "" });
+            scaleList.Add(new ScaleItem("Major Blues", new[] { 1, 3, 4, 5, 8, 10 }) { ID = 16, Description = "" });
+            scaleList.Add(new ScaleItem("Diminished (Whole-Half)", new[] { 1, 3, 4, 6, 7, 9, 10, 12 }) { ID = 17, Description = "" });
+            scaleList.Add(new ScaleItem("Diminished (Half-Whole)", new[] { 1, 2, 4, 5, 7, 8, 10, 11 }) { ID = 18, Description = "" });
+            scaleList.Add(new ScaleItem("Augmented", new[] { 1, 4, 5, 8, 9, 12 }) { ID = 19, Description = "" });
+            scaleList.Add(new ScaleItem("Hungarian Minor", new[] { 1, 3, 4, 7, 8, 9, 12 }) { ID = 20, Description = "" });
+            scaleList.Add(new ScaleItem("Neapolitan Minor", new[] { 1, 2, 4, 6, 8, 9, 12 }) { ID = 21, Description = "" });
+            scaleList.Add(new ScaleItem("Neapolitan Major", new[] { 1, 2, 4, 6, 8, 10, 12 }) { ID = 22, Description = "" });
+            scaleList.Add(new ScaleItem("Enigmatic", new[] { 1, 2, 5, 7, 9, 11, 12 }) { ID = 23, Description = "" });
+            scaleList.Add(new ScaleItem("Bebop Major", new[] { 1, 3, 5, 6, 8, 9, 10, 12 }) { ID = 24, Description = "" });
+            scaleList.Add(new ScaleItem("Bebop Dominant", new[] { 1, 3, 5, 6, 8, 10, 11, 12 }) { ID = 25, Description = "" });
+            scaleList.Add(new ScaleItem("Bebop Minor", new[] { 1, 3, 4, 5, 6, 8, 10, 11 }) { ID = 26, Description = "" });
+            scaleList.Add(new ScaleItem("Lydian Dominant", new[] { 1, 3, 5, 7, 8, 10, 11 }) { ID = 27, Description = "" });
+            scaleList.Add(new ScaleItem("Altered", new[] { 1, 2, 4, 5, 7, 9, 11 }) { ID = 28, Description = "" });
+            scaleList.Add(new ScaleItem("Egyptian Pentatonic", new[] { 1, 3, 6, 8, 11 }) { ID = 29, Description = "" });
+            scaleList.Add(new ScaleItem("Hirajoshi", new[] { 1, 3, 4, 8, 9 }) { ID = 30, Description = "" });
+            scaleList.Add(new ScaleItem("Kumoi", new[] { 1, 3, 4, 8, 10 }) { ID = 31, Description = "" });
+
             scaleList.Add(new ScaleItem(0, "Chromatic",
                 true, true, true, true, true, true, true, true, true, true, true, true,
                 ""));
